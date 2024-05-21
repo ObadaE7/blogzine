@@ -2,6 +2,8 @@
     <section class="wrapper">
         <x-header></x-header>
         @yield('content')
-        <x-footer></x-footer>
+        @unless (Route::is('login'))
+            <x-footer></x-footer>
+        @endunless
     </section>
 </x-guest-layout>

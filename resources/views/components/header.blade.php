@@ -4,10 +4,14 @@
     </div>
     <div class="menu">
         <ul class="menu-ul">
-            <li><a href="#">Home</a></li>
+            <li><a href="{{ route('home') }}">Home</a></li>
             <li><a href="#">Categories</a></li>
             <li><a href="#">Posts</a></li>
-            <li><a href="#">Login</a></li>
+            @auth
+                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+            @else
+                <li><a href="{{ route('login') }}">Login</a></li>
+            @endauth
         </ul>
     </div>
     <div class="search">
