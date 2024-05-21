@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset('assets/lib/bs-icons/font/bootstrap-icons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/core.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    @stack('css')
 </head>
 
 <body data-bs-theme="light">
@@ -23,9 +24,8 @@
     <script src="{{ asset('assets/js/core.js') }}"></script>
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
-    <script>
-        initSwiper()
-    </script>
+
+    @stack('scripts')
 </body>
 
 </html>

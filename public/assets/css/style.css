@@ -517,16 +517,6 @@ swiper-slide img {
     border-radius: .5rem;
 }
 
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.25);
-    border-radius: .5rem;
-}
-
 .slide-content {
     position: absolute;
     display: flex;
@@ -565,6 +555,7 @@ swiper-slide img {
 
 /* END SECTION THREE STYLE */
 
+/* SECTION FOOTER*/
 .footer {
     grid-area: footer;
     display: grid;
@@ -622,8 +613,11 @@ swiper-slide img {
     }
 }
 
-/* AUTH SECTION */
-.auth .main {
+/* END SECTION FOOTER */
+
+/* SECTION AUTH */
+.register .main,
+.login .main {
     grid-template-rows: 1fr;
     grid-template-columns: 1fr;
     grid-template-areas: 'auth-content';
@@ -631,24 +625,78 @@ swiper-slide img {
     padding: 1rem;
 }
 
-.auth .auth-header {
+.register .auth-header,
+.login .auth-header {
     font-size: 25px;
     text-align: center;
     padding-bottom: 1rem;
 }
 
-.auth .auth-content {
+.login .auth-content {
     grid-area: auth-content;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    height: max-content;
     margin: 0 30%;
     padding: 1.5rem;
     border-radius: .5rem;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
-/* END AUTH SECTION */
+@media(max-width:992px) {
+    .login .auth-content {
+        margin: 0 20%;
+    }
+}
+
+@media(max-width:768px) {
+    .login .auth-content {
+        margin: 0 5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .login .auth-content {
+        margin: 0 1rem;
+    }
+}
+
+.register .auth-content {
+    grid-area: auth-content;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'illustration content';
+    padding: 0 6rem;
+    gap: 2rem;
+}
+
+.illustration {
+    grid-area: illustration;
+    border-right: 1px dashed var(--bs-border-color);
+}
+
+.illustration img {
+    width: 100%;
+}
+
+.content {
+    grid-area: content;
+}
+
+/* END SECTION AUTH */
+
+/* SECTION CUSTOM STYLE */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: .5rem;
+}
+
 .divider {
     display: flex;
     align-items: center;
@@ -662,3 +710,24 @@ swiper-slide img {
     border-top: 1px solid #dee2e6;
     margin: 0 10px;
 }
+
+.input-password {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.icon-password {
+    --icon-content: '\F33F';
+    position: absolute;
+    font-family: 'bootstrap-icons';
+    right: 0;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.icon-password::before {
+    content: var(--icon-content);
+}
+
+/* END SECTION CUSTOM STYLE */
