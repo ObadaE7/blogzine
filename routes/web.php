@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Livewire\Home;
+use App\Livewire\{Home, Dashboard, CreatePost};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,15 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', Home::class)->name('home');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
+Route::prefix('dashboard')
+    ->as('dashboard.')
+    ->middleware(['auth', 'verified'])
+    ->group(function () {
+        Route::get('/', Dashboard::class)->name('dashboard');
+        Route::get('/create-post', CreatePost::class)->name('create.post');
+    });
 require __DIR__ . '/auth.php';
