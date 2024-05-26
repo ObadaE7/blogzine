@@ -7,9 +7,9 @@ use Livewire\Form;
 
 class CreatePostForm extends Form
 {
-    public $categories;
-    public  $tags;
-    public  $statuses;
+    public $categories = [];
+    public  $tags = [];
+    public  $statuses = [];
 
     #[Validate('required|string|min:5|max:100')]
     public $title;
@@ -25,6 +25,7 @@ class CreatePostForm extends Form
 
     #[Validate('required|file|image|max:1024|mimes:jpeg,png,jpg')]
     public $image;
+    public $existingImage;
 
     #[Validate('required|integer|exists:categories,id')]
     public $category_id;
@@ -60,10 +61,7 @@ class CreatePostForm extends Form
         'category_id.exists' => 'The selected category is invalid.',
         'tag_ids.required' => 'At least one tag is required.',
         'tag_ids.array' => 'The tag ID must be an array.',
-        'tag_ids.min' => 'You must select at least one tag.',
-        'tag_ids.*.required' => 'Each tag is required.',
-        'tag_ids.*.integer' => 'Each tag ID must be an integer.',
-        'tag_ids.*.exists' => 'Each selected tag is invalid.',
+        'tag_ids.exists' => 'Each selected tag is invalid.',
         'status.required' => 'The status is required.',
         'status.string' => 'The status must be an string.',
         'status.in' => 'The selected status is invalid.',

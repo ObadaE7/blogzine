@@ -58,29 +58,24 @@
     <script src="{{ asset('assets/lib/quill2/formats/code-block/highlight.js') }}"></script>
     <script src="{{ asset('assets/lib/quill2/dist/quill.js') }}"></script>
     <script src="{{ asset('assets/lib/quill2/formats/formula/katex.js') }}"></script>
-
     <script>
-        // init quill
         const quill = new Quill('#{{ $quillId }}', {
             modules: {
                 toolbar: '#toolbar-container-{{ $quillId }}',
             },
             theme: 'snow',
-            placeholder: 'Enter the content',
+            placeholder: 'Enter the post content',
         });
-        // binding the data
+
         quill.on('text-change', function() {
             let value = document.getElementsByClassName('ql-editor')[0].innerHTML;
             @this.set('value', value)
         })
-        // clear the editor after create
+
         document.addEventListener('livewire:navigated', function() {
             Livewire.on('reset-quill-content', () => {
                 quill.setText('');
             });
-        });
-
-        document.addEventListener('livewire:navigated', function() {
             Livewire.on('fill-quill-content', (content) => {
                 quill.root.innerHTML = content;
             });

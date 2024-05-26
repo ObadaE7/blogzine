@@ -31,7 +31,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('dashboard.post.index') }}">
                         <div class="nav-link-icon">
                             <i class="bi bi-stickies-fill me-2"></i>
                         </div>
@@ -42,7 +42,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('dashboard.create.post') }}">
+                    <a class="nav-link" href="{{ route('dashboard.post.create') }}">
                         <div class="nav-link-icon">
                             <i class="bi bi-file-earmark-plus-fill me-2"></i>
                         </div>
