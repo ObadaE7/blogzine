@@ -1,6 +1,6 @@
 <?php
 
-use App\Livewire\{AllPost, Home, Dashboard, CreatePost};
+use App\Livewire\{AllPost, Home, Dashboard, CreatePost, Profile};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +19,7 @@ Route::prefix('dashboard')
     ->middleware(['auth', 'verified'])
     ->group(function () {
         Route::get('/', Dashboard::class)->name('dashboard');
+        Route::get('profile', Profile::class)->name('profile');
 
         Route::prefix('post')
             ->as('post.')

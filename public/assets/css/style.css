@@ -764,7 +764,11 @@ swiper-slide img {
         padding: 1rem;
     }
 
-    .dash-aside .col-left-text,
+    .nav-link-icon i {
+        margin-right: 0 !important;
+    }
+
+    .dash-aside .nav-link-text,
     .dash-aside .text-placeholder {
         display: none;
     }
@@ -775,6 +779,12 @@ swiper-slide img {
 
     .dash-aside .nav-link {
         justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .dashboard-wrapper {
+        padding: 1rem;
     }
 }
 
@@ -819,11 +829,30 @@ swiper-slide img {
 
 .create-row-bottom {
     grid-area: create-row-bottom;
-
 }
 
 .create-row-bottom {
     grid-area: create-row-bottom;
+}
+
+@media(max-width:768px) {
+    .create-row-top {
+        grid-template-rows: repeat(2, max-content);
+        grid-template-columns: 1fr;
+        grid-template-areas: 'create-col-left''create-col-right';
+    }
+
+    .create-col-left .post-image {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 200px;
+        border: 1px dashed var(--bs-border-color);
+        border-radius: .5rem;
+        cursor: pointer;
+    }
 }
 
 /* END SECTION CREATE POST */
@@ -854,6 +883,7 @@ swiper-slide img {
     padding: .5rem 1rem;
     border-top-right-radius: .5rem;
     border-top-left-radius: .5rem;
+    height: max-content;
 }
 
 .filter-options {
@@ -909,8 +939,40 @@ swiper-slide img {
     cursor: pointer;
 }
 
-/* END SECTION ALL POST */
+@media(max-width:768px) {
+    .all-post-container {
+        grid-template-rows: max-content 1fr;
+    }
 
+    .row-filters {
+        grid-template-rows: repeat(2, max-content);
+    }
+
+    .filter-options {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-areas: 'search-by''order-by''per-page';
+        gap: 0;
+    }
+
+    .row-posts .row-post {
+        grid-template-rows: repeat(2,1fr);
+        grid-template-columns: 1fr;
+        grid-template-areas: 'post-image''post-info';
+    }
+
+    .row-posts .post-image {
+        width: 100%;
+        height: 150px;
+    }
+}
+@media(max-width:576px) {
+    .row-posts .post-date {
+        flex-direction: column-reverse;
+    }
+}
+
+/* END SECTION ALL POST */
 
 /* SECTION CUSTOM STYLE */
 .overlay {

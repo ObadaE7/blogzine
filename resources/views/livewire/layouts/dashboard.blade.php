@@ -4,7 +4,7 @@
             <ul class="navbar-nav">
                 <li><span class="text-placeholder">Main</span></li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('dashboard.profile') }}">
                         <div class="nav-link-icon">
                             <i class="bi bi-person-lines-fill me-2"></i>
                         </div>

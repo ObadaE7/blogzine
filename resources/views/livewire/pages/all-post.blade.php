@@ -1,4 +1,4 @@
-<div class="all-post-container">
+<div class="all-post-container w-100">
     <div class="row-filters">
         <div class="filter-header d-flex justify-content-between align-items-center">
             <div class="filter-head">
@@ -108,7 +108,7 @@
 
                 <div class="post-info">
                     <div class="d-flex justify-content-between">
-                        <div class="d-flex gap-2">
+                        <div class="d-flex flex-column flex-md-row gap-2">
                             <div class="category">
                                 <span class="badge bg-success-subtle text-success">
                                     <i class="bi bi-folder-fill"></i>
@@ -158,8 +158,8 @@
                         </div>
                     </div>
 
-                    <span class="fw-bold">{{ $post->title }}</span>
-                    <span>{!! Str::limit($post->content, 200, '...') !!}</span>
+                    <span class="fw-bold text-wrap overflow-hidden">{{ $post->title }}</span>
+                    <span class="text-wrap overflow-hidden">{!! Str::limit($post->content, 200, '...') !!}</span>
                     <div class="post-date">
                         <span> {{ trans('At') . ' ' . $post->created_at->format('M d, Y') }}</span>
                         <div class="reactions">
