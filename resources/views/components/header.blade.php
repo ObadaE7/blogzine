@@ -1,27 +1,31 @@
-<header class="header">
-    <div class="brand">
-        <img src="{{ asset('assets/img/logo/logo.svg') }}" class="brand-img" alt="Website logo">
+<header class="wrapper__header">
+    <div class="header__brand">
+        <img src="{{ asset('assets/img/logo/logo.svg') }}" class="header__brand-img" alt="{{ trans('Website logo') }}">
     </div>
-    <div class="menu">
-        <ul class="menu-ul">
-            <li><a href="{{ route('home') }}">Home</a></li>
-            <li><a href="#">Categories</a></li>
-            <li><a href="#">Posts</a></li>
+    <div class="header__menu">
+        <ul class="header__menu-ul">
+            <li><a href="{{ route('home') }}" class="underline-hover">{{ trans('HOME') }}</a></li>
+            <li><a href="#" class="underline-hover">{{ trans('CATEGORIES') }}</a></li>
+            <li><a href="#" class="underline-hover">{{ trans('POSTS') }}</a></li>
             @auth
-                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ route('dashboard.dashboard') }}"
+                        class="underline-hover text-primary">{{ trans('DASHBOARD') }}</a></li>
             @else
-                <li><a href="{{ route('login') }}">Login</a></li>
+                <li><a href="{{ route('login') }}" class="underline-hover">{{ trans('LOGIN') }}</a></li>
             @endauth
         </ul>
     </div>
-    <div class="search">
-        <input type="search" name="search" id="search" class="form-control form-control-sm"
-            placeholder="Search here">
-        <div class="search-icon"><i class="bi bi-search"></i></div>
+    <div class="header__search">
+        <input type="search" name="search" id="search" class="form-control"
+            placeholder="{{ trans('Search here') }}">
+        <i class="header__search-icon"></i>
     </div>
-
-    <button class="header-toggle" data-bs-toggle="offcanvas" data-bs-target="#headerToggle">
-        <i class="bi bi-list"></i>
+    <button class="header__hamburger" data-bs-toggle="offcanvas" data-bs-target="#headerToggle">
+        <div class="header__hamburger-icon">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
     </button>
 </header>
 
@@ -30,15 +34,25 @@
         <button type="button" class="btn-close m-0" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-        <div class="search-menu-sm">
-            <input type="search" name="search" id="search" class="form-control" placeholder="Search here">
-            <div class="search-icon"><i class="bi bi-search"></i></div>
-        </div>
-        <ul class="offcanvas-menu-ul">
-            <li><a href="#"><i class="bi bi-house-door"></i>Home</a></li>
-            <li><a href="#"><i class="bi bi-columns-gap"></i>Categories</a></li>
-            <li><a href="#"><i class="bi bi-stickies"></i>Posts</a></li>
-            <li><a href="#"><i class="bi bi-box-arrow-in-right"></i>Login</a></li>
+        @if (Route::is('home'))
+            <div class="header__search-sm">
+                <input type="search" name="search" id="search" class="form-control"
+                    placeholder="{{ trans('Search here') }}"><i class="header__search-icon"></i>
+            </div>
+        @endif
+        <ul class="header__offcanvas-ul">
+            <li><a href="{{ route('home') }}"><i class="bi bi-house-door"></i>{{ trans('HOME') }}</a></li>
+            <li><a href="#"><i class="bi bi-columns-gap"></i>{{ trans('CATEGORIES') }}</a></li>
+            <li><a href="#"><i class="bi bi-stickies"></i>{{ trans('POSTS') }}</a></li>
+            @auth
+                <li>
+                    <a href="{{ route('dashboard.dashboard') }}">
+                        <i class="bi bi-speedometer"></i>{{ trans('DASHBOARD') }}
+                    </a>
+                </li>
+            @else
+                <li><a href="{{ route('login') }}"><i class="bi bi-box-arrow-in-right"></i>{{ trans('LOGIN') }}</a></li>
+            @endauth
         </ul>
     </div>
 </div>

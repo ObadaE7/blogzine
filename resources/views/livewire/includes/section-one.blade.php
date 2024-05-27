@@ -51,15 +51,15 @@
                                 <img src="{{ $post->owner->image }}" class="avatar" alt="Avatar">
                             @endif
                             <small class="text-muted">
-                                By {{ $post->owner->fname }}
+                                By {{ $post->owner->fname . ' ' . $post->owner->lname }}
                                 <i class="bi bi-dot"></i>
                                 {{ $post->getDateForHuman() }}
                             </small>
                         </div>
 
                         <div class="post-reaction">
-                            <span><i class="bi bi-hand-thumbs-up-fill"></i></span>
-                            <span><i class="bi bi-hand-thumbs-down-fill"></i></span>
+                            <span>124 <i class="bi bi-hand-thumbs-up-fill"></i></span>
+                            <span>26 <i class="bi bi-hand-thumbs-down-fill"></i></span>
                         </div>
                     </div>
                 </div>
