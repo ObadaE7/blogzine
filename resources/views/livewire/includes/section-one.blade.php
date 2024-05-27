@@ -1,138 +1,69 @@
 <section class="section-one">
     <div class="row-top">
         <div class="banner">
-            <img src="https://placehold.co/1160x300/png" alt="Banner">
+            <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0" alt="Banner">
+            <div class="overlay rounded-4"></div>
+            <div class="banner-text">
+                <span class="fw-bold">Discover, Explore, and Inspire</span>
+            </div>
         </div>
     </div>
 
     <div class="row-bottom">
-        <div class="row-bottom-rows">
-            <div class="post-img">
-                <img src="https://placehold.co/300x200/png" alt="Post image">
-            </div>
-
-            <div class="post-info">
-                <div class="post-tag">
-                    <span class="badge bg-danger">
-                        <div class="d-flex align-items-center gap-2">
-                            <i class="bi bi-circle-fill"></i>
-                            <span>Sports</span>
+        @foreach ($posts as $post)
+            <div class="row-bottom-rows">
+                <div class="post-img">
+                    <img src="{{ 'storage/' . $post->image }}" alt="Post image">
+                    <div class="overlay-text">
+                        <div class="overlay-text-position">
+                            <a href="#" class="underline-hover">Explore</a>
                         </div>
-                    </span>
-                </div>
-
-                <div class="post-title">
-                    <span>The pros and cons of business agency</span>
-                </div>
-
-                <div class="post-content">
-                    <span>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti ab, fugiat
-                        adipisci cupiditate aliquam dolor inventore aut corporis natus repellendus odio
-                        itaque eveniet nesciunt ipsa quis repudiandae quas, facilis accusantium, molestias
-                        similique tempore totam? Itaque, eum voluptatem enim totam, eos, iste eius nam
-                        accusantium nesciunt officiis at repellendus commodi voluptate.
-                    </span>
-                </div>
-
-                <div class="post-footer">
-                    <div class="post-owner">
-                        <img src="https://placehold.co/40x40/png" class="avatar" alt="Avatar">
-                        <small class="text-muted"> by Obada <i class="bi bi-dot"></i> May 12, 2024</small>
-                    </div>
-
-                    <div class="post-reaction">
-                        <span><i class="bi bi-hand-thumbs-up-fill"></i></span>
-                        <span><i class="bi bi-hand-thumbs-down-fill"></i></span>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="row-bottom-rows">
-            <div class="post-img">
-                <img src="https://placehold.co/300x200/png" alt="Post image">
-            </div>
+                <div class="post-info">
+                    <div class="post-tag">
+                        <span class="badge {{ $color }}">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="bi bi-circle-fill"></i>
+                                @foreach ($post->tags->take(1) as $tag)
+                                    <span>{{ $tag->name }}</span>
+                                @endforeach
+                            </div>
+                        </span>
+                    </div>
 
-            <div class="post-info">
-                <div class="post-tag">
-                    <span class="badge bg-success">
-                        <div class="d-flex align-items-center gap-2">
-                            <i class="bi bi-circle-fill"></i>
-                            <span>LifeStyle</span>
+                    <div class="post-title">
+                        <span><a href="#" class="underline-hover">{{ $post->title }}</a></span>
+                    </div>
+
+                    <div class="post-content">
+                        <span>{!! str()->limit($post->content, '300', '...') !!}</span>
+                    </div>
+
+                    <div class="post-footer">
+                        <div class="post-owner">
+                            @if (empty($post->owner->image))
+                                <div class="avatar-subtle">
+                                    <span>{{ substr($post->owner->fname, 0, 1) . substr($post->owner->lname, 0, 1) }}</span>
+                                </div>
+                            @else
+                                <img src="{{ $post->owner->image }}" class="avatar" alt="Avatar">
+                            @endif
+                            <small class="text-muted">
+                                By {{ $post->owner->fname }}
+                                <i class="bi bi-dot"></i>
+                                {{ $post->getDateForHuman() }}
+                            </small>
                         </div>
-                    </span>
-                </div>
 
-                <div class="post-title">
-                    <span>5 reasons why you shouldn't startup</span>
-                </div>
-
-                <div class="post-content">
-                    <span>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti ab, fugiat
-                        adipisci cupiditate aliquam dolor inventore aut corporis natus repellendus odio
-                        itaque eveniet nesciunt ipsa quis repudiandae quas, facilis accusantium, molestias
-                        similique tempore totam? Itaque, eum voluptatem enim totam, eos, iste eius nam
-                        accusantium nesciunt officiis at repellendus commodi voluptate.
-                    </span>
-                </div>
-
-                <div class="post-footer">
-                    <div class="post-owner">
-                        <img src="https://placehold.co/40x40/png" class="avatar" alt="Avatar">
-                        <small class="text-muted"> by Obada <i class="bi bi-dot"></i> May 12, 2024</small>
-                    </div>
-
-                    <div class="post-reaction">
-                        <span><i class="bi bi-hand-thumbs-up-fill"></i></span>
-                        <span><i class="bi bi-hand-thumbs-down-fill"></i></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row-bottom-rows">
-            <div class="post-img">
-                <img src="https://placehold.co/300x200/png" alt="Post image">
-            </div>
-
-            <div class="post-info">
-                <div class="post-tag">
-                    <span class="badge bg-primary">
-                        <div class="d-flex align-items-center gap-2">
-                            <i class="bi bi-circle-fill"></i>
-                            <span>Travel</span>
+                        <div class="post-reaction">
+                            <span><i class="bi bi-hand-thumbs-up-fill"></i></span>
+                            <span><i class="bi bi-hand-thumbs-down-fill"></i></span>
                         </div>
-                    </span>
-                </div>
-
-                <div class="post-title">
-                    <span>Five unbelievable facts about money.</span>
-                </div>
-
-                <div class="post-content">
-                    <span>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti ab, fugiat
-                        adipisci cupiditate aliquam dolor inventore aut corporis natus repellendus odio
-                        itaque eveniet nesciunt ipsa quis repudiandae quas, facilis accusantium, molestias
-                        similique tempore totam? Itaque, eum voluptatem enim totam, eos, iste eius nam
-                        accusantium nesciunt officiis at repellendus commodi voluptate.
-                    </span>
-                </div>
-
-                <div class="post-footer">
-                    <div class="post-owner">
-                        <img src="https://placehold.co/40x40/png" class="avatar" alt="Avatar">
-                        <small class="text-muted"> by Obada <i class="bi bi-dot"></i> May 12, 2024</small>
-                    </div>
-
-                    <div class="post-reaction">
-                        <span><i class="bi bi-hand-thumbs-up-fill"></i></span>
-                        <span><i class="bi bi-hand-thumbs-down-fill"></i></span>
                     </div>
                 </div>
             </div>
-        </div>
+        @endforeach
     </div>
 </section>
