@@ -8,8 +8,11 @@
             <li><a href="#" class="underline-hover">{{ trans('CATEGORIES') }}</a></li>
             <li><a href="#" class="underline-hover">{{ trans('POSTS') }}</a></li>
             @auth
-                <li><a href="{{ route('dashboard.dashboard') }}"
-                        class="underline-hover text-primary">{{ trans('DASHBOARD') }}</a></li>
+                <li>
+                    <a href="{{ route('dashboard.dashboard') }}"
+                        class="underline-hover text-primary">{{ trans('DASHBOARD') }}
+                    </a>
+                </li>
             @else
                 <li><a href="{{ route('login') }}" class="underline-hover">{{ trans('LOGIN') }}</a></li>
             @endauth

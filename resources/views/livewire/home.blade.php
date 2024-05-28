@@ -1,4 +1,12 @@
-<main class="main">
+<main class="main__wrapper">
+    <div class="main__section-banner">
+        <img src="{{ asset('assets/img/banner.jpg') }}" class="section__banner-img" alt="{{ trans('Website banner') }}">
+        <div class="overlay"></div>
+        <div class="section__banner-text">
+            <span class="fw-bold">{{ trans('Discover, Explore, and Inspire') }}</span>
+        </div>
+    </div>
+
     @include('livewire.includes.section-one')
     @include('livewire.includes.section-two')
     @include('livewire.includes.section-three')

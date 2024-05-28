@@ -20,6 +20,6 @@ class Home extends Component
 
     public function getSectionOneData()
     {
-        return Post::inRandomOrder()->take(3)->get();
+        return Post::latest()->take(3)->get();
     }
 }
