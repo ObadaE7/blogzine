@@ -646,23 +646,31 @@ body {
 }
 
 /* SECTION THREE STYLE */
-.section-three {
+.main__section-three {
     grid-area: section-three;
     display: grid;
     grid-template-rows: 60px 300px;
     grid-template-columns: 1fr;
-    grid-template-areas: 'section-three-title''section-three-swiper';
+    grid-template-areas: 'title''swiper';
     position: relative;
     width: 100%;
     height: 300px;
     gap: var(--wrapper-gap-size);
 }
 
-.section-three-title {
-    grid-area: section-three-title;
+.title-three-icon::before {
+    content: '\F466';
+    font-family: 'bootstrap-icons';
+}
+
+.section__three-title {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.section__three-swiper {
+    grid-area: swiper;
 }
 
 swiper-container {
@@ -672,35 +680,41 @@ swiper-container {
 }
 
 swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
     display: flex;
+    text-align: center;
     justify-content: center;
     align-items: center;
 }
 
-swiper-slide img {
-    display: block;
+.section__three--slide-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: .5rem;
 }
 
-.slide-content {
+.section__three--slide-content {
     position: absolute;
     display: flex;
     flex-direction: column;
-    bottom: 0;
-    margin-bottom: 2rem;
+    gap: 2rem;
     color: var(--bs-white);
+}
+
+.slide__content-text span {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.slide__content-text {
+    padding: 0 3rem;
+    height: 50px;
 }
 
 .badge-explore {
     background: var(--bs-dark-bg-subtle);
     color: var(--bs-dark);
-    padding: .25rem .5rem;
+    padding: .25rem .75rem;
     border-radius: .25rem;
     text-decoration: none;
     transition: all .3s ease-in-out;
@@ -712,19 +726,23 @@ swiper-slide img {
 }
 
 @media (max-width: 768px) {
-    .section-three {
+    .main__section-three {
         grid-template-rows: 100px 300px;
         gap: 2.5rem;
     }
 
-    .section-three-title {
-        display: grid;
-        grid-template-rows: 100px 30px;
-        grid-template-columns: 1fr;
+    .section__three-title {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
     }
 }
 
-/* END SECTION THREE STYLE */
+@media (max-width: 458px) {
+    .main__section-three {
+        gap: 3.5rem;
+    }
+}
 
 /* SECTION FOOTER*/
 .footer {

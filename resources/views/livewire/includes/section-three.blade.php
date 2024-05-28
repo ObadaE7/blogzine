@@ -1,29 +1,35 @@
-<section class="section-three">
-    <div class="section-three-title">
-        <div class="d-flex flex-column r1">
-            <span class="fs-3"><i class="bi bi-layout-wtf me-2"></i>Browse articles by category</span>
-            <small>
-                Discover a variety of articles organized by category.
-            </small>
+<section class="main__section-three">
+    <div class="section__three-title">
+        <div class="section__title">
+            <span class="section__title-text">
+                <i class="title-three-icon"></i>
+                {{ trans('Browse articles by category') }}
+            </span>
+            <span>{{ trans('Discover a variety of articles organized by category.') }}</span>
         </div>
-        <div class="r2">
+        <div class="section__title-link">
             <a href="#" class="icon-link icon-link-hover">
-                <span>See all categories</span>
+                <span>{{ trans('See all categories') }}</span>
                 <i class="bi bi-box-arrow-in-up-right mb-1"></i>
             </a>
         </div>
     </div>
 
-    <div class="section-three-swiper">
+    <div class="section__three-swiper">
         <swiper-container class="mySwiper" space-between="30" slides-per-view="4" autoplay-delay="5000"
             autoplay-disable-on-interaction="false" navigation="true" loop="true" init="false">
             @foreach ($categories as $category)
                 <swiper-slide>
-                    <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->slug }}">
+                    <img src="{{ asset('storage/' . $category->image) }}" class="section__three--slide-img"
+                        alt="{{ $category->slug }}">
                     <div class="overlay"></div>
-                    <div class="slide-content">
-                        <span class="fs-4">{{ $category->name }}</span>
-                        <a href="#" class="badge-explore">Explore more</a>
+                    <div class="section__three--slide-content">
+                        <div class="slide__content-text">
+                            <span>{{ $category->name }}</span>
+                        </div>
+                        <div class="slide__content-link">
+                            <a href="#" class="badge-explore">{{ trans('Explore More') }}</a>
+                        </div>
                     </div>
                 </swiper-slide>
             @endforeach
