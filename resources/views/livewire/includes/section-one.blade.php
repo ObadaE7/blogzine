@@ -1,6 +1,9 @@
 <section class="main__section-one">
-    <div class="section__one-title">
-        <span class="section__one--title-text">{{ trans('Fresh Off the Press') }}</span>
+    <div class="section__title">
+        <span class="section__title-text">
+            <i class="title-one-icon"></i>
+            {{ trans('Fresh Off the Press') }}
+        </span>
         <span>{{ trans('Bringing You the Hottest News and Articles') }}</span>
     </div>
 
@@ -8,10 +11,10 @@
         @foreach ($posts as $post)
             <div class="section__one-row">
                 <div class="section__one-img">
-                    <img src="{{ 'storage/' . $post->image }}" alt="{{ trans('Post image') }}">
+                    <img src="{{ 'storage/' . $post->image }}" alt="{{ $post->slug }}">
                     <div class="overlay-text">
                         <div class="overlay-text-position">
-                            <a href="#" class="underline-hover">{{ trans('Explore') }}</a>
+                            <a href="#" class="text-underline-link rest-text-link">{{ trans('Explore') }}</a>
                         </div>
                     </div>
                 </div>
@@ -29,15 +32,16 @@
                     </div>
 
                     <div class="section__one-post-title">
-                        <span><a href="#" class="underline-hover">{{ $post->title }}</a></span>
+                        <span><a href="#"
+                                class="text-underline-link rest-text-link">{{ $post->title }}</a></span>
                     </div>
 
                     <div class="section__one-post-content">
                         <span>{!! str()->limit($post->content, '300', '...') !!}</span>
                     </div>
 
-                    <div class="section__one-post-footer">
-                        <div class="section__one-post-owner">
+                    <div class="section__post-footer">
+                        <div class="section__post-owner">
                             @if (empty($post->owner->image))
                                 <div class="avatar__subtle">
                                     <span>{{ substr($post->owner->fname, 0, 1) . substr($post->owner->lname, 0, 1) }}</span>
@@ -52,7 +56,7 @@
                             </small>
                         </div>
 
-                        <div class="section__one-post-reaction">
+                        <div class="section__post-reaction">
                             <span>124 <i class="bi bi-hand-thumbs-up-fill"></i></span>
                             <span>26 <i class="bi bi-hand-thumbs-down-fill"></i></span>
                         </div>

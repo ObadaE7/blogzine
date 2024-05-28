@@ -1,5 +1,5 @@
 <main class="main__wrapper">
-    <div class="main__section-banner">
+    <div class="main__section-banner card-img-flash">
         <img src="{{ asset('assets/img/banner.jpg') }}" class="section__banner-img" alt="{{ trans('Website banner') }}">
         <div class="overlay"></div>
         <div class="section__banner-text">

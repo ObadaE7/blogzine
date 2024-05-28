@@ -17,51 +17,16 @@
     <div class="section-three-swiper">
         <swiper-container class="mySwiper" space-between="30" slides-per-view="4" autoplay-delay="5000"
             autoplay-disable-on-interaction="false" navigation="true" loop="true" init="false">
-
-            <swiper-slide>
-                <img src="https://placehold.co/260x340/png" alt="Category image">
-                <div class="overlay"></div>
-                <div class="slide-content">
-                    <span class="fs-4">Lorem</span>
-                    <a href="#" class="badge-explore">Explore more</a>
-                </div>
-            </swiper-slide>
-
-            <swiper-slide>
-                <img src="https://placehold.co/260x340/png" alt="Category image">
-                <div class="overlay"></div>
-                <div class="slide-content">
-                    <span class="fs-4">Lorem</span>
-                    <a href="#" class="badge-explore">Explore more</a>
-                </div>
-            </swiper-slide>
-
-            <swiper-slide>
-                <img src="https://placehold.co/260x340/png" alt="Category image">
-                <div class="overlay"></div>
-                <div class="slide-content">
-                    <span class="fs-4">Lorem</span>
-                    <a href="#" class="badge-explore">Explore more</a>
-                </div>
-            </swiper-slide>
-
-            <swiper-slide>
-                <img src="https://placehold.co/260x340/png" alt="Category image">
-                <div class="overlay"></div>
-                <div class="slide-content">
-                    <span class="fs-4">Lorem</span>
-                    <a href="#" class="badge-explore">Explore more</a>
-                </div>
-            </swiper-slide>
-
-            <swiper-slide>
-                <img src="https://placehold.co/260x340/png" alt="Category image">
-                <div class="overlay"></div>
-                <div class="slide-content">
-                    <span class="fs-4">Lorem</span>
-                    <a href="#" class="badge-explore">Explore more</a>
-                </div>
-            </swiper-slide>
+            @foreach ($categories as $category)
+                <swiper-slide>
+                    <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->slug }}">
+                    <div class="overlay"></div>
+                    <div class="slide-content">
+                        <span class="fs-4">{{ $category->name }}</span>
+                        <a href="#" class="badge-explore">Explore more</a>
+                    </div>
+                </swiper-slide>
+            @endforeach
         </swiper-container>
     </div>
 </section>

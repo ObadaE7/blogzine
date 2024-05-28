@@ -1,171 +1,109 @@
-<section class="section-two">
-    <div class="sec-two-row-top">
-        <div class="d-flex flex-column">
-            <span class="fs-3"><i class="bi bi-megaphone me-2"></i>Today's top highlights</span>
-            <small class="text-muted">Latest breaking news, pictures, videos, and special reports</small>
-        </div>
+<section class="main__section-two">
+    <div class="section__title">
+        <span class="section__title-text">
+            <i class="title-two-icon"></i>
+            {{ trans('Today\'s top highlights') }}
+        </span>
+        <span>{{ trans('Latest breaking news, pictures, videos, and special reports') }}</span>
     </div>
 
-    <div class="sec-two-row-bottom">
-        <div class="col-left">
-            <div class="col-left-row">
-                <img src="https://placehold.co/400x300/png" class="post-img" alt="Post image">
-
-                <div class="post-title">
-                    <span>Travel Five unbelievable facts about money.</span>
+    <div class="section_two-content">
+        @foreach ($postsSecTwo as $post)
+            <div class="section__two-row">
+                <div class="section__two-img card-img-flash">
+                    <img src="{{ 'storage/' . $post->image }}" alt="{{ $post->slug }}">
                 </div>
 
-                <div class="post-subtitle">
-                    <small class="text-muted">Lorem ipsum dolor sit amet.</small>
-                </div>
-
-                <div class="post-footer">
-                    <div class="post-owner">
-                        <img src="https://placehold.co/40x40/png" class="avatar" alt="Avatar">
-                        <small class="text-muted"> by Obada <i class="bi bi-dot"></i> May 12, 2024</small>
+                <div class="section__two-details">
+                    <div class="section__two-post-title">
+                        <span><a href="#"
+                                class="text-underline-link rest-text-link">{{ $post->title }}</a></span>
                     </div>
 
-                    <div class="post-reaction">
-                        <span><i class="bi bi-hand-thumbs-up-fill"></i></span>
-                        <span><i class="bi bi-hand-thumbs-down-fill"></i></span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-left-row">
-                <img src="https://placehold.co/400x300/png" class="post-img" alt="Post image">
-
-                <div class="post-title">
-                    <span>Travel Five unbelievable facts about money.</span>
-                </div>
-
-                <div class="post-subtitle">
-                    <small class="text-muted">Lorem ipsum dolor sit amet.</small>
-                </div>
-
-                <div class="post-footer">
-                    <div class="post-owner">
-                        <img src="https://placehold.co/40x40/png" class="avatar" alt="Avatar">
-                        <small class="text-muted"> by Obada <i class="bi bi-dot"></i> May 12, 2024</small>
+                    <div class="section__two-post-subtitle">
+                        <small class="text-muted">{{ $post->subtitle }}</small>
                     </div>
 
-                    <div class="post-reaction">
-                        <span><i class="bi bi-hand-thumbs-up-fill"></i></span>
-                        <span><i class="bi bi-hand-thumbs-down-fill"></i></span>
+                    <div class="section__post-footer">
+                        <div class="section__post-owner">
+                            @if (empty($post->owner->image))
+                                <div class="avatar__subtle">
+                                    <span>{{ substr($post->owner->fname, 0, 1) . substr($post->owner->lname, 0, 1) }}</span>
+                                </div>
+                            @else
+                                <img src="{{ $post->owner->image }}" class="avatar" alt="{{ trans('Avatar') }}">
+                            @endif
+                            <small class="text-muted">
+                                {{ trans('By') . ' ' . $post->owner->fname . ' ' . $post->owner->lname }}
+                                <i class="bi bi-dot"></i>
+                                {{ $post->getDateForHuman() }}
+                            </small>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="col-left-row">
-                <img src="https://placehold.co/400x300/png" class="post-img" alt="Post image">
-
-                <div class="post-title">
-                    <span>Travel Five unbelievable facts about money.</span>
-                </div>
-
-                <div class="post-subtitle">
-                    <small class="text-muted">Lorem ipsum dolor sit amet.</small>
-                </div>
-
-                <div class="post-footer">
-                    <div class="post-owner">
-                        <img src="https://placehold.co/40x40/png" class="avatar" alt="Avatar">
-                        <small class="text-muted"> by Obada <i class="bi bi-dot"></i> May 12, 2024</small>
-                    </div>
-
-                    <div class="post-reaction">
-                        <span><i class="bi bi-hand-thumbs-up-fill"></i></span>
-                        <span><i class="bi bi-hand-thumbs-down-fill"></i></span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-left-row">
-                <img src="https://placehold.co/400x300/png" class="post-img" alt="Post image">
-
-                <div class="post-title">
-                    <span>Travel Five unbelievable facts about money.</span>
-                </div>
-
-                <div class="post-subtitle">
-                    <small class="text-muted">Lorem ipsum dolor sit amet.</small>
-                </div>
-
-                <div class="post-footer">
-                    <div class="post-owner">
-                        <img src="https://placehold.co/40x40/png" class="avatar" alt="Avatar">
-                        <small class="text-muted"> by Obada <i class="bi bi-dot"></i> May 12, 2024</small>
-                    </div>
-
-                    <div class="post-reaction">
-                        <span><i class="bi bi-hand-thumbs-up-fill"></i></span>
-                        <span><i class="bi bi-hand-thumbs-down-fill"></i></span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
 
-    <div class="col-right">
-        <div class="col-right-row-top">
-            <a href="#">
-                <div class="facebook-card">
-                    <span><i class="bi bi-facebook"></i></span>
-                    <small>1.5K Fans</small>
-                </div>
-            </a>
-            <a href="#">
-                <div class="instagram-card">
-                    <span><i class="bi bi-instagram"></i></span>
-                    <small>1.8M Followers</small>
-                </div>
-            </a>
-            <a href="#">
-                <div class="youtube-card">
-                    <span><i class="bi bi-youtube"></i></span>
-                    <small>1.5K Subscribers</small>
-                </div>
-            </a>
+    <div class="section__two-paginate">
+        {{ $postsSecTwo->links(data: ['scrollTo' => '.main__section-two']) }}
+    </div>
+
+    <div class="section__two-col-right">
+        <div class="section__two-social">
+            <div class="social__facebook-card card-img-flash">
+                <a href="#">
+                    <div class="social__text">
+                        <i class="bi bi-facebook"></i><small>1.5K {{ trans('Fans') }}</small>
+                    </div>
+                </a>
+            </div>
+
+            <div class="social__instagram-card card-img-flash">
+                <a href="#">
+                    <div class="social__text">
+                        <span><i class="bi bi-instagram"></i></span><small>1.8M {{ trans('Followers') }}</small>
+                    </div>
+                </a>
+            </div>
+
+            <div class="social__youtube-card card-img-flash">
+                <a href="#">
+                    <div class="social__text">
+                        <span><i class="bi bi-youtube"></i></span><small>1.5K {{ trans('Subscribers') }}</small>
+                    </div>
+                </a>
+            </div>
         </div>
 
-        <div class="col-right-row-bottom">
-            <span class="fs-5">Categories</span>
-            <a href="#">
-                <div class="badge-card-warning">
-                    <span>Photography</span>
-                    <span class="badge bg-warning">09</span>
+        <div class="section__two-categories">
+            <span class="section__two-categories-title">{{ trans('Categories') }}</span>
+            @php
+                $colorNames = ['warning', 'info', 'danger', 'primary', 'success'];
+                $colorCount = count($colorNames);
+            @endphp
+            @foreach ($categoriesSecTwo as $index => $category)
+                @php
+                    $color = $colorNames[$index % $colorCount];
+                @endphp
+                <div class="badge-card-{{ $color }}">
+                    <a href="#">
+                        <div class="social__text">
+                            <span>{{ $category->name }}</span>
+                            <span class="badge bg-{{ $color }}">{{ $category->countPosts->count() }}</span>
+                        </div>
+                    </a>
                 </div>
-            </a>
-            <a href="#">
-                <div class="badge-card-info">
-                    <span>Travel</span>
-                    <span class="badge bg-info">25</span>
-                </div>
-            </a>
-            <a href="#">
-                <div class="badge-card-danger">
-                    <span>Life style</span>
-                    <span class="badge bg-danger">75</span>
-                </div>
-            </a>
-            <a href="#">
-                <div class="badge-card-primary">
-                    <span>Covid-19</span>
-                    <span class="badge bg-primary">19</span>
-                </div>
-            </a>
-            <a href="#">
-                <div class="badge-card-success">
-                    <span>Business</span>
-                    <span class="badge bg-success">35</span>
-                </div>
-            </a>
+            @endforeach
         </div>
 
-        <div class="subscribe">
-            <span class="fs-5">Subscribe to our mailing list!</span>
-            <input type="email" class="form-control" placeholder="Email address">
-            <button class="btn btn-primary w-75">Subscribe</button>
-        </div>
+        <form method="POST" action="">
+            @csrf
+            <div class="section__two-subscribe">
+                <span class="fs-5">{{ trans('Subscribe to our mailing list!') }}</span>
+                <input type="email" class="form-control" placeholder="{{ trans('Email address') }}">
+                <button type="submit" class="btn btn-primary w-75">{{ trans('Subscribe') }}</button>
+            </div>
+        </form>
     </div>
 </section>
