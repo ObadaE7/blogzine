@@ -1063,6 +1063,140 @@ swiper-slide {
     }
 }
 
+.tag__wrapper {
+    display: grid;
+    grid-template-rows: 150px 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas: 'header''content';
+    padding: var(--wrapper-padding-size);
+    gap: var(--wrapper-gap-size);
+}
+
+.tag__header {
+    grid-area: header;
+    position: relative;
+}
+
+.tag__header-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--blog-border-radius);
+}
+
+.tag__header-text {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-30%, -50%);
+    font-size: 35px;
+    font-weight: bold;
+    background: rgba(0, 0, 0, .05);
+    padding: .25rem 1.5rem;
+}
+
+.tag__content {
+    grid-area: content;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--wrapper-gap-size);
+}
+
+.tagged__post {
+    display: grid;
+    grid-template-rows: repeat(3, max-content);
+    grid-template-columns: 1fr;
+    grid-template-areas: 'img''content''tags';
+    gap: var(--wrapper-gap-size);
+    border: 1px solid var(--bs-border-color);
+    border-radius: var(--blog-border-radius);
+    padding: 1rem;
+}
+
+.tagged__post-img {
+    grid-area: img;
+    width: 100%;
+    height: 200px;
+}
+
+.tagged__post--img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--blog-border-radius);
+}
+
+.tagged__post-content {
+    grid-area: content;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.tagged__post-title {
+    font-size: 20px;
+}
+
+.tagged__post-subtitle {
+    color: #999;
+}
+
+.tagged__post-btn {
+    background: var(--bs-primary);
+    color: var(--bs-white);
+    text-decoration: none;
+    padding: .5rem 1.5rem;
+    border-radius: var(--blog-border-radius);
+}
+
+.tagged__post-tags {
+    grid-area: tags;
+    height: max-content;
+}
+
+.tagged__post-tags a {
+    text-decoration: none;
+}
+
+.tagged__post-tags .badge {
+    font-size: 0.85rem;
+    padding: 0.4em 0.6em;
+}
+
+
+@media(max-width:992px) {
+
+    .tag__content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width:768px) {
+
+    .tag__header-text {
+        left: 20%;
+        transform: translate(-10%, -50%);
+        font-size: 25px;
+    }
+
+    .tag__content {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media(max-width:576px) {
+
+    .tag__header-text {
+        left: 20%;
+        transform: translate(-10%, -50%);
+        background: rgba(0, 0, 0, .3);
+        font-size: 16px;
+        color: var(--bs-white);
+    }
+}
+
 .main__auth .main__wrapper {
     grid-template-rows: 1fr;
     grid-template-columns: 1fr;

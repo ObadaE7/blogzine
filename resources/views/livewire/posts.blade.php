@@ -1,4 +1,4 @@
-<div class="posts__wrapper">
+<section class="posts__wrapper">
     <div class="posts__header">
         <img src="{{ asset('assets/img/posts-pattern.jpg') }}" class="posts__header-img" alt="{{ trans('Posts banner') }}">
         <span class="posts__header-text">{{ trans('Discover All Posts') }}</span>
@@ -15,7 +15,7 @@
                                 $colorIndex = array_rand($colorNames);
                                 $color = $colorNames[$colorIndex];
                             @endphp
-                            <a href="#">
+                            <a href="{{ route('tags', $tag->slug) }}">
                                 <span class="badge bg-{{ $color }}-subtle text-{{ $color }}">
                                     {{ $tag->name }}
                                 </span>
@@ -59,4 +59,4 @@
     <div class="paginations">
         {{ $posts->links() }}
     </div>
-</div>
+</section>

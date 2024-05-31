@@ -27,7 +27,7 @@
                             <div class="d-flex align-items-center gap-2">
                                 <i class="bi bi-circle-fill"></i>
                                 @foreach ($post->tags->take(1) as $tag)
-                                    <span>{{ $tag->name }}</span>
+                                    <a href="{{ route('tags', $tag->slug) }}"><span>{{ $tag->name }}</span></a>
                                 @endforeach
                             </div>
                         </span>

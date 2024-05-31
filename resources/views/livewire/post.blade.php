@@ -22,7 +22,7 @@
                         $colorIndex = array_rand($colorNames);
                         $color = $colorNames[$colorIndex];
                     @endphp
-                    <a href="#">
+                    <a href="{{ route('tags', $tag->slug) }}">
                         <span class="badge bg-{{ $color }}-subtle text-{{ $color }}">
                             {{ $tag->name }}
                         </span>
