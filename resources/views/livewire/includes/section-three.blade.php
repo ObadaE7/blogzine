@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <div class="section__three-swiper">
+    <div wire:ignore class="section__three-swiper">
         <swiper-container class="mySwiper" space-between="30" slides-per-view="4" autoplay-delay="5000"
             autoplay-disable-on-interaction="false" navigation="true" loop="true" init="false">
             @foreach ($categories as $category)

@@ -26,12 +26,12 @@ class Home extends Component
 
     public function getSectionOneData()
     {
-        return Post::latest()->take(3)->get();
+        return Post::isVisible()->latest()->take(3)->get();
     }
 
     public function getSectionTwoData()
     {
-        return Post::inRandomOrder()->latest()->paginate(4);
+        return Post::isVisible()->inRandomOrder()->latest()->paginate(4);
     }
 
     public function getFiveCategories()

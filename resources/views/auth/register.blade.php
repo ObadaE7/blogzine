@@ -1,14 +1,15 @@
 @extends('livewire.layouts.home')
 @section('content')
-    <div class="register">
-        <main class="main">
-            <div class="auth-content">
-                <div class="illustration">
-                    <img src="{{ asset('assets/img/sign_up.png') }}" alt="Sign up illustration">
+    <div class="main__auth">
+        <main class="main__wrapper">
+            <div class="auth__content register">
+                <div class="auth__illustration">
+                    <img src="{{ asset('assets/img/sign_up.png') }}" class="auth__illustration-img"
+                        alt="{{ trans('Sign up illustration') }}">
                 </div>
 
-                <div class="content">
-                    <span class="auth-header">{{ trans('Create account') }}</span>
+                <div class="auth__content--content">
+                    <span class="auth__header">{{ trans('Create account') }}</span>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="row row-cols-md-2 row-cols-1 mt-2">
@@ -16,28 +17,28 @@
                                 <label for="fname">{{ trans('First name') }}</label>
                                 <input type="text" name="fname" id="fname" class="form-control"
                                     placeholder="{{ trans('Enter your first name') }}">
-                                <x-error name="fname"></x-error>
+                                <x-error name="fname" />
                             </div>
 
                             <div class="col mb-3">
                                 <label for="lname">{{ trans('Last name') }}</label>
                                 <input type="text" name="lname" id="lname" class="form-control"
                                     placeholder="{{ trans('Enter your last name') }}">
-                                <x-error name="lname"></x-error>
+                                <x-error name="lname" />
                             </div>
 
                             <div class="col mb-3">
                                 <label for="uname">{{ trans('User name') }}</label>
                                 <input type="text" name="uname" id="uname" class="form-control"
                                     placeholder="{{ trans('Enter your username') }}">
-                                <x-error name="uname"></x-error>
+                                <x-error name="uname" />
                             </div>
 
                             <div class="col mb-3">
                                 <label for="email">{{ trans('Email') }}</label>
                                 <input type="email" name="email" id="email" class="form-control"
                                     placeholder="{{ trans('Enter your email') }}">
-                                <x-error name="email"></x-error>
+                                <x-error name="email" />
                             </div>
                         </div>
 
@@ -49,7 +50,7 @@
                                         placeholder="{{ trans('Enter your password') }}">
                                     <span class="icon-password"></span>
                                 </div>
-                                <x-error name="password"></x-error>
+                                <x-error name="password" />
                             </div>
 
                             <div class="col">
@@ -59,7 +60,7 @@
                                         class="form-control" placeholder="{{ trans('Confirm your password') }}">
                                     <span class="icon-password"></span>
                                 </div>
-                                <x-error name="password_confirmation"></x-error>
+                                <x-error name="password_confirmation" />
                             </div>
                         </div>
 

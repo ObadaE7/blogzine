@@ -8,7 +8,7 @@
     </div>
 
     <div class="section_two-content">
-        @foreach ($postsSecTwo as $post)
+        @forelse ($postsSecTwo as $post)
             <div class="section__two-row">
                 <div class="section__two-img card-img-flash">
                     <img src="{{ 'storage/' . $post->image }}" alt="{{ $post->slug }}">
@@ -16,8 +16,11 @@
 
                 <div class="section__two-details">
                     <div class="section__two-post-title">
-                        <span><a href="#"
-                                class="text-underline-link rest-text-link">{{ $post->title }}</a></span>
+                        <span>
+                            <a href="{{ route('post', $post->slug) }}" class="text-underline-link rest-text-link">
+                                {{ $post->title }}
+                            </a>
+                        </span>
                     </div>
 
                     <div class="section__two-post-subtitle">
@@ -42,7 +45,12 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <div class="d-flex flex-column text-center fs-3">
+                <span>{{ trans('There is no post to display!') }}</span>
+                <span>{{ trans('Share your ideas now') }}</span>
+            </div>
+        @endforelse
     </div>
 
     <div class="section__two-paginate">

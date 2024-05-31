@@ -8,13 +8,15 @@
     </div>
 
     <div class="section__one-content">
-        @foreach ($posts as $post)
+        @forelse ($posts as $post)
             <div class="section__one-row">
                 <div class="section__one-img">
                     <img src="{{ 'storage/' . $post->image }}" alt="{{ $post->slug }}">
                     <div class="overlay-text">
                         <div class="overlay-text-position">
-                            <a href="#" class="text-underline-link rest-text-link">{{ trans('Explore') }}</a>
+                            <a href="{{ route('post', $post->slug) }}" class="text-underline-link rest-text-link">
+                                {{ trans('Explore') }}
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -32,8 +34,11 @@
                     </div>
 
                     <div class="section__one-post-title">
-                        <span><a href="#"
-                                class="text-underline-link rest-text-link">{{ $post->title }}</a></span>
+                        <span>
+                            <a href="{{ route('post', $post->slug) }}" class="text-underline-link rest-text-link">
+                                {{ $post->title }}
+                            </a>
+                        </span>
                     </div>
 
                     <div class="section__one-post-content">
@@ -63,6 +68,11 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <div class="d-flex flex-column text-center fs-3">
+                <span>{{ trans('There is no post to display!') }}</span>
+                <span>{{ trans('Share your ideas now') }}</span>
+            </div>
+        @endforelse
     </div>
 </section>

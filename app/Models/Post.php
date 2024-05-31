@@ -46,4 +46,9 @@ class Post extends Model
     {
         return $this->created_at->format('M d, Y');
     }
+
+    public function scopeIsVisible($query)
+    {
+        return $query->where('status', 'published');
+    }
 }

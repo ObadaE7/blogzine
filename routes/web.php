@@ -1,6 +1,6 @@
 <?php
 
-use App\Livewire\{AllPost, Home, Dashboard, CreatePost, Profile};
+use App\Livewire\{AllPost, Home, Dashboard, CreatePost, Post, Posts, Profile};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Route;
 
 #.....{Home}.....#
 Route::get('/', Home::class)->name('home');
+Route::get('post/{slug}', Post::class)->name('post');
+Route::get('posts', Posts::class)->name('posts');
+
 
 #.....{Dashboard}.....#
 Route::prefix('dashboard')

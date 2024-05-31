@@ -1,17 +1,18 @@
-<section class="footer">
-    <div class="copyright">
-        &copy; {{ Date('Y') }}, All rights reserved.
+<section class="main__footer">
+    <div class="footer__copyright">
+        &copy; {{ Date('Y') }}, {{ trans('All rights reserved.') }}
     </div>
 
-    <div class="brand">
-        <img src="{{ asset('assets/img/logo/logo-footer.svg') }}" alt="Website logo">
+    <div class="footer__brand">
+        <img src="{{ asset('assets/img/logo/logo-footer.svg') }}" class="footer__brand-img"
+            alt="{{ trans('Website logo') }}">
     </div>
 
-    <div class="social-icon">
-        <span><i class="bi bi-facebook"></i></span>
-        <span><i class="bi bi-instagram"></i></span>
-        <span><i class="bi bi-twitter-x"></i></span>
-        <span><i class="bi bi-linkedin"></i></span>
-        <span><i class="bi bi-youtube"></i></span>
+    <div class="footer__social">
+        <a href="#" class="footer__social-link"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="footer__social-link"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="footer__social-link"><i class="bi bi-twitter-x"></i></a>
+        <a href="#" class="footer__social-link"><i class="bi bi-linkedin"></i></a>
+        <a href="#" class="footer__social-link"><i class="bi bi-youtube"></i></a>
     </div>
 </section>
