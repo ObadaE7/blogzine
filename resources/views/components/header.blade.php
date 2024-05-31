@@ -1,6 +1,6 @@
 <header class="wrapper__header">
     <div class="header__brand">
-        <img src="{{ asset('assets/img/logo/logo.svg') }}" class="header__brand-img" alt="{{ trans('Website logo') }}">
+        <img src="{{ asset('assets/img/logo/jeveline-logo-dark.png') }}" class="header__brand-img" alt="{{ trans('Website logo') }}">
     </div>
     <div class="header__menu">
         <ul class="header__menu-ul">

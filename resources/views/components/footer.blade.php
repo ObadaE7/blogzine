@@ -4,7 +4,7 @@
     </div>
 
     <div class="footer__brand">
-        <img src="{{ asset('assets/img/logo/logo-footer.svg') }}" class="footer__brand-img"
+        <img src="{{ asset('assets/img/logo/jeveline-logo_white.png') }}" class="footer__brand-img"
             alt="{{ trans('Website logo') }}">
     </div>
 
