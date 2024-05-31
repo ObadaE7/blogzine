@@ -10,24 +10,9 @@
     <div class="section_two-content">
         @forelse ($postsSecTwo as $post)
             <div class="section__two-row">
-                <div class="section__two-img card-img-flash">
+                <div class="section__two-img">
                     <img src="{{ 'storage/' . $post->image }}" alt="{{ $post->slug }}">
-                </div>
-
-                <div class="section__two-details">
-                    <div class="section__two-post-title">
-                        <span>
-                            <a href="{{ route('post', $post->slug) }}" class="text-underline-link rest-text-link">
-                                {{ $post->title }}
-                            </a>
-                        </span>
-                    </div>
-
-                    <div class="section__two-post-subtitle">
-                        <small class="text-muted">{{ $post->subtitle }}</small>
-                    </div>
-
-                    <div class="section__post-footer">
+                    <div class="card__img-overlay">
                         <div class="section__post-owner">
                             @if (empty($post->owner->image))
                                 <div class="avatar__subtle">
@@ -36,11 +21,26 @@
                             @else
                                 <img src="{{ $post->owner->image }}" class="avatar" alt="{{ trans('Avatar') }}">
                             @endif
-                            <small class="text-muted">
-                                {{ trans('By') . ' ' . $post->owner->fname . ' ' . $post->owner->lname }}
-                                <i class="bi bi-dot"></i>
-                                {{ $post->getDateForHuman() }}
-                            </small>
+                            <div class="owner__text">
+                                <span>{{ $post->owner->fname . ' ' . $post->owner->lname }}</span>
+                                <small class="text-muted">
+                                    {{ $post->created_at->diffForHumans() }}
+                                </small>
+                            </div>
+
+                            <div class="ms-auto">
+                                @if ($post->created_at->isToday())
+                                    <span class="badge fs-6 bg-danger">{{ trans('New') }}</span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="section__two-post-title">
+                            <span>
+                                <a href="{{ route('post', $post->slug) }}" class="text-underline-link rest-text-link">
+                                    {{ $post->title }}
+                                </a>
+                            </span>
                         </div>
                     </div>
                 </div>

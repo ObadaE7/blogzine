@@ -414,7 +414,7 @@ body {
 .main__section-two {
     grid-area: section-two;
     display: grid;
-    grid-template-rows: 60px 924px;
+    grid-template-rows: 60px max-content;
     grid-template-columns: 3fr 1fr;
     grid-template-areas: 'title col-right''content col-right';
     gap: var(--wrapper-gap-size);
@@ -428,21 +428,102 @@ body {
 .section_two-content {
     grid-area: content;
     display: grid;
-    grid-template-rows: repeat(2, 450px);
+    grid-template-rows: repeat(2, 400px);
     grid-template-columns: repeat(2, 1fr);
     gap: var(--wrapper-gap-size);
 }
 
+.section__two-row {
+    border: 1px solid var(--bs-border-color);
+    border-radius: 2rem;
+    overflow: hidden;
+    transition: transform 0.5s ease;
+}
+
+.section__two-row:hover {
+    transform: translateY(-10px);
+}
+
 .section__two-img {
+    position: relative;
     width: 100%;
-    height: 300px;
+    height: 100%;
 }
 
 .section__two-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: var(--blog-border-radius);
+    border-radius: 2rem;
+    transition: transform 0.5s ease;
+}
+
+.section__two-row:hover .section__two-img img {
+    transform: scale(1.05);
+}
+
+.card__img-overlay {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30%;
+    background: var(--bs-white);
+    padding: 1rem 2rem;
+    border-top-left-radius: 3rem;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    transition: height 0.5s ease-in-out;
+}
+
+.card__img-overlay:hover {
+    height: 40%;
+}
+
+.card__img-overlay .avatar__subtle,
+.card__img-overlay .avatar {
+    width: 50px;
+    height: 50px;
+}
+
+.card__img-overlay .section__post-owner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.card__img-overlay .owner__text {
+    display: flex;
+    flex-direction: column;
+}
+
+.card__img-overlay .owner__text span {
+    font-weight: 500;
+}
+
+.section__two-post-title {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.5s ease-in-out;
+}
+
+.section__two-post-title span {
+    font-size: 20px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.card__img-overlay:hover .section__two-post-title {
+    height: auto;
+    margin-top: .5rem;
+    transition: height 0.5s ease-in-out;
+}
+
+.card__img-overlay:hover .section__two-post-title span {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
 }
 
 .section__two-details {
@@ -450,10 +531,6 @@ body {
     flex-direction: column;
     height: max-content;
     gap: .25rem;
-}
-
-.section__two-post-title span {
-    font-size: 20px;
 }
 
 .section__two-paginate {
