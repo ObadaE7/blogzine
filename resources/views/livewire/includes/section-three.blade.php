@@ -7,9 +7,11 @@
             </span>
             <span>{{ trans('Discover a variety of articles organized by category.') }}</span>
         </div>
+
         <div class="section__title-link">
-            <a href="#" class="icon-link icon-link-hover">
-                <span>{{ trans('See all categories') }}</span>
+            <a href="{{ route('categories') }}"
+                class="icon-link icon-link-hover text-underline-link text-decoration-none">
+                {{ trans('VIEW ALL CATEGORIES') }}
                 <i class="bi bi-box-arrow-in-up-right mb-1"></i>
             </a>
         </div>
@@ -20,15 +22,27 @@
             autoplay-disable-on-interaction="false" navigation="true" loop="true" init="false">
             @foreach ($categories as $category)
                 <swiper-slide>
-                    <img src="{{ asset('storage/' . $category->image) }}" class="section__three--slide-img"
-                        alt="{{ $category->slug }}">
-                    <div class="overlay"></div>
-                    <div class="section__three--slide-content">
+                    <div class="section__three-img card-img-flash">
+                        <img src="{{ asset('storage/' . $category->image) }}" class="section__three--slide-img"
+                            alt="{{ $category->slug }}">
+                    </div>
+
+                    <div class="section__three-content">
                         <div class="slide__content-text">
                             <span>{{ $category->name }}</span>
                         </div>
-                        <div class="slide__content-link">
-                            <a href="#" class="badge-explore">{{ trans('Explore More') }}</a>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="slide__content-post-have">
+                                <span class="fw-bold">
+                                    {{ $category->posts->count() }}
+                                    <span class="ms-2">{{ trans('Posts Available') }}</span>
+                                </span>
+                            </div>
+
+                            <div class="slide__content-link">
+                                <a href="{{ route('category', $category->slug) }}" class="badge-explore"></a>
+                            </div>
                         </div>
                     </div>
                 </swiper-slide>
