@@ -5,7 +5,7 @@
     <div class="header__menu">
         <ul class="header__menu-ul">
             <li><a href="{{ route('home') }}" class="underline-hover">{{ trans('HOME') }}</a></li>
-            <li><a href="#" class="underline-hover">{{ trans('CATEGORIES') }}</a></li>
+            <li><a href="{{ route('categories') }}" class="underline-hover">{{ trans('CATEGORIES') }}</a></li>
             <li><a href="{{ route('posts') }}" class="underline-hover">{{ trans('POSTS') }}</a></li>
             @auth
                 <li>
@@ -45,7 +45,8 @@
         @endif
         <ul class="header__offcanvas-ul">
             <li><a href="{{ route('home') }}"><i class="bi bi-house-door"></i>{{ trans('HOME') }}</a></li>
-            <li><a href="#"><i class="bi bi-columns-gap"></i>{{ trans('CATEGORIES') }}</a></li>
+            <li><a href="{{ route('categories') }}"><i class="bi bi-columns-gap"></i>{{ trans('CATEGORIES') }}</a>
+            </li>
             <li><a href="{{ route('posts') }}"><i class="bi bi-stickies"></i>{{ trans('POSTS') }}</a></li>
             @auth
                 <li>

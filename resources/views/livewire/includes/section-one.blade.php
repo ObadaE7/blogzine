@@ -13,11 +13,9 @@
                 <div class="section__one-img">
                     <img src="{{ 'storage/' . $post->image }}" alt="{{ $post->slug }}">
                     <div class="overlay-text">
-                        <div class="overlay-text-position">
-                            <a href="{{ route('post', $post->slug) }}" class="text-underline-link rest-text-link">
-                                {{ trans('Explore') }}
-                            </a>
-                        </div>
+                        <a href="{{ route('post', $post->slug) }}" class="text-underline-link rest-text-link">
+                            {{ trans('Explore') }}
+                        </a>
                     </div>
                 </div>
 

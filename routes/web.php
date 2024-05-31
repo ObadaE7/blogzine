@@ -1,6 +1,6 @@
 <?php
 
-use App\Livewire\{AllPost, Home, Dashboard, CreatePost, Post, Posts, Profile, Tag};
+use App\Livewire\{AllPost, Categories, Category, Home, Dashboard, CreatePost, Post, Posts, Profile, Tag};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +15,8 @@ Route::get('/', Home::class)->name('home');
 Route::get('post/{slug}', Post::class)->name('post');
 Route::get('posts', Posts::class)->name('posts');
 Route::get('tags/{slug}', Tag::class)->name('tags');
+Route::get('category/{slug}', Category::class)->name('category');
+Route::get('categories', Categories::class)->name('categories');
 
 
 #.....{Dashboard}.....#
