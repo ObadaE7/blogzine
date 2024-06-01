@@ -23,9 +23,9 @@
                             @endif
                             <div class="owner__text">
                                 <span>{{ $post->owner->fname . ' ' . $post->owner->lname }}</span>
-                                <small class="text-muted">
-                                    <i class="bi bi-calendar4-week"></i> {{ $post->created_at->diffForHumans() }}
-                                </small>
+                                <div class="post__date">
+                                    <span>{{ $post->created_at->diffForHumans() }}</span>
+                                </div>
                             </div>
 
                             <div class="ms-auto">

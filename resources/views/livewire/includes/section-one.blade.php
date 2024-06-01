@@ -21,14 +21,17 @@
 
                 <div class="section__one-details">
                     <div class="section__one-post-tag">
-                        <span class="badge {{ $color }}">
-                            <div class="d-flex align-items-center gap-2">
-                                <i class="bi bi-circle-fill"></i>
-                                @foreach ($post->tags->take(1) as $tag)
-                                    <a href="{{ route('tags', $tag->slug) }}"><span>{{ $tag->name }}</span></a>
-                                @endforeach
-                            </div>
-                        </span>
+                        @foreach ($post->tags->take(1) as $tag)
+                            @php
+                                $colorNames = ['warning', 'info', 'danger', 'primary', 'success', 'dark', 'secondary'];
+                                $colorIndex = array_rand($colorNames);
+                                $color = $colorNames[$colorIndex];
+                            @endphp
+                            <a href="{{ route('tags', $tag->slug) }}"
+                                class="badge bg-{{ $color }}-subtle text-{{ $color }} text-decoration-none p-2">
+                                {{ $tag->name }}
+                            </a>
+                        @endforeach
                     </div>
 
                     <div class="section__one-post-title">
