@@ -60,8 +60,14 @@
                         </div>
 
                         <div class="section__post-reaction">
-                            <span>124 <i class="bi bi-hand-thumbs-up-fill"></i></span>
-                            <span>26 <i class="bi bi-hand-thumbs-down-fill"></i></span>
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="bi bi-heart-fill fs-5"></i>
+                                <span>58</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="bi bi-heartbreak-fill fs-5"></i>
+                                <span>58</span>
+                            </div>
                         </div>
                     </div>
                 </div>

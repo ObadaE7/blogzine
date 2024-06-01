@@ -35,6 +35,6 @@
     </div>
 
     <div class="paginations">
-        {{ $categories->links() }}
+        {{ $categories->links('components.pagination-links') }}
     </div>
 </section>

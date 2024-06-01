@@ -24,13 +24,17 @@
                             <div class="owner__text">
                                 <span>{{ $post->owner->fname . ' ' . $post->owner->lname }}</span>
                                 <small class="text-muted">
-                                    {{ $post->created_at->diffForHumans() }}
+                                    <i class="bi bi-calendar4-week"></i> {{ $post->created_at->diffForHumans() }}
                                 </small>
                             </div>
 
                             <div class="ms-auto">
                                 @if ($post->created_at->isToday())
                                     <span class="badge fs-6 bg-danger">{{ trans('New') }}</span>
+                                @else
+                                    <div class="section__two-liked">
+                                        <span class="total_likes">58</span>
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -54,7 +58,7 @@
     </div>
 
     <div class="section__two-paginate">
-        {{ $postsSecTwo->links(data: ['scrollTo' => '.main__section-two']) }}
+        {{ $postsSecTwo->links('components.pagination-links', data: ['scrollTo' => '.main__section-two']) }}
     </div>
 
     <div class="section__two-col-right">

@@ -6,6 +6,7 @@
     --wrapper-padding-size: 0 6rem;
     --blog-font-family: "Poppins", sans-serif;
     --blog-border-radius: .5rem;
+    --bs-font-icons: 'bootstrap-icons';
 }
 
 * {
@@ -97,7 +98,7 @@ body {
 
 .header__search-icon::before {
     content: '\F52A';
-    font-family: 'bootstrap-icons';
+    font-family: var(--bs-font-icons);
 }
 
 .header__search input[type='search'],
@@ -273,7 +274,7 @@ body {
 
 .title-one-icon::before {
     content: '\F4A3';
-    font-family: 'bootstrap-icons';
+    font-family: var(--bs-font-icons);
 }
 
 .section__one-content {
@@ -422,7 +423,7 @@ body {
 
 .title-two-icon::before {
     content: '\F484';
-    font-family: 'bootstrap-icons';
+    font-family: var(--bs-font-icons);
 }
 
 .section_two-content {
@@ -440,10 +441,6 @@ body {
     transition: transform 0.5s ease;
 }
 
-.section__two-row:hover {
-    transform: translateY(-10px);
-}
-
 .section__two-img {
     position: relative;
     width: 100%;
@@ -456,6 +453,10 @@ body {
     object-fit: cover;
     border-radius: 2rem;
     transition: transform 0.5s ease;
+}
+
+.section__two-row:hover {
+    transform: translateY(-10px);
 }
 
 .section__two-row:hover .section__two-img img {
@@ -488,6 +489,11 @@ body {
     height: 50px;
 }
 
+.card__img-overlay .avatar__subtle {
+    color: var(--bs-danger);
+    background: var(--bs-danger-bg-subtle);
+}
+
 .card__img-overlay .section__post-owner {
     display: flex;
     align-items: center;
@@ -501,6 +507,19 @@ body {
 
 .card__img-overlay .owner__text span {
     font-weight: 500;
+}
+
+.section__two-liked span {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.section__two-liked span::before {
+    content: '\F415';
+    font-family: var(--bs-font-icons);
+    color: var(--bs-danger);
+    font-size: 20px;
 }
 
 .section__two-post-title {
@@ -616,7 +635,7 @@ body {
 
 .section__two-categories-title::before {
     content: '\F444';
-    font-family: 'bootstrap-icons';
+    font-family: var(--bs-font-icons);
 }
 
 .badge-card-warning {
@@ -746,7 +765,7 @@ body {
 
 .title-three-icon::before {
     content: '\F466';
-    font-family: 'bootstrap-icons';
+    font-family: var(--bs-font-icons);
 }
 
 .section__three-title {
@@ -821,7 +840,7 @@ swiper-slide {
 
 .badge-explore::before {
     content: '\F33E';
-    font-family: 'bootstrap-icons';
+    font-family: var(--bs-font-icons);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -964,7 +983,7 @@ swiper-slide {
 
 .post__category-title::before {
     content: '\F444';
-    font-family: 'bootstrap-icons';
+    font-family: var(--bs-font-icons);
 }
 
 .post__tags {
@@ -977,7 +996,7 @@ swiper-slide {
 
 .post__tags-title::before {
     content: '\F5B2';
-    font-family: 'bootstrap-icons';
+    font-family: var(--bs-font-icons);
 }
 
 .post__tags .tags {
@@ -1105,7 +1124,7 @@ swiper-slide {
 
 .row__info-tags span::before {
     content: '\F287';
-    font-family: 'bootstrap-icons';
+    font-family: var(--bs-font-icons);
     margin-right: .5rem;
 }
 
@@ -1766,6 +1785,51 @@ swiper-slide {
 /* END SECTION ALL POST */
 
 /* SECTION CUSTOM COMPONENT */
+.pagination {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pagination .page-item .prev-btn {
+    display: flex;
+    gap: .5rem;
+}
+
+.pagination .page-item .prev-btn::before {
+    content: '\F12F';
+    font-family: var(--bs-font-icons);
+}
+
+.pagination .page-item .next-btn {
+    display: flex;
+    gap: .5rem;
+}
+
+.pagination .page-item .next-btn::after {
+    content: '\F138';
+    font-family: var(--bs-font-icons);
+}
+
+.page-link:hover {
+    color: var(--bs-white);
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.page-item .page-link {
+    border-radius: var(--bs-pagination-border-radius);
+}
+
+.page-item:first-child .page-link {
+    border-top-left-radius: none;
+    border-bottom-left-radius: none
+}
+
+.page-item:last-child .page-link {
+    border-top-right-radius: none;
+    border-bottom-right-radius: none
+}
+
 .avatar {
     width: 40px;
     height: 40px;
@@ -1933,7 +1997,7 @@ swiper-slide {
 .icon-password {
     --icon-content: '\F33F';
     position: absolute;
-    font-family: 'bootstrap-icons';
+    font-family: var(--bs-font-icons);
     right: 0;
     margin-right: 1rem;
     cursor: pointer;

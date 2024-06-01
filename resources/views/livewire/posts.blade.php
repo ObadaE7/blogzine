@@ -57,6 +57,6 @@
     </div>
 
     <div class="paginations">
-        {{ $posts->links() }}
+        {{ $posts->links('components.pagination-links') }}
     </div>
 </section>
