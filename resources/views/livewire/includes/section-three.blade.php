@@ -41,7 +41,8 @@
                             </div>
 
                             <div class="slide__content-link">
-                                <a href="{{ route('category', $category->slug) }}" class="badge-explore"></a>
+                                <a href="{{ route('category', $category->slug) }}" class="badge-explore"
+                                    aria-label="{{ $category->name }} - Category"></a>
                             </div>
                         </div>
                     </div>

@@ -19,7 +19,7 @@
         </ul>
     </div>
     <div class="header__search">
-        <input type="search" name="search" id="search" class="form-control"
+        <input type="search" name="search" class="form-control"
             placeholder="{{ trans('Search here') }}">
         <i class="header__search-icon"></i>
     </div>
@@ -39,7 +39,7 @@
     <div class="offcanvas-body">
         @if (Route::is('home'))
             <div class="header__search-sm">
-                <input type="search" name="search" id="search" class="form-control"
+                <input type="search" name="search" class="form-control"
                     placeholder="{{ trans('Search here') }}"><i class="header__search-icon"></i>
             </div>
         @endif
