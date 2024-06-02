@@ -1,15 +1,14 @@
-<section class="main__section-two">
+<section class="section__two">
     <div class="section__title">
         <span class="section__title-text">
-            <i class="title-two-icon"></i>
-            {{ trans('Today\'s top highlights') }}
+            <i class="section__two-icon"></i>{{ trans('Today\'s top highlights') }}
         </span>
         <span>{{ trans('Latest breaking news, pictures, videos, and special reports') }}</span>
     </div>
 
-    <div class="section_two-content">
+    <div class="section__two-container">
         @forelse ($postsSecTwo as $post)
-            <div class="section__two-row">
+            <div class="section__two-content">
                 <div class="section__two-img">
                     <img src="{{ 'storage/' . $post->image }}" alt="{{ $post->slug }}">
                     <div class="card__img-overlay">
@@ -19,7 +18,8 @@
                                     <span>{{ substr($post->owner->fname, 0, 1) . substr($post->owner->lname, 0, 1) }}</span>
                                 </div>
                             @else
-                                <img src="{{ $post->owner->image }}" class="avatar" alt="{{ trans('Avatar') }}">
+                                <img src="{{ $post->owner->image }}" class="avatar"
+                                    alt="{{ $post->owner->uname . '-' . trans('avatar') }}">
                             @endif
                             <div class="owner__text">
                                 <span>{{ $post->owner->fname . ' ' . $post->owner->lname }}</span>
@@ -32,19 +32,17 @@
                                 @if ($post->created_at->isToday())
                                     <span class="badge fs-6 bg-danger">{{ trans('New') }}</span>
                                 @else
-                                    <div class="section__two-liked">
+                                    <div class="reaction__liked">
                                         <span class="total_likes">58</span>
                                     </div>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="section__two-post-title">
-                            <span>
-                                <a href="{{ route('post', $post->slug) }}" class="text-underline-link rest-text-link">
-                                    {{ $post->title }}
-                                </a>
-                            </span>
+                        <div class="section__two-title">
+                            <a href="{{ route('post', $post->slug) }}" class="rest-text-link">
+                                <span class="text-underline-link">{{ $post->title }}</span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -57,53 +55,43 @@
         @endforelse
     </div>
 
-    <div class="section__two-paginate">
-        {{ $postsSecTwo->links('components.pagination-links', data: ['scrollTo' => '.main__section-two']) }}
+    <div class="section__paginate">
+        {{ $postsSecTwo->links('components.pagination-links', data: ['scrollTo' => '.section__two']) }}
     </div>
 
-    <div class="section__two-col-right">
+    <div class="section__two-right-container">
         <div class="section__two-social">
-            <div class="social__facebook-card card-img-flash">
-                <a href="#">
-                    <div class="social__text">
-                        <i class="bi bi-facebook"></i><small>1.5K {{ trans('Fans') }}</small>
-                    </div>
-                </a>
+            <div class="social__card bg-facebook flash-animation">
+                <div class="facebook__link">
+                    <a href="#"><span>1.5K {{ trans('Fans') }}</span></a>
+                </div>
             </div>
 
-            <div class="social__instagram-card card-img-flash">
-                <a href="#">
-                    <div class="social__text">
-                        <span><i class="bi bi-instagram"></i></span><small>1.8M {{ trans('Followers') }}</small>
-                    </div>
-                </a>
+            <div class="social__card bg-instagram flash-animation">
+                <div class="instagram__link">
+                    <a href="#"><span>1.8M {{ trans('Followers') }}</span></a>
+                </div>
             </div>
 
-            <div class="social__youtube-card card-img-flash">
-                <a href="#">
-                    <div class="social__text">
-                        <span><i class="bi bi-youtube"></i></span><small>1.5K {{ trans('Subscribers') }}</small>
-                    </div>
-                </a>
+            <div class="social__card bg-youtube flash-animation">
+                <div class="youtube__link">
+                    <a href="#"><span>1.5K {{ trans('Subscribers') }}</span></a>
+                </div>
             </div>
         </div>
 
         <div class="section__two-categories">
-            <span class="section__two-categories-title">{{ trans('Categories') }}</span>
+            <span class="section__two-sub-title">{{ trans('Categories') }}</span>
             @php
-                $colorNames = ['warning', 'info', 'danger', 'primary', 'success'];
+                $colorNames = ['warning', 'info', 'danger', 'primary', 'success', 'dark', 'secondary'];
                 $colorCount = count($colorNames);
             @endphp
             @foreach ($categoriesSecTwo as $index => $category)
-                @php
-                    $color = $colorNames[$index % $colorCount];
-                @endphp
-                <div class="badge-card-{{ $color }}">
-                    <a href="#">
-                        <div class="social__text">
-                            <span>{{ $category->name }}</span>
-                            <span class="badge bg-{{ $color }}">{{ $category->countPosts->count() }}</span>
-                        </div>
+                @php $color = $colorNames[$index % $colorCount]; @endphp
+                <div class="badge-card bg-{{ $color }}-subtle">
+                    <a href="{{ route('category', $category->slug) }}">
+                        <span class="text-{{ $color }}">{{ $category->name }}</span>
+                        <span class="badge bg-{{ $color }}">{{ $category->countPosts->count() }}</span>
                     </a>
                 </div>
             @endforeach
