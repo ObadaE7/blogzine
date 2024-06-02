@@ -1,18 +1,15 @@
-<section class="main__section-three">
-    <div class="section__three-title">
+<section class="section__three">
+    <div class="section__title-container">
         <div class="section__title">
             <span class="section__title-text">
-                <i class="title-three-icon"></i>
-                {{ trans('Browse articles by category') }}
+                <i class="section__three-icon"></i>{{ trans('Browse articles by category') }}
             </span>
             <span>{{ trans('Discover a variety of articles organized by category.') }}</span>
         </div>
 
         <div class="section__title-link">
-            <a href="{{ route('categories') }}"
-                class="icon-link icon-link-hover text-underline-link text-decoration-none">
+            <a href="{{ route('categories') }}" class="text-underline-link text-decoration-none">
                 {{ trans('VIEW ALL CATEGORIES') }}
-                <i class="bi bi-box-arrow-in-up-right mb-1"></i>
             </a>
         </div>
     </div>
@@ -22,27 +19,26 @@
             autoplay-disable-on-interaction="false" navigation="true" loop="true" init="false">
             @foreach ($categories as $category)
                 <swiper-slide>
-                    <div class="section__three-img card-img-flash">
-                        <img src="{{ asset('storage/' . $category->image) }}" class="section__three--slide-img"
+                    <div class="slide__img-container flash-animation">
+                        <img src="{{ asset('storage/' . $category->image) }}" class="slide__img"
                             alt="{{ $category->slug }}">
                     </div>
 
-                    <div class="section__three-content">
-                        <div class="slide__content-text">
+                    <div class="slide__content">
+                        <div class="slide__content-title">
                             <span>{{ $category->name }}</span>
                         </div>
 
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="slide__content-post-have">
-                                <span class="fw-bold">
-                                    {{ $category->posts->count() }}
-                                    <span class="ms-2">{{ trans('Posts Available') }}</span>
-                                </span>
+                        <div class="slide__link-container">
+                            <div class="slide__count-posts">
+                                <span>{{ $category->posts->count() }}</span>
+                                <span>{{ trans('Posts Available') }}</span>
                             </div>
 
-                            <div class="slide__content-link">
-                                <a href="{{ route('category', $category->slug) }}" class="badge-explore"
-                                    aria-label="{{ $category->name }} - Category"></a>
+                            <div class="slide__link">
+                                <a href="{{ route('category', $category->slug) }}" class="badge-link"
+                                    aria-label="{{ $category->name }} - Category">
+                                </a>
                             </div>
                         </div>
                     </div>
