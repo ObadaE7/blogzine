@@ -1,26 +1,25 @@
-<section class="main__section-one">
+<section class="section__one">
     <div class="section__title">
         <span class="section__title-text">
-            <i class="title-one-icon"></i>
-            {{ trans('Fresh Off the Press') }}
+            <i class="section__one-icon"></i>{{ trans('Fresh Off the Press') }}
         </span>
-        <span>{{ trans('Bringing You the Hottest News and Articles') }}</span>
+        <span>{{ trans('Bringing You the Hottest News and Articles.') }}</span>
     </div>
 
-    <div class="section__one-content">
+    <div class="section__one-container">
         @forelse ($posts as $post)
-            <div class="section__one-row">
+            <div class="section__one-content">
                 <div class="section__one-img">
                     <img src="{{ 'storage/' . $post->image }}" alt="{{ $post->slug }}">
                     <div class="overlay-text">
-                        <a href="{{ route('post', $post->slug) }}" class="text-underline-link rest-text-link">
-                            {{ trans('Explore') }}
+                        <a href="{{ route('post', $post->slug) }}" class="text-underline-link text-decoration-none">
+                            {{ trans('View Post') }}
                         </a>
                     </div>
                 </div>
 
                 <div class="section__one-details">
-                    <div class="section__one-post-tag">
+                    <div class="section__one-tag">
                         @foreach ($post->tags->take(1) as $tag)
                             @php
                                 $colorNames = ['warning', 'info', 'danger', 'primary', 'success', 'dark', 'secondary'];
@@ -34,26 +33,31 @@
                         @endforeach
                     </div>
 
-                    <div class="section__one-post-title">
+                    <div class="section__one-title">
+                        <a href="{{ route('post', $post->slug) }}" class="rest-text-link">
+                            <span class="text-underline-link">{{ $post->title }}</span>
+                        </a>
+                    </div>
+
+                    <div class="section__one-desc">
                         <span>
-                            <a href="{{ route('post', $post->slug) }}" class="text-underline-link rest-text-link">
-                                {{ $post->title }}
-                            </a>
+                            {!! str()->limit(
+                                $post->content,
+                                300,
+                                '... <a href="' . route('post', $post->slug) . '">' . trans('Read More') . '</a>',
+                            ) !!}
                         </span>
                     </div>
 
-                    <div class="section__one-post-content">
-                        <span>{!! str()->limit($post->content, '300', '...') !!}</span>
-                    </div>
-
-                    <div class="section__post-footer">
-                        <div class="section__post-owner">
+                    <div class="section__one-owner--container">
+                        <div class="section__owner">
                             @if (empty($post->owner->image))
                                 <div class="avatar__subtle">
                                     <span>{{ substr($post->owner->fname, 0, 1) . substr($post->owner->lname, 0, 1) }}</span>
                                 </div>
                             @else
-                                <img src="{{ $post->owner->image }}" class="avatar" alt="{{ trans('Avatar') }}">
+                                <img src="{{ $post->owner->image }}" class="avatar"
+                                    alt="{{ $post->owner->uname . '-' . trans('avatar') }}">
                             @endif
                             <small class="text-muted">
                                 {{ trans('By') . ' ' . $post->owner->fname . ' ' . $post->owner->lname }}
@@ -62,14 +66,12 @@
                             </small>
                         </div>
 
-                        <div class="section__post-reaction">
-                            <div class="d-flex align-items-center gap-2">
-                                <i class="bi bi-heart-fill fs-5"></i>
+                        <div class="section__reactions">
+                            <div class="reaction__like">
                                 <span>58</span>
                             </div>
-                            <div class="d-flex align-items-center gap-2">
-                                <i class="bi bi-heartbreak-fill fs-5"></i>
-                                <span>58</span>
+                            <div class="reaction__dislike">
+                                <span>30</span>
                             </div>
                         </div>
                     </div>

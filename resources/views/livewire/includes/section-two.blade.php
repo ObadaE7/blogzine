@@ -13,7 +13,7 @@
                 <div class="section__two-img">
                     <img src="{{ 'storage/' . $post->image }}" alt="{{ $post->slug }}">
                     <div class="card__img-overlay">
-                        <div class="section__post-owner">
+                        <div class="section__owner">
                             @if (empty($post->owner->image))
                                 <div class="avatar__subtle">
                                     <span>{{ substr($post->owner->fname, 0, 1) . substr($post->owner->lname, 0, 1) }}</span>
