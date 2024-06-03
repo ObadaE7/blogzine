@@ -50,7 +50,7 @@
                     {!! str()->limit(
                         $post->content,
                         340,
-                        '... <a href="' . route('post', $post->slug) . '">' . trans('Read More') . '</a>',
+                        '... <a wire:navigate href="' . route('post', $post->slug) . '">' . trans('Read More') . '</a>',
                     ) !!}
                 </div>
 
