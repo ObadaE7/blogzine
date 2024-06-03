@@ -1,3 +1,4 @@
+@props(['title'])
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -5,8 +6,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Jevelin') }}</title>
+    <meta name="description" content="Test">
+    <title>
+        @if (!empty($title))
+            {{ $title . ' - ' }}
+        @else
+            @yield('title')
+        @endif
+        {{ config('app.name', '') }}
+    </title>
 
     @include('components.app-icon')
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,13 +26,16 @@
     <link rel="stylesheet" href="{{ asset('assets/css/core.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     @stack('css')
+    <livewire:styles>
 </head>
 
 <body data-bs-theme="light">
     {{ $slot }}
 
+    <script src="{{ asset('assets/lib/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/core.js') }}"></script>
     @stack('scripts')
+    <livewire:scripts>
 </body>
 
 </html>

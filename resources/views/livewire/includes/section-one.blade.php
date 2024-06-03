@@ -28,7 +28,7 @@
                             @endphp
                             <a href="{{ route('tags', $tag->slug) }}"
                                 class="badge bg-{{ $color }}-subtle text-{{ $color }} text-decoration-none p-2">
-                                {{ $tag->name }}
+                                {{ Str::upper($tag->name) }}
                             </a>
                         @endforeach
                     </div>

@@ -1,4 +1,5 @@
 @extends('livewire.layouts.home')
+@section('title', 'Register -')
 @section('content')
     <div class="main__auth">
         <main class="main__wrapper">

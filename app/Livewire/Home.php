@@ -2,10 +2,8 @@
 
 namespace App\Livewire;
 
-use App\Models\Category;
-use App\Models\Post;
-use Livewire\Component;
-use Livewire\WithPagination;
+use App\Models\{Category, Post};
+use Livewire\{Component, WithPagination};
 
 class Home extends Component
 {

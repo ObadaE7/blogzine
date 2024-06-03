@@ -3,13 +3,14 @@
 namespace App\Livewire;
 
 use App\Models\Post;
-use Livewire\Component;
-use Livewire\WithPagination;
+use Livewire\Attributes\Title;
+use Livewire\{Component, WithPagination};
 
 class Posts extends Component
 {
     use WithPagination;
 
+    #[Title('Posts')]
     public function render()
     {
         $posts = $this->getAllPost();

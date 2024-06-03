@@ -1,6 +1,7 @@
 <header class="wrapper__header">
     <div class="header__brand">
-        <img src="{{ asset('assets/img/logo/jeveline-logo-dark.png') }}" class="header__brand-img" alt="{{ trans('Website logo') }}">
+        <img src="{{ asset('assets/img/logo/jeveline-logo-dark.png') }}" class="header__brand-img"
+            alt="{{ trans('Website logo') }}">
     </div>
     <div class="header__menu">
         <ul class="header__menu-ul">
@@ -19,8 +20,7 @@
         </ul>
     </div>
     <div class="header__search">
-        <input type="search" name="search" class="form-control"
-            placeholder="{{ trans('Search here') }}">
+        <input type="search" name="search" class="form-control" placeholder="{{ trans('Search here') }}">
         <i class="header__search-icon"></i>
     </div>
     <button class="header__hamburger" data-bs-toggle="offcanvas" data-bs-target="#headerToggle">
@@ -39,8 +39,8 @@
     <div class="offcanvas-body">
         @if (Route::is('home'))
             <div class="header__search-sm">
-                <input type="search" name="search" class="form-control"
-                    placeholder="{{ trans('Search here') }}"><i class="header__search-icon"></i>
+                <input type="search" name="search" class="form-control" placeholder="{{ trans('Search here') }}"><i
+                    class="header__search-icon"></i>
             </div>
         @endif
         <ul class="header__offcanvas-ul">

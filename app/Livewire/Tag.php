@@ -3,8 +3,8 @@
 namespace App\Livewire;
 
 use App\Models\Tag as ModelsTag;
-use Livewire\Component;
-use Livewire\WithPagination;
+use Livewire\Attributes\Title;
+use Livewire\{Component, WithPagination};
 
 class Tag extends Component
 {
@@ -13,6 +13,7 @@ class Tag extends Component
     public $tag;
     public $posts;
 
+    #[Title('Posts tagged')]
     public function render()
     {
         return view('livewire.tag')

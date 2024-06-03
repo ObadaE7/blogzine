@@ -2,24 +2,23 @@
     <div class="categories__header">
         <img src="{{ asset('assets/img/category.jpg') }}" class="categories__header-img"
             alt="{{ trans('Category banner') }}">
-        <span class="posts__header-text">{{ trans('Discover All Catetgories') }}</span>
+        <span class="header__text">{{ trans('Discover All Catetgories') }}</span>
     </div>
 
-    <div class="categories__content">
+    <div class="categories__content-container">
         @foreach ($categories as $category)
-            <div class="categories__content-row">
+            <div class="categories__content">
                 <div class="categories__content-img">
-                    <img src="{{ asset('storage/' . $category->image) }}" class="categories__content--img"
-                        alt="{{ $category->slug }}">
+                    <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->slug }}">
                     <div class="overlay-text">
-                        <a href="{{ route('category', $category->slug) }}" class="text-underline-link rest-text-link">
-                            {{ trans('View Posts') }}
+                        <a href="{{ route('category', $category->slug) }}"
+                            class="text-underline-link text-decoration-none">{{ trans('View Posts') }}
                         </a>
                     </div>
                 </div>
 
                 <div class="categories__content-title">
-                    <a href="{{ route('category', $category->slug) }}" class="text-underline-link rest-text-link">
+                    <a href="{{ route('category', $category->slug) }}" class="text-underline-link">
                         {{ $category->name }}
                     </a>
                     <div class="d-block">
@@ -27,14 +26,12 @@
                     </div>
                 </div>
 
-                <div class="categories__content-desc">
-                    {{ $category->description }}
-                </div>
+                <div class="categories__content-desc">{{ $category->description }}</div>
             </div>
         @endforeach
     </div>
 
-    <div class="paginations">
+    <div class="section__paginate">
         {{ $categories->links('components.pagination-links') }}
     </div>
 </section>

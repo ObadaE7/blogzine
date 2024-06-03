@@ -3,8 +3,8 @@
 namespace App\Livewire;
 
 use App\Models\Category as ModelsCategory;
-use Livewire\Component;
-use Livewire\WithPagination;
+use Livewire\Attributes\Title;
+use Livewire\{Component, WithPagination};
 
 class Category extends Component
 {
@@ -13,6 +13,7 @@ class Category extends Component
     public $category;
     public $posts;
 
+    #[Title('Category')]
     public function render()
     {
         return view('livewire.category')

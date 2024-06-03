@@ -1,32 +1,32 @@
 function initSwiper() {
     const swiperEl = document.querySelector("swiper-container");
     Object.assign(swiperEl, {
-      slidesPerView: 4,
-      spaceBetween: 30,
-      breakpoints: {
-        320: {
-          slidesPerView: 1,
-          spaceBetween: 5,
+        slidesPerView: 4,
+        spaceBetween: 30,
+        breakpoints: {
+            320: {
+                slidesPerView: 1,
+                spaceBetween: 5,
+            },
+            480: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+            },
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 15,
+            },
+            768: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+            },
+            1024: {
+                slidesPerView: 4,
+                spaceBetween: 25,
+            },
         },
-        480: {
-          slidesPerView: 2,
-          spaceBetween: 10,
-        },
-        640: {
-          slidesPerView: 2,
-          spaceBetween: 15,
-        },
-        768: {
-          slidesPerView: 3,
-          spaceBetween: 20,
-        },
-        1024: {
-          slidesPerView: 4,
-          spaceBetween: 25,
-        },
-      },
-      injectStyles: [
-        `
+        injectStyles: [
+            `
             .swiper-button-next,
             .swiper-button-prev {
               width: 26px;
@@ -39,28 +39,30 @@ function initSwiper() {
               background: rgba(0, 0, 0, 0.4) !important;
             }
         `,
-      ],
+        ],
     });
     swiperEl.initialize();
-  }
+}
 
-  function togglePassword() {
+function togglePassword() {
     document.addEventListener("DOMContentLoaded", () => {
-      const icons = document.querySelectorAll(".icon-password");
-      icons.forEach((icon) => {
-        icon.addEventListener("click", () => {
-          const passwordInput = icon
-            .closest("div")
-            .querySelector('input[type="password"], input[type="text"]');
+        const icons = document.querySelectorAll(".icon-password");
+        icons.forEach((icon) => {
+            icon.addEventListener("click", () => {
+                const passwordInput = icon
+                    .closest("div")
+                    .querySelector(
+                        'input[type="password"], input[type="text"]'
+                    );
 
-          if (passwordInput.type === "password") {
-            passwordInput.type = "text";
-            icon.style.setProperty("--icon-content", '"\\F33E"');
-          } else {
-            passwordInput.type = "password";
-            icon.style.setProperty("--icon-content", '"\\F33F"');
-          }
+                if (passwordInput.type === "password") {
+                    passwordInput.type = "text";
+                    icon.style.setProperty("--icon-content", '"\\F33E"');
+                } else {
+                    passwordInput.type = "password";
+                    icon.style.setProperty("--icon-content", '"\\F33F"');
+                }
+            });
         });
-      });
     });
-  }
+}

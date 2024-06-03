@@ -90,7 +90,7 @@
                 @php $color = $colorNames[$index % $colorCount]; @endphp
                 <div class="badge-card bg-{{ $color }}-subtle">
                     <a href="{{ route('category', $category->slug) }}">
-                        <span class="text-{{ $color }}">{{ $category->name }}</span>
+                        <span class="text-{{ $color }}">{{ Str::upper($category->name) }}</span>
                         <span class="badge bg-{{ $color }}">{{ $category->countPosts->count() }}</span>
                     </a>
                 </div>

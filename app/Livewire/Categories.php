@@ -3,13 +3,14 @@
 namespace App\Livewire;
 
 use App\Models\Category;
-use Livewire\Component;
-use Livewire\WithPagination;
+use Livewire\Attributes\Title;
+use Livewire\{Component, WithPagination};
 
 class Categories extends Component
 {
     use WithPagination;
 
+    #[Title('Categories')]
     public function render()
     {
         $categories = $this->getAllCategory();

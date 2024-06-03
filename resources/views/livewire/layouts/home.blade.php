@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout :title="$title ?? ''">
     <section class="wrapper">
         <x-header></x-header>
         @yield('content')
