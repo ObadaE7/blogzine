@@ -12,8 +12,8 @@
                 <div class="section__one-img">
                     <img src="{{ 'storage/' . $post->image }}" alt="{{ $post->slug }}">
                     <div class="overlay-text">
-                        <a href="{{ route('post', $post->slug) }}" class="text-underline-link text-decoration-none">
-                            {{ trans('View Post') }}
+                        <a wire:navigate href="{{ route('post', $post->slug) }}"
+                            class="text-underline-link text-decoration-none">{{ trans('View Post') }}
                         </a>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                                 $colorIndex = array_rand($colorNames);
                                 $color = $colorNames[$colorIndex];
                             @endphp
-                            <a href="{{ route('tags', $tag->slug) }}"
+                            <a wire:navigate href="{{ route('tags', $tag->slug) }}"
                                 class="badge bg-{{ $color }}-subtle text-{{ $color }} text-decoration-none p-2">
                                 {{ Str::upper($tag->name) }}
                             </a>
@@ -34,7 +34,7 @@
                     </div>
 
                     <div class="section__one-title">
-                        <a href="{{ route('post', $post->slug) }}" class="rest-text-link">
+                        <a wire:navigate href="{{ route('post', $post->slug) }}" class="rest-text-link">
                             <span class="text-underline-link">{{ $post->title }}</span>
                         </a>
                     </div>
@@ -44,7 +44,7 @@
                             {!! str()->limit(
                                 $post->content,
                                 300,
-                                '... <a href="' . route('post', $post->slug) . '">' . trans('Read More') . '</a>',
+                                '... <a wire:navigate href="' . route('post', $post->slug) . '">' . trans('Read More') . '</a>',
                             ) !!}
                         </span>
                     </div>
@@ -67,12 +67,8 @@
                         </div>
 
                         <div class="section__reactions">
-                            <div class="reaction__like">
-                                <span>58</span>
-                            </div>
-                            <div class="reaction__dislike">
-                                <span>30</span>
-                            </div>
+                            <div class="reaction__like"><span>58</span></div>
+                            <div class="reaction__dislike"><span>30</span></div>
                         </div>
                     </div>
                 </div>

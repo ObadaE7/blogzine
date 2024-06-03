@@ -8,7 +8,7 @@
         </div>
 
         <div class="section__title-link">
-            <a href="{{ route('categories') }}" class="text-underline-link text-decoration-none">
+            <a wire:navigate href="{{ route('categories') }}" class="text-underline-link text-decoration-none">
                 {{ trans('VIEW ALL CATEGORIES') }}
             </a>
         </div>
@@ -37,7 +37,7 @@
 
                             <div class="slide__link">
                                 <a href="{{ route('category', $category->slug) }}" class="badge-link"
-                                    aria-label="{{ $category->name }} - Category">
+                                    aria-label="{{ $category->name }} category">
                                 </a>
                             </div>
                         </div>

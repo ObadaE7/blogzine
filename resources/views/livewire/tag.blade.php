@@ -16,7 +16,7 @@
                     <span class="tagged__post-title">{{ $post->title }}</span>
                     <small class="tagged__post-subtitle">{{ $post->subtitle }}</small>
                     <div class="mt-4">
-                        <a href="{{ route('post', $post->slug) }}" class="tagged__post-btn">
+                        <a wire:navigate href="{{ route('post', $post->slug) }}" class="tagged__post-btn">
                             {{ trans('Read More') }}
                         </a>
                     </div>
@@ -29,7 +29,7 @@
                             $colorIndex = array_rand($colorNames);
                             $color = $colorNames[$colorIndex];
                         @endphp
-                        <a href="{{ route('tags', $tag->slug) }}"
+                        <a wire:navigate href="{{ route('tags', $tag->slug) }}"
                             class="badge bg-{{ $color }}-subtle text-{{ $color }} me-2 mb-2">
                             {{ $tag->name }}
                         </a>

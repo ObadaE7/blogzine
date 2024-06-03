@@ -32,15 +32,13 @@
                                 @if ($post->created_at->isToday())
                                     <span class="badge fs-6 bg-danger">{{ trans('New') }}</span>
                                 @else
-                                    <div class="reaction__liked">
-                                        <span class="total_likes">58</span>
-                                    </div>
+                                    <div class="reaction__liked"><span class="total_likes">58</span></div>
                                 @endif
                             </div>
                         </div>
 
                         <div class="section__two-title">
-                            <a href="{{ route('post', $post->slug) }}" class="rest-text-link">
+                            <a wire:navigate href="{{ route('post', $post->slug) }}" class="rest-text-link">
                                 <span class="text-underline-link">{{ $post->title }}</span>
                             </a>
                         </div>
@@ -89,7 +87,7 @@
             @foreach ($categoriesSecTwo as $index => $category)
                 @php $color = $colorNames[$index % $colorCount]; @endphp
                 <div class="badge-card bg-{{ $color }}-subtle">
-                    <a href="{{ route('category', $category->slug) }}">
+                    <a wire:navigate href="{{ route('category', $category->slug) }}">
                         <span class="text-{{ $color }}">{{ Str::upper($category->name) }}</span>
                         <span class="badge bg-{{ $color }}">{{ $category->countPosts->count() }}</span>
                     </a>
