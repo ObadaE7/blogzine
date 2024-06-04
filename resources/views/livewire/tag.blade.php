@@ -15,7 +15,7 @@
                     <span class="tagged__post-title">{{ $post->title }}</span>
                     <small class="tagged__post-subtitle text-muted">{{ $post->subtitle }}</small>
                     <div class="mt-4">
-                        <a wire:navigate href="{{ route('post', $post->slug) }}" class="tagged__post-btn">
+                        <a wire:navigate href="{{ route('post', $post->slug) }}" class="read__more-btn">
                             {{ trans('Read More') }}
                         </a>
                     </div>

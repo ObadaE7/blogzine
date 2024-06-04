@@ -1,7 +1,6 @@
 <section class="categories__wrapper">
     <div class="categories__header">
-        <img src="{{ asset('assets/img/category.jpg') }}" class="categories__header-img"
-            alt="{{ trans('Categories banner') }}">
+        <img src="{{ asset('assets/img/category.jpg') }}" alt="{{ trans('Categories banner') }}">
         <span class="header__text">{{ trans('Discover All Catetgories') }}</span>
     </div>
 
