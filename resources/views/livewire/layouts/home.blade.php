@@ -1,5 +1,5 @@
 <x-guest-layout :title="$title ?? ''">
-    <section class="wrapper">
+    <section class="{{ Route::is('login') || Route::is('register') ? 'auth' : '' }} wrapper">
         <x-header></x-header>
         @yield('content')
         @unless (Route::is('login') || Route::is('register'))

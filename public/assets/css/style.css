@@ -1528,68 +1528,86 @@ swiper-slide {
     }
 }
 
-
-
-.main__auth .main__wrapper {
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr;
-    grid-template-areas: 'content';
-    height: max-content;
-    padding: 1rem;
+.auth.wrapper {
+    grid-template-rows: 80px 1fr;
+    grid-template-areas: 'header''main';
 }
 
-.auth__content {
-    grid-area: content;
+.main__auth {
+    grid-area: main;
     display: flex;
     flex-direction: column;
-    height: max-content;
-    margin: 0 30%;
-    padding: 1.5rem;
-    border-radius: .5rem;
+    justify-self: center;
+    width: calc(var(--m-width-100) - 60%);
+    padding: var(--p-sm);
+    border-radius: var(--border-radius-sm);
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    background: var(--bs-white);
+    gap: calc(var(--gap-sm) - .5rem);
+    transition: width .3s ease-in-out;
 }
 
 .auth__header {
     font-size: 25px;
     text-align: center;
-    padding-bottom: 1rem;
+}
+
+.auth__container {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.auth__social {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 1.5rem;
 }
 
 .auth__social-facebook {
     color: #285AEB;
 }
 
+.auth__social-facebook::before {
+    content: '\F344';
+    font-family: var(--font-icons);
+}
+
 .auth__social-twitter {
     color: var(--bs-dark);
+}
+
+.auth__social-twitter::before {
+    content: '\F8DB';
+    font-family: var(--font-icons);
 }
 
 .auth__social-google {
     color: var(--bs-info);
 }
 
-.auth__social-facebook i,
-.auth__social-twitter i,
-.auth__social-google i {
-    border: 1px solid;
-    border-radius: .5rem;
-    padding: .45rem;
+.auth__social-google::before {
+    content: '\F3F0';
+    font-family: var(--font-icons);
+}
+
+.auth__social-facebook,
+.auth__social-twitter,
+.auth__social-google {
+    font-size: 20px;
+    text-decoration: none;
 }
 
 @media(max-width:992px) {
-    .auth__content {
-        margin: 0 20%;
-    }
-}
-
-@media(max-width:768px) {
-    .auth__content {
-        margin: 0 5rem;
+    .main__auth {
+        width: calc(var(--m-width-100) - 40%);
     }
 }
 
 @media (max-width: 576px) {
-    .auth__content {
-        margin: 0 1rem;
+    .main__auth {
+        width: calc(var(--m-width-100) - 19%);
     }
 }
 
