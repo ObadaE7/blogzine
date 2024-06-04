@@ -1,20 +1,19 @@
 <section class="tag__wrapper">
     <div class="tag__header">
-        <img src="{{ asset('assets/img/tag-pattern.jpg') }}" class="tag__header-img" alt="{{ trans('Posts banner') }}">
-        <span class="tag__header-text">{{ trans('Posts tagged with') }} "{{ $tag->name }}"</span>
+        <img src="{{ asset('assets/img/tag-pattern.jpg') }}" alt="{{ trans('Tags banner') }}">
+        <span class="header__text">{{ trans('Posts tagged with') }} "{{ $tag->name }}"</span>
     </div>
 
-    <div class="tag__content">
+    <div class="tag__content-container">
         @foreach ($posts as $post)
             <div class="tagged__post">
-                <div class="tagged__post-img card-img-flash">
-                    <img src="{{ asset('storage/' . $post->image) }}" class="tagged__post--img"
-                        alt="{{ $post->slug }}">
+                <div class="tagged__post-img flash-animation">
+                    <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->slug }}">
                 </div>
 
                 <div class="tagged__post-content">
                     <span class="tagged__post-title">{{ $post->title }}</span>
-                    <small class="tagged__post-subtitle">{{ $post->subtitle }}</small>
+                    <small class="tagged__post-subtitle text-muted">{{ $post->subtitle }}</small>
                     <div class="mt-4">
                         <a wire:navigate href="{{ route('post', $post->slug) }}" class="tagged__post-btn">
                             {{ trans('Read More') }}
@@ -30,7 +29,7 @@
                             $color = $colorNames[$colorIndex];
                         @endphp
                         <a wire:navigate href="{{ route('tags', $tag->slug) }}"
-                            class="badge bg-{{ $color }}-subtle text-{{ $color }} me-2 mb-2">
+                            class="badge bg-{{ $color }}-subtle text-{{ $color }}">
                             {{ $tag->name }}
                         </a>
                     @endforeach

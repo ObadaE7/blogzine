@@ -1409,25 +1409,20 @@ swiper-slide {
     position: relative;
 }
 
-.tag__header-img {
+.tag__header img {
     width: var(--m-width-100);
     height: var(--m-height-100);
     object-fit: cover;
     border-radius: var(--border-radius-sm);
 }
 
-.tag__header-text {
-    position: absolute;
+.tag__header .header__text {
     top: 50%;
     left: 40%;
     transform: translate(-30%, -50%);
-    font-size: 35px;
-    font-weight: bold;
-    background: rgba(0, 0, 0, .05);
-    padding: .25rem 1.5rem;
 }
 
-.tag__content {
+.tag__content-container {
     grid-area: content;
     display: grid;
     grid-template-rows: 1fr;
@@ -1441,18 +1436,18 @@ swiper-slide {
     grid-template-columns: 1fr;
     grid-template-areas: 'img''content''tags';
     gap: var(--gap-sm);
-    border: 1px solid var(--bs-border-color);
+    padding: var(--p-sm);
+    background: var(--bs-white);
     border-radius: var(--border-radius-sm);
-    padding: 1rem;
 }
 
 .tagged__post-img {
     grid-area: img;
     width: var(--m-width-100);
-    height: 200px;
+    height: calc(var(--height-100) * 2);
 }
 
-.tagged__post--img {
+.tagged__post-img img {
     width: var(--m-width-100);
     height: var(--m-height-100);
     object-fit: cover;
@@ -1470,10 +1465,6 @@ swiper-slide {
     font-size: 20px;
 }
 
-.tagged__post-subtitle {
-    color: #999;
-}
-
 .tagged__post-btn {
     background: var(--bs-primary);
     color: var(--bs-white);
@@ -1484,43 +1475,51 @@ swiper-slide {
 
 .tagged__post-tags {
     grid-area: tags;
-    height: max-content;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap-xsm);
 }
 
 .tagged__post-tags a {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-xsm);
+    padding: var(--p-xsm);
     text-decoration: none;
 }
 
-.tagged__post-tags .badge {
-    font-size: 0.85rem;
-    padding: 0.4em 0.6em;
+.tagged__post-tags a::before {
+    content: '\F5B1';
+    font-family: var(--font-icons);
 }
-
 
 @media(max-width:992px) {
 
-    .tag__content {
+    .tag__content-container {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media(max-width:768px) {
 
-    .tag__header-text {
+    .tag__header .header__text {
         left: 20%;
         transform: translate(-10%, -50%);
         font-size: 25px;
     }
 
-    .tag__content {
+    .tag__content-container {
         grid-template-columns: 1fr;
     }
 
 }
 
 @media(max-width:576px) {
+    .tag__wrapper {
+        padding: var(--wrapper-p-sm);
+    }
 
-    .tag__header-text {
+    .tag__header .header__text {
         left: 20%;
         transform: translate(-10%, -50%);
         background: rgba(0, 0, 0, .3);
