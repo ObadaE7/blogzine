@@ -66,3 +66,18 @@ function togglePassword() {
         });
     });
 }
+
+
+function toggleSidebar() {
+    const dashboardWrapper = document.querySelector(".dashboard__wrapper");
+    const isCollapsed = dashboardWrapper.classList.toggle("collapsed");
+    localStorage.setItem("sidebarCollapsed", isCollapsed);
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const isCollapsed = localStorage.getItem("sidebarCollapsed") === "true";
+    const dashboardWrapper = document.querySelector(".dashboard__wrapper");
+    if (isCollapsed) {
+        dashboardWrapper.classList.add("collapsed");
+    }
+});
