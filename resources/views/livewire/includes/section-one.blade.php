@@ -13,7 +13,7 @@
                     <img src="{{ 'storage/' . $post->image }}" alt="{{ $post->slug }}">
                     <div class="overlay-text">
                         <a wire:navigate href="{{ route('post', $post->slug) }}"
-                            class="text-underline-link text-decoration-none">{{ trans('View Post') }}
+                            class="underline__link-hover text-decoration-none">{{ trans('View Post') }}
                         </a>
                     </div>
                 </div>
@@ -34,8 +34,8 @@
                     </div>
 
                     <div class="section__one-title">
-                        <a wire:navigate href="{{ route('post', $post->slug) }}" class="rest-text-link">
-                            <span class="text-underline-link">{{ $post->title }}</span>
+                        <a wire:navigate href="{{ route('post', $post->slug) }}">
+                            <span class="underline__link-hover">{{ $post->title }}</span>
                         </a>
                     </div>
 

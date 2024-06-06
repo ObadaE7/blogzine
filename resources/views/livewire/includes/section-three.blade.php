@@ -8,7 +8,7 @@
         </div>
 
         <div class="section__title-link">
-            <a wire:navigate href="{{ route('categories') }}" class="text-underline-link text-decoration-none">
+            <a wire:navigate href="{{ route('categories') }}" class="underline__link-hover text-decoration-none">
                 {{ trans('VIEW ALL CATEGORIES') }}
             </a>
         </div>

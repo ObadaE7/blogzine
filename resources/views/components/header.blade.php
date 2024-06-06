@@ -5,17 +5,17 @@
     </div>
     <div class="header__menu">
         <ul class="header__menu-ul">
-            <li><a href="{{ route('home') }}" class="underline-hover">{{ trans('HOME') }}</a></li>
-            <li><a href="{{ route('categories') }}" class="underline-hover">{{ trans('CATEGORIES') }}</a></li>
-            <li><a href="{{ route('posts') }}" class="underline-hover">{{ trans('POSTS') }}</a></li>
+            <li><a href="{{ route('home') }}" class="underline__hover">{{ trans('HOME') }}</a></li>
+            <li><a href="{{ route('categories') }}" class="underline__hover">{{ trans('CATEGORIES') }}</a></li>
+            <li><a href="{{ route('posts') }}" class="underline__hover">{{ trans('POSTS') }}</a></li>
             @auth
                 <li>
                     <a href="{{ route('dashboard.dashboard') }}"
-                        class="underline-hover text-primary">{{ trans('DASHBOARD') }}
+                        class="underline__hover text-primary">{{ trans('DASHBOARD') }}
                     </a>
                 </li>
             @else
-                <li><a href="{{ route('login') }}" class="underline-hover">{{ trans('LOGIN') }}</a></li>
+                <li><a href="{{ route('login') }}" class="underline__hover">{{ trans('LOGIN') }}</a></li>
             @endauth
         </ul>
     </div>

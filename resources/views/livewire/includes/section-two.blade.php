@@ -38,8 +38,8 @@
                         </div>
 
                         <div class="section__two-title">
-                            <a wire:navigate href="{{ route('post', $post->slug) }}" class="rest-text-link">
-                                <span class="text-underline-link">{{ $post->title }}</span>
+                            <a wire:navigate href="{{ route('post', $post->slug) }}">
+                                <span class="underline__link-hover">{{ $post->title }}</span>
                             </a>
                         </div>
                     </div>

@@ -11,13 +11,13 @@
                     <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->slug }}">
                     <div class="overlay-text">
                         <a wire:navigate href="{{ route('category', $category->slug) }}"
-                            class="text-underline-link text-decoration-none">{{ trans('View Posts') }}
+                            class="underline__link-hover text-decoration-none">{{ trans('View Posts') }}
                         </a>
                     </div>
                 </div>
 
                 <div class="categories__content-title">
-                    <a wire:navigate href="{{ route('category', $category->slug) }}" class="text-underline-link">
+                    <a wire:navigate href="{{ route('category', $category->slug) }}" class="underline__link-hover">
                         {{ $category->name }}
                     </a>
                     <div class="d-block">

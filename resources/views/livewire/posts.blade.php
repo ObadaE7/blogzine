@@ -24,7 +24,7 @@
 
                     <div class="posts__info-title">
                         <a wire:navigate href="{{ route('post', $post->slug) }}">
-                            <span class="text-underline-link">{{ $post->title }}</span>
+                            <span class="underline__link-hover">{{ $post->title }}</span>
                         </a>
                     </div>
 

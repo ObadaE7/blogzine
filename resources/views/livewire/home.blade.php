@@ -1,6 +1,6 @@
 <main class="main__wrapper">
     <section class="section__banner flash-animation">
-        <img src="{{ asset('assets/img/banner.png') }}" class="section__banner-img" alt="{{ trans('Website banner') }}">
+        <img src="{{ asset('assets/img/banner.png') }}" alt="{{ trans('Website banner') }}">
         <div class="section__banner-text">
             <span>{{ trans('Discover, Explore, and Inspire') }}</span>
         </div>
