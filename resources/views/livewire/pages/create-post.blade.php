@@ -2,10 +2,10 @@
     <x-alert status="success" color="success" />
     <x-alert status="error" color="danger" />
 
-    <div class="create-container">
-        <div class="create-row-top">
-            <div class="create-col-left">
-                <label for="image" class="post-image position-relative">
+    <section class="section__create-post">
+        <div class="create__post-top">
+            <div class="create__post-left">
+                <label for="image">
                     <i wire:loading.remove wire:target='form.image' class="bi bi-image-alt"></i>
                     <span wire:loading.remove wire:target='form.image'>
                         {{ trans('Click here to upload an image') }}
@@ -14,8 +14,8 @@
                         <div class="loader"></div>
                     </div>
                     @if (!$errors->has('form.image') && $this->form->image)
-                        <img wire:loading.remove class="position-absolute post-image p-1 border-0"
-                            src="{{ $this->form->image->temporaryURL() }}" alt="{{ trans('Temp image') }}">
+                        <img wire:loading.remove src="{{ $this->form->image->temporaryURL() }}"
+                            alt="{{ trans('Temp image') }}">
                     @endif
                 </label>
                 <input wire:model='form.image' type="file" id="image" class="form-control"
@@ -23,7 +23,7 @@
                 <x-error name="form.image" />
             </div>
 
-            <div class="create-col-right">
+            <div class="create__post-right">
                 <div class="mb-3">
                     <label for="category_id">{{ trans('Category') }}</label>
                     <select wire:model='form.category_id' id="category_id" class="form-select">
@@ -60,7 +60,7 @@
             </div>
         </div>
 
-        <div class="create-row-bottom mt-3">
+        <div class="create__post-bottom">
             <div class="mb-3">
                 <label for="content">{{ trans('Content') }}</label>
                 <livewire:quill />
@@ -94,5 +94,5 @@
                 {{ trans('Create') }}
             </button>
         </div>
-    </div>
+    </section>
 </form>
