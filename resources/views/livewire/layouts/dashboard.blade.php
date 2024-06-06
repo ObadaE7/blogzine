@@ -8,14 +8,9 @@
 
             <div class="dashboard__main-container">
                 <div class="dashboard__breadcrumb">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Library</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Data</li>
-                        </ol>
-                    </nav>
+                    @yield('breadcrumb')
                 </div>
+
                 <div class="dashboard__main-content">
                     @yield('content')
                 </div>

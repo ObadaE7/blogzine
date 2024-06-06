@@ -1,3 +1,10 @@
+@section('breadcrumb')
+    <x-breadcrumb>
+        <li class="breadcrumb-item"><a href="{{ route('dashboard.post.index') }}">{{ trans('Post') }}</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><a>{{ trans('Show') }}</a></li>
+    </x-breadcrumb>
+@endsection
+
 <section class="dashboard__posts-wrapper">
     <div class="section__filters">
         <div class="filter__header">

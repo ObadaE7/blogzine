@@ -1,3 +1,10 @@
+@section('breadcrumb')
+    <x-breadcrumb>
+        <li class="breadcrumb-item"><a href="{{ route('dashboard.post.create') }}">{{ trans('Post') }}</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><a>{{ trans('Create') }}</a></li>
+    </x-breadcrumb>
+@endsection
+
 <form>
     <x-alert status="success" color="success" />
     <x-alert status="error" color="danger" />

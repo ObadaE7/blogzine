@@ -2602,6 +2602,25 @@ swiper-slide {
     border-radius: var(--border-radius-xsm);
 }
 
+.breadcrumb-item {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    content: '\F285';
+    font-family: var(--font-icons);
+    font-weight: bold;
+    font-size: 18px;
+    color: rgba(153, 153, 153, 0.5);
+}
+
+.breadcrumb-item a {
+    font-weight: 500;
+    margin-bottom: 2px;
+    color: var(--bs-dark);
+}
+
 .loader {
     display: grid;
     width: calc(var(--width-100) - 50px);
