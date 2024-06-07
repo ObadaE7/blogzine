@@ -2454,7 +2454,8 @@ swiper-slide {
     right: 0;
 }
 
-.edit__avatar {
+.edit__avatar,
+.edit__cover {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2478,14 +2479,10 @@ swiper-slide {
 }
 
 .edit__cover {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 25px;
     height: 20px;
     border-radius: .25rem;
     background: var(--bs-secondary);
-    cursor: pointer;
 }
 
 .edit__cover::before {

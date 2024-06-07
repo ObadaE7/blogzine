@@ -115,7 +115,8 @@
                             <label for="bio">{{ trans('Bio') }}</label>
                             <x-success name="bio" />
                         </div>
-                        <textarea wire:model.live.blur='bio' id="bio" class="form-control" rows="7"></textarea>
+                        <textarea wire:model.live.blur='bio' id="bio" class="form-control" rows="7"
+                            placeholder="{{ trans('Tell me something about you') }}"></textarea>
                         <x-error name="bio" />
                     </div>
 
