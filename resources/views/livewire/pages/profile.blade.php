@@ -9,9 +9,40 @@
     <div class="profile__card">
         <div class="profile__header">
             <div class="profile__header-cover">
-                <img src="{{ asset('assets/img/banner.png') }}" alt="">
+                @if ($this->cover && !$errors->has('cover'))
+                    <img src="{{ $this->cover->temporaryURL() }}" alt="{{ trans('Temp cover') }}">
+                @else
+                    <img src="{{ isset(auth()->user()->cover) ? asset('storage/' . auth()->user()->cover) : asset('assets/img/banner.png') }}"
+                        alt="{{ trans('Profile cover') }}">
+                @endif
+                <div class="edit__cover-position">
+                    <label for="cover" class="edit__cover">
+                        <input wire:model='cover' id="cover" type="file"
+                            accept="image/png, image/jpg, image/jpeg" hidden>
+                    </label>
+                </div>
                 <div class="profile__header-avatar">
-                    <img src="{{ asset('assets/img/avatar.jpg') }}" alt="">
+                    @if ($this->avatar && !$errors->has('avatar'))
+                        <img src="{{ $this->avatar->temporaryURL() }}" alt="{{ trans('Temp avatar') }}">
+                    @else
+                        <img src="{{ isset(auth()->user()->avatar) ? asset('storage/' . auth()->user()->avatar) : asset('assets/img/avatar.jpg') }}"
+                            alt="{{ trans('Profile avatar') }}">
+                    @endif
+                    <div wire:target='avatar' wire:loading class="loader__avatar-position">
+                        <div class="loader"></div>
+                    </div>
+                    <div class="edit__avatar-position">
+                        <label for="avatar" class="edit__avatar">
+                            <input wire:model='avatar' id="avatar" type="file"
+                                accept="image/png, image/jpg, image/jpeg" hidden>
+                        </label>
+                    </div>
+                    <div class="d-flex justify-content-center text-nowrap">
+                        <x-success name="avatar" />
+                        <x-error name="avatar" />
+                        <x-success name="cover" />
+                        <x-error name="cover" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -25,7 +56,11 @@
         <div class="profile__content-information">
             <div class="d-flex justify-content-between">
                 <span class="text-muted">{{ trans('INFORMATION') }}</span>
-                <i class="bi bi-info-circle-fill text-info"></i>
+                <div class="tooltip-hint" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-custom-class="info-tooltip"
+                    data-bs-title="{{ trans('The form saves automatically when you click outside the field.') }}">
+                    <i class="bi bi-info-circle-fill"></i>
+                </div>
             </div>
 
             <form>
@@ -66,7 +101,11 @@
         <div class="profile__content-about">
             <div class="d-flex justify-content-between">
                 <span class="text-muted">{{ trans('ABOUT ME') }}</span>
-                <i class="bi bi-info-circle-fill text-info"></i>
+                <div class="tooltip-hint" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-custom-class="info-tooltip"
+                    data-bs-title="{{ trans('The form saves automatically when you click outside the field.') }}">
+                    <i class="bi bi-info-circle-fill"></i>
+                </div>
             </div>
 
             <form>
@@ -117,17 +156,18 @@
                     </div>
 
                     <div class="col-md-12 mb-3">
-                        <label for="current_password">{{ trans('Password') }}</label>
+                        <label for="eu_current_password">{{ trans('Password') }}</label>
                         <div class="input-password">
-                            <input wire:model='current_password' type="password" id="current_password"
+                            <input wire:model='eu_current_password' type="password" id="eu_current_password"
                                 class="form-control" placeholder="{{ trans('Enter your password') }}">
                             <span class="icon-password"></span>
                         </div>
-                        <x-error name="current_password" />
+                        <x-error name="eu_current_password" />
                     </div>
 
                     <div class="d-flex justify-content-end">
-                        <button wire:click.prevent='saveEmail' class="btn btn-primary w-25">Save</button>
+                        <button wire:click.prevent='saveEmail'
+                            class="btn btn-primary w-25">{{ trans('Save') }}</button>
                     </div>
                 </div>
             </form>
@@ -140,7 +180,7 @@
                     <div class="col-md-12 mb-3">
                         <label for="current_password">{{ trans('Current password') }}</label>
                         <div class="input-password">
-                            <input wire:model.live.blur='current_password' type="password" id="current_password"
+                            <input wire:model='current_password' type="password" id="current_password"
                                 class="form-control" placeholder="{{ trans('Enter your current password') }}">
                             <span class="icon-password"></span>
                         </div>
@@ -153,8 +193,8 @@
                             <x-success name="password" />
                         </div>
                         <div class="input-password">
-                            <input wire:model.live.blur='password' type="password" id="password"
-                                class="form-control" placeholder="{{ trans('Enter your password') }}">
+                            <input wire:model='password' type="password" id="password" class="form-control"
+                                placeholder="{{ trans('Enter your password') }}">
                             <span class="icon-password"></span>
                         </div>
                         <x-error name="password" />
@@ -163,16 +203,16 @@
                     <div class="col-md-12 mb-3">
                         <label for="password_confirmation">{{ trans('Confirm password') }}</label>
                         <div class="input-password">
-                            <input wire:model.live.blur='password_confirmation' type="password"
-                                id="password_confirmation" class="form-control"
-                                placeholder="{{ trans('Confirm your password') }}">
+                            <input wire:model='password_confirmation' type="password" id="password_confirmation"
+                                class="form-control" placeholder="{{ trans('Confirm your password') }}">
                             <span class="icon-password"></span>
                         </div>
                         <x-error name="password_confirmation" />
                     </div>
 
                     <div class="d-flex justify-content-end">
-                        <button class="btn btn-primary w-25">Save</button>
+                        <button wire:click.prevent='savePassword'
+                            class="btn btn-primary w-25">{{ trans('Save') }}</button>
                     </div>
                 </div>
             </form>
@@ -182,11 +222,11 @@
 
 @push('scripts')
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
-    <script>
-        togglePassword();
-    </script>
 
     <script>
+        togglePassword();
+        toolTip();
+
         document.addEventListener('livewire:navigated', () => {
             Livewire.on('resetSuccessMessage', (field) => {
                 setTimeout(() => {

@@ -67,7 +67,6 @@ function togglePassword() {
     });
 }
 
-
 function toggleSidebar() {
     const dashboardWrapper = document.querySelector(".dashboard__wrapper");
     const isCollapsed = dashboardWrapper.classList.toggle("collapsed");
@@ -81,3 +80,12 @@ document.addEventListener("DOMContentLoaded", function () {
         dashboardWrapper.classList.add("collapsed");
     }
 });
+
+function toolTip() {
+    const tooltipTriggerList = document.querySelectorAll(
+        '[data-bs-toggle="tooltip"]'
+    );
+    const tooltipList = [...tooltipTriggerList].map(
+        (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
+    );
+}

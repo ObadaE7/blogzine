@@ -42,7 +42,8 @@
             <li>
                 <div class="dropdown">
                     <button class="li__btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{{ asset('assets/img/avatar.jpg') }}" class="avatar" alt="avatar">
+                        <img class="avatar" alt="{{ trans('Profile avatar') }}"
+                            src="{{ isset(auth()->user()->avatar) ? asset('storage/' . auth()->user()->avatar) : asset('assets/img/avatar.jpg') }}">
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="#">Profile</a></li>
