@@ -7,7 +7,7 @@
     <div class="aside__menu">
         <ul class="aside__menu-ul">
             <li>
-                <a href="{{ route('dashboard.profile') }}" class="{{ Route::is('dashboard.profile') ? 'active' : '' }}">
+                <a href="{{ route('admin.profile') }}" class="{{ Route::is('admin.profile') ? 'active' : '' }}">
                     <i class="menu__icon profile"></i>
                     <span class="menu__text">{{ trans('Profile') }}</span>
                 </a>
@@ -33,7 +33,7 @@
                 </a>
             </li>
             <li>
-                <form method="POST" action="{{ route('logout') }}">
+                <form method="POST" action="{{ route('admin.logout') }}">
                     @csrf
                     <button>
                         <i class="menu__icon log-out"></i>

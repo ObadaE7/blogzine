@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Admin;
 
-use App\Models\User;
+use App\Models\Admin;
 use Exception;
-use Illuminate\Support\Facades\{Hash, Log, Storage};
 use Livewire\{Component, WithFileUploads};
+use Illuminate\Support\Facades\{Hash, Log, Storage};
 
 class Profile extends Component
 {
@@ -27,26 +27,26 @@ class Profile extends Component
 
     public function render()
     {
-        return view('livewire.pages.profile')
+        return view('admin.livewire.pages.profile')
             ->extends('livewire.layouts.dashboard')
             ->section('content');
     }
 
     public function mount()
     {
-        $user = auth()->user();
-        $this->uname = $user->uname;
-        $this->fname = $user->fname;
-        $this->lname = $user->lname;
-        $this->bio = $user->bio;
-        $this->phone = $user->phone;
-        $this->birthday = $user->birthday;
-        $this->email = $user->email;
+        $admin = auth()->guard('admin')->user();
+        $this->uname = $admin->uname;
+        $this->fname = $admin->fname;
+        $this->lname = $admin->lname;
+        $this->bio = $admin->bio;
+        $this->phone = $admin->phone;
+        $this->birthday = $admin->birthday;
+        $this->email = $admin->email;
     }
 
     public function updatedFname()
     {
-        $id = auth()->user()->id;
+        $id = auth()->guard('admin')->user()->id;
         $this->validateOnly(
             'fname',
             ['fname' => 'required|min:5|alpha'],
@@ -57,7 +57,7 @@ class Profile extends Component
             ]
         );
         try {
-            User::findOrFail($id)->update(['fname' => $this->fname]);
+            Admin::findOrFail($id)->update(['fname' => $this->fname]);
             session()->flash('fname', trans('updated!'));
             $this->dispatch('resetSuccessMessage', field: 'fname');
         } catch (Exception $e) {
@@ -68,7 +68,7 @@ class Profile extends Component
 
     public function updatedLname()
     {
-        $id = auth()->user()->id;
+        $id = auth()->guard('admin')->user()->id;
         $this->validateOnly(
             'lname',
             ['lname' => 'required|min:5|alpha'],
@@ -79,7 +79,7 @@ class Profile extends Component
             ]
         );
         try {
-            User::findOrFail($id)->update(['lname' => $this->lname]);
+            Admin::findOrFail($id)->update(['lname' => $this->lname]);
             session()->flash('lname', trans('updated!'));
             $this->dispatch('resetSuccessMessage', field: 'lname');
         } catch (Exception $e) {
@@ -90,10 +90,10 @@ class Profile extends Component
 
     public function updatedUname()
     {
-        $id = auth()->user()->id;
+        $id = auth()->guard('admin')->user()->id;
         $this->validateOnly(
             'uname',
-            ['uname' => 'required|size:8|string|unique:users,uname,' . $id],
+            ['uname' => 'required|size:8|string|unique:admins,uname,' . $id],
             [
                 'uname.required' => 'The username field is required.',
                 'uname.size' => 'The username field must be 8 characters.',
@@ -102,7 +102,7 @@ class Profile extends Component
             ]
         );
         try {
-            User::findOrFail($id)->update(['uname' => $this->uname]);
+            Admin::findOrFail($id)->update(['uname' => $this->uname]);
             session()->flash('uname', trans('updated!'));
             $this->dispatch('resetSuccessMessage', field: 'uname');
         } catch (Exception $e) {
@@ -113,10 +113,10 @@ class Profile extends Component
 
     public function updatedBio()
     {
-        $id = auth()->user()->id;
+        $id = auth()->guard('admin')->user()->id;
         $this->validateOnly('bio', ['bio' => 'nullable|min:10|string|max:500']);
         try {
-            User::findOrFail($id)->update(['bio' => $this->bio]);
+            Admin::findOrFail($id)->update(['bio' => $this->bio]);
             session()->flash('bio', trans('updated!'));
             $this->dispatch('resetSuccessMessage', field: 'bio');
         } catch (Exception $e) {
@@ -127,10 +127,10 @@ class Profile extends Component
 
     public function updatedPhone()
     {
-        $id = auth()->user()->id;
+        $id = auth()->guard('admin')->user()->id;
         $this->validateOnly('phone', ['phone' => 'nullable|numeric|digits:10']);
         try {
-            User::findOrFail($id)->update(['phone' => $this->phone]);
+            Admin::findOrFail($id)->update(['phone' => $this->phone]);
             session()->flash('phone', trans('updated!'));
             $this->dispatch('resetSuccessMessage', field: 'phone');
         } catch (Exception $e) {
@@ -141,10 +141,10 @@ class Profile extends Component
 
     public function updatedBirthday()
     {
-        $id = auth()->user()->id;
+        $id = auth()->guard('admin')->user()->id;
         $this->validateOnly('birthday', ['birthday' => 'nullable|date']);
         try {
-            User::findOrFail($id)->update(['birthday' => $this->birthday]);
+            Admin::findOrFail($id)->update(['birthday' => $this->birthday]);
             session()->flash('birthday', trans('updated!'));
             $this->dispatch('resetSuccessMessage', field: 'birthday');
         } catch (Exception $e) {
@@ -155,18 +155,18 @@ class Profile extends Component
 
     public function saveEmail()
     {
-        $id = auth()->user()->id;
+        $id = auth()->guard('admin')->user()->id;
         $validated = $this->validate(
             [
-                'email' => 'required|string|email|unique:users,email,' . $id . '|max:255',
-                'eu_current_password' => 'required|string|current_password'
+                'email' => 'required|string|email|unique:admins,email,' . $id . '|max:255',
+                'eu_current_password' => 'required|string|current_password:admin'
             ],
             ['eu_current_password.required' => 'The current password field is required.']
         );
 
         try {
             if ($validated) {
-                User::findOrFail($id)->update(['email' => $this->email]);
+                Admin::findOrFail($id)->update(['email' => $this->email]);
                 session()->flash('email', trans('updated!'));
                 $this->dispatch('resetSuccessMessage', field: 'email');
                 $this->reset(['eu_current_password']);
@@ -179,10 +179,10 @@ class Profile extends Component
 
     public function savePassword()
     {
-        $user = auth()->user();
+        $admin = auth()->guard('admin')->user();
         $validated = $this->validate(
             [
-                'current_password' => 'required|string|current_password',
+                'current_password' => 'required|string|current_password:admin',
                 'password' => 'required|string|min:8|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
                 'password_confirmation' => 'required',
             ],
@@ -192,8 +192,8 @@ class Profile extends Component
         );
 
         try {
-            if (Hash::check($this->current_password, $user->password)) {
-                User::where('id', $user->id)->update(['password' => Hash::make($validated['password'])]);
+            if (Hash::check($this->current_password, $admin->password)) {
+                Admin::where('id', $admin->id)->update(['password' => Hash::make($validated['password'])]);
             }
             session()->flash('password', trans('updated!'));
             $this->dispatch('resetSuccessMessage', field: 'password');
@@ -206,15 +206,15 @@ class Profile extends Component
 
     public function updatedCover()
     {
-        $user = auth()->user();
+        $admin = auth()->guard('admin')->user();
         $validated =  $this->validateOnly('cover', ['cover' => 'required|file|image|mimes:jpg,jpeg,png|max:1024']);
         try {
             if ($validated) {
-                $path = $validated['cover']->store('covers', 'public');
-                if ($user->cover) {
-                    Storage::disk('public')->delete($user->cover);
+                $path = $validated['cover']->store('covers/admin', 'public');
+                if ($admin->cover) {
+                    Storage::disk('public')->delete($admin->cover);
                 }
-                User::where('id', $user->id)->update(['cover' => $path]);
+                Admin::where('id', $admin->id)->update(['cover' => $path]);
                 session()->flash('cover', trans('updated!'));
                 $this->dispatch('resetSuccessMessage', field: 'cover');
             }
@@ -226,15 +226,15 @@ class Profile extends Component
 
     public function updatedAvatar()
     {
-        $user = auth()->user();
+        $admin = auth()->guard('admin')->user();
         $validated =  $this->validateOnly('avatar', ['avatar' => 'required|file|image|mimes:jpg,jpeg,png|max:1024']);
         try {
             if ($validated) {
-                $path = $validated['avatar']->store('avatars', 'public');
-                if ($user->avatar) {
-                    Storage::disk('public')->delete($user->avatar);
+                $path = $validated['avatar']->store('avatars/admin', 'public');
+                if ($admin->avatar) {
+                    Storage::disk('public')->delete($admin->avatar);
                 }
-                User::where('id', $user->id)->update(['avatar' => $path]);
+                Admin::where('id', $admin->id)->update(['avatar' => $path]);
                 session()->flash('avatar', trans('updated!'));
                 $this->dispatch('resetSuccessMessage', field: 'avatar');
             }

@@ -18,7 +18,6 @@ Route::get('tags/{slug}', Tag::class)->name('tags');
 Route::get('category/{slug}', Category::class)->name('category');
 Route::get('categories', Categories::class)->name('categories');
 
-
 #.....{Dashboard}.....#
 Route::prefix('dashboard')
     ->as('dashboard.')
