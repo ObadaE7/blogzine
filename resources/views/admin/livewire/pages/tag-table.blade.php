@@ -11,7 +11,10 @@
         <x-alert status="success" color="success" />
         <x-alert status="error" color="danger" />
 
-        <div class="table__content-filters"></div>
+        <div class="table__content-filters">
+            <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+            data-bs-target="#createModal">+ Create</button>
+        </div>
 
         <div class="table-responsive">
             <table class="table table-striped">

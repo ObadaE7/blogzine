@@ -26,6 +26,24 @@ class TagTable extends Component
             ->section('content');
     }
 
+    public function create()
+    {
+        $validated =   $this->validate([
+            'name' => 'required|string|min:3|max:25|unique:tags,name,',
+            'slug' => 'required|string|unique:tags,slug,',
+        ]);
+
+        try {
+            Tag::create($validated);
+            session()->flash('success', trans('The tag has been created successfully'));
+            $this->resetField();
+            $this->closeModal('createModal');
+        } catch (Exception $e) {
+            Log::error('[createTag]: ' . $e->getMessage());
+            session()->flash('error', trans('Failed to create tag'));
+        }
+    }
+
     public function edit($id)
     {
         $tag = Tag::findOrFail($id);
@@ -72,5 +90,10 @@ class TagTable extends Component
             Log::error('[deleteTag]: ' . $e->getMessage());
             session()->flash('error', trans('Failed to delete tag'));
         }
+    }
+
+    public function resetField()
+    {
+        $this->reset();
     }
 }

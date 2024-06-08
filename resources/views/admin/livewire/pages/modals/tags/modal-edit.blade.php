@@ -18,6 +18,9 @@
             </div>
 
             <x-slot:button>
+                <button wire:click="resetField" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    {{ trans('Close') }}
+                </button>
                 <button wire:click.prevent='update({{ $tagId }})' type="button" class="btn btn-primary">
                     <i class="bi bi-pencil-square me-2"></i>{{ trans('Update') }}
                 </button>
