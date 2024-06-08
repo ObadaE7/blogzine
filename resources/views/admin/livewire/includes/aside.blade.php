@@ -13,23 +13,32 @@
                 </a>
             </li>
             <li>
-                <a href="#">
-                    <i class="menu__icon analysis"></i>
-                    <span class="menu__text">{{ trans('Analysis') }}</span>
+                <small class="text-muted">{{ trans('Tables') }}</small>
+            </li>
+            <li>
+                <a href="{{ route('admin.table.users') }}" class="{{ Route::is('admin.table.users') ? 'active' : '' }}">
+                    <i class="menu__icon users"></i>
+                    <span class="menu__text">{{ trans('Users') }}</span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('dashboard.post.index') }}"
-                    class="{{ Route::is('dashboard.post.index') ? 'active' : '' }}">
+                <a href="{{ route('admin.table.categories') }}"
+                    class="{{ Route::is('admin.table.categories') ? 'active' : '' }}">
+                    <i class="menu__icon categories"></i>
+                    <span class="menu__text">{{ trans('Categories') }}</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.table.tags') }}" class="{{ Route::is('admin.table.tags') ? 'active' : '' }}">
+                    <i class="menu__icon tags"></i>
+                    <span class="menu__text">{{ trans('Tags') }}</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.table.posts') }}"
+                    class="{{ Route::is('admin.table.posts') ? 'active' : '' }}">
                     <i class="menu__icon posts"></i>
                     <span class="menu__text">{{ trans('Posts') }}</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('dashboard.post.create') }}"
-                    class="{{ Route::is('dashboard.post.create') ? 'active' : '' }}">
-                    <i class="menu__icon create"></i>
-                    <span class="menu__text">{{ trans('Create') }}</span>
                 </a>
             </li>
             <li>

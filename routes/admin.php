@@ -1,6 +1,6 @@
 <?php
 
-use App\Livewire\Admin\{Dashboard, Profile};
+use App\Livewire\Admin\{CategoryTable, Dashboard, PostTable, Profile, TagTable, UserTable};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,12 +18,14 @@ Route::prefix('admin')
         Route::get('/dashboard', Dashboard::class)->name('dashboard');
         Route::get('profile', Profile::class)->name('profile');
 
-        // Route::prefix('post')
-        //     ->as('post.')
-        //     ->group(function () {
-        //         Route::get('index', AllPost::class)->name('index');
-        //         Route::get('create', CreatePost::class)->name('create');
-        //     });
+        Route::prefix('table')
+            ->as('table.')
+            ->group(function () {
+                Route::get('users', UserTable::class)->name('users');
+                Route::get('categories', CategoryTable::class)->name('categories');
+                Route::get('tags', TagTable::class)->name('tags');
+                Route::get('posts', PostTable::class)->name('posts');
+            });
     });
 
 require __DIR__ . '/admin_auth.php';

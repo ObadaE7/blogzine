@@ -28,7 +28,7 @@ class Profile extends Component
     public function render()
     {
         return view('admin.livewire.pages.profile')
-            ->extends('livewire.layouts.dashboard')
+            ->extends('admin.livewire.dashboard')
             ->section('content');
     }
 
