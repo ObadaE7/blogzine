@@ -1,6 +1,6 @@
 <x-modal>
-    <x-slot:id>editModal</x-slot:id>
-    <x-slot:title>{{ trans('Edit category') }}</x-slot:title>
+    <x-slot:id>createModal</x-slot:id>
+    <x-slot:title>{{ trans('Create a new category') }}</x-slot:title>
     <x-slot:options>modal-lg</x-slot:options>
     <x-slot:body>
         <form>
@@ -16,9 +16,6 @@
                         </div>
                         @if ($this->image && !$errors->has('image'))
                             <img src="{{ $this->image->temporaryURL() }}" alt="{{ trans('Temp image') }}">
-                        @else
-                            <img src="{{ asset('storage/' . $this->existingImage) }}"
-                                alt="{{ trans('Category image') }}">
                         @endif
                     </label>
                     <input wire:model='image' type="file" id="image" class="form-control"
@@ -56,8 +53,8 @@
                 <button wire:click="resetField" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                     {{ trans('Close') }}
                 </button>
-                <button wire:click.prevent='update({{ $categoryId }})' type="button" class="btn btn-primary">
-                    <i class="bi bi-pencil-square me-2"></i>{{ trans('Update') }}
+                <button wire:click.prevent='create' type="button" class="btn btn-primary">
+                    <i class="bi bi-plus me-2"></i>{{ trans('Create') }}
                 </button>
             </x-slot:button>
         </form>

@@ -31,6 +31,27 @@ class CategoryTable extends Component
             ->section('content');
     }
 
+    public function create()
+    {
+        $validated =   $this->validate([
+            'image' => 'required|file|image|mimes:jpg,jpeg,png|max:1024',
+            'name' => 'required|string|unique:categories,name',
+            'slug' => 'required|string|unique:categories,slug',
+            'description' => 'required|string|max:1000',
+        ]);
+
+        try {
+            $validated['image'] = $validated['image']->store('categories', 'public');
+            Category::create($validated);
+            session()->flash('success', trans('The category has been created successfully'));
+            $this->resetField();
+            $this->closeModal('createModal');
+        } catch (Exception $e) {
+            Log::error('[createCategory]: ' . $e->getMessage());
+            session()->flash('error', trans('Failed to create category'));
+        }
+    }
+
     public function edit($id)
     {
         $category = Category::findOrFail($id);
@@ -51,8 +72,8 @@ class CategoryTable extends Component
         $category = Category::findOrFail($id);
         $validated =   $this->validate([
             'image' => 'nullable|sometimes|file|image|mimes:jpg,jpeg,png|max:1024',
-            'name' => 'required|string',
-            'slug' => 'required|string',
+            'name' => 'required|string|unique:categories,name,' . $category->id,
+            'slug' => 'required|string|unique:categories,name,' . $category->id,
             'description' => 'required|string|max:1000',
         ]);
 
