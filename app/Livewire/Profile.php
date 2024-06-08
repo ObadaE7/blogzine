@@ -128,7 +128,7 @@ class Profile extends Component
     public function updatedPhone()
     {
         $id = auth()->user()->id;
-        $this->validateOnly('phone', ['phone' => 'nullable|numeric|digits:10']);
+        $this->validateOnly('phone', ['phone' => 'nullable|numeric|digits:10|unique:users,phone,' . $id]);
         try {
             User::findOrFail($id)->update(['phone' => $this->phone]);
             session()->flash('phone', trans('updated!'));
