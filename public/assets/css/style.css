@@ -2563,7 +2563,7 @@ swiper-slide {
 
 .table__wrapper {
     display: grid;
-    grid-template-rows: 100px 1fr;
+    grid-template-rows: 120px 1fr;
     grid-template-columns: 1fr;
     grid-template-areas: 'header''content';
     gap: var(--gap-sm);
@@ -2573,11 +2573,23 @@ swiper-slide {
     grid-area: header;
 }
 
+.table__wrapper-header.tags__table {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.tags__table-card{
+    display: flex;
+    gap: .5rem;
+}
+
 .table__wrapper-content {
     grid-area: content;
 }
 
-.table__wrapper-header,
+.tags__table-card,
 .table__wrapper-content {
     padding: var(--p-sm);
     background: var(--bs-white);

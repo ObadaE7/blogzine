@@ -65,9 +65,8 @@
                             <td>
                                 <div class="d-flex gap-1">
                                     <button class="btn btn-sm btn__show btn-success" data-bs-toggle="modal"
-                                        data-bs-target="#showModal"></button>
-                                    <button class="btn btn-sm btn__edit btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#editModal"></button>
+                                        data-bs-target="#showModal">
+                                    </button>
                                     <button wire:click="$set('postId', {{ $row->id }})"
                                         class="btn btn-sm btn__delete btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#deleteModal">
@@ -86,7 +85,6 @@
 
         <div class="modals">
             @include('admin.livewire.pages.modals.posts.modal-show')
-            @include('admin.livewire.pages.modals.posts.modal-edit')
             @include('admin.livewire.pages.modals.posts.modal-delete')
         </div>
     </div>

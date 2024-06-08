@@ -21,7 +21,11 @@ class TagTable extends Component
         $headers = ['Id', 'Name', 'Slug', 'Actions'];
         $rows = Tag::paginate(5);
 
-        return view('admin.livewire.pages.tag-table', compact('headers', 'rows'))
+        $topTagUsed = Tag::withCount('posts')
+            ->orderBy('posts_count', 'desc')
+            ->first();
+        $inTrashed = Tag::onlyTrashed()->count();
+        return view('admin.livewire.pages.tag-table', compact('headers', 'rows', 'topTagUsed', 'inTrashed'))
             ->extends('admin.livewire.dashboard')
             ->section('content');
     }

@@ -6,14 +6,55 @@
 @endsection
 
 <div class="table__wrapper">
-    <div class="table__wrapper-header"></div>
+    <div class="table__wrapper-header tags__table">
+        <div class="tags__table-card">
+            <div class="d-flex align-items-center justify-content-center w-25 h-100 text-bg-primary rounded-1">
+                <i class="bi bi-tags-fill fs-3"></i>
+            </div>
+            <div class="d-flex flex-column justify-content-center">
+                <span class="fw-medium">{{ trans('Total Tag') }}</span>
+                <span>{{ $rows->total() }} <small class="text-muted">({{ trans('active') }})</small></span>
+            </div>
+        </div>
+
+        <div class="tags__table-card">
+            <div class="d-flex align-items-center justify-content-center w-25 h-100 text-bg-success rounded-1">
+                <i class="bi bi-award-fill fs-3"></i>
+            </div>
+            <div class="d-flex flex-column justify-content-center">
+                <span class="fw-medium">{{ trans('Top Tag') }}</span>
+                @if ($topTagUsed)
+                    <span>
+                        <a href="{{ route('tags', $topTagUsed->slug) }}"
+                            class="text-dark text-decoration-none underline__link-hover">
+                            {{ $topTagUsed->name }}
+                        </a>
+                        <small class="text-muted">({{ $topTagUsed->posts_count }} {{ trans('posts used') }})</small>
+                    </span>
+                @else
+                    <span>{{ trans('No tag was used') }}</span>
+                @endif
+            </div>
+        </div>
+
+        <div class="tags__table-card">
+            <div class="d-flex align-items-center justify-content-center w-25 h-100 text-bg-danger rounded-1">
+                <i class="bi bi-trash3-fill fs-3"></i>
+            </div>
+            <div class="d-flex flex-column justify-content-center">
+                <span class="fw-medium">{{ trans('Deleted Tag') }}</span>
+                <span>{{ $inTrashed }} <small class="text-muted">({{ trans('tags in the trash') }})</small></span>
+            </div>
+        </div>
+    </div>
     <div class="table__wrapper-content">
         <x-alert status="success" color="success" />
         <x-alert status="error" color="danger" />
 
         <div class="table__content-filters">
-            <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-            data-bs-target="#createModal">+ Create</button>
+            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
+                + {{ trans('Create') }}
+            </button>
         </div>
 
         <div class="table-responsive">
@@ -29,7 +70,12 @@
                     @foreach ($rows as $row)
                         <tr>
                             <td>{{ $row->id }}</td>
-                            <td>{{ $row->name }}</td>
+                            <td>
+                                <a href="{{ route('tags', $row->slug) }}"
+                                    class="text-dark text-decoration-none underline__link-hover">
+                                    {{ $row->name }}
+                                </a>
+                            </td>
                             <td>{{ $row->slug }}</td>
                             <td>
                                 <div class="d-flex gap-1">
