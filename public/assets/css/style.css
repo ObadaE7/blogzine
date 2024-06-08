@@ -2621,6 +2621,30 @@ swiper-slide {
     vertical-align: middle;
 }
 
+.modal__edit-category label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: 1px dashed var(--bs-border-color);
+    border-radius: .25rem;
+}
+
+.modal__edit-category img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: .25rem;
+}
+
+.modal__edit-category i {
+    font-size: 25px
+}
+
 .pagination {
     display: flex;
     justify-content: space-between;
