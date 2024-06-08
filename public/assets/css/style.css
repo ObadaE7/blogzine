@@ -1828,15 +1828,15 @@ swiper-slide {
     margin-top: auto;
 }
 
-.aside__menu-ul li:last-child a {
+.aside__menu-ul li:last-child button {
     background: var(--bs-danger);
     color: var(--bs-white);
     transition: all .3s ease;
 }
 
-.aside__menu-ul li:last-child a:hover,
-.aside__menu-ul li:last-child a:focus,
-.aside__menu-ul li:last-child a:active {
+.aside__menu-ul li:last-child button:hover,
+.aside__menu-ul li:last-child button:focus,
+.aside__menu-ul li:last-child button:active {
     background: #c82333;
     outline: none;
     box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);

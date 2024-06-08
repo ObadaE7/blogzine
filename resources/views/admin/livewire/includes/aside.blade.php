@@ -44,7 +44,7 @@
             <li>
                 <form method="POST" action="{{ route('admin.logout') }}">
                     @csrf
-                    <button>
+                    <button class="btn w-100 text-start">
                         <i class="menu__icon log-out"></i>
                         <span class="menu__text">{{ trans('Log out') }}</span>
                     </button>

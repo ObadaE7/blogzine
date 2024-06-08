@@ -30,10 +30,10 @@
                             <td>{{ $row->slug }}</td>
                             <td>
                                 <div class="d-flex gap-1">
-                                    <button class="btn btn-sm btn__show btn-success" data-bs-toggle="modal"
-                                        data-bs-target="#showModal"></button>
-                                    <button class="btn btn-sm btn__edit btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#editModal"></button>
+                                    <button wire:click="edit({{ $row->id }})"
+                                        class="btn btn-sm btn__edit btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#editModal">
+                                    </button>
                                     <button wire:click="$set('tagId', {{ $row->id }})"
                                         class="btn btn-sm btn__delete btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#deleteModal">
@@ -51,7 +51,7 @@
         </div>
 
         <div class="modals">
-            @include('admin.livewire.pages.modals.tags.modal-show')
+            @include('admin.livewire.pages.modals.tags.modal-create')
             @include('admin.livewire.pages.modals.tags.modal-edit')
             @include('admin.livewire.pages.modals.tags.modal-delete')
         </div>

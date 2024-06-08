@@ -13,6 +13,8 @@ class TagTable extends Component
     use WithPagination, ModalTrait;
 
     public $tagId;
+    public $name;
+    public $slug;
 
     public function render()
     {
@@ -22,6 +24,37 @@ class TagTable extends Component
         return view('admin.livewire.pages.tag-table', compact('headers', 'rows'))
             ->extends('admin.livewire.dashboard')
             ->section('content');
+    }
+
+    public function edit($id)
+    {
+        $tag = Tag::findOrFail($id);
+        $this->tagId = $tag->id;
+        $this->name = $tag->name;
+        $this->slug = $tag->slug;
+    }
+
+    public function updatedName()
+    {
+        $this->slug = str()->slug($this->name);
+    }
+
+    public function update($id)
+    {
+        $tag = Tag::findOrFail($id);
+        $validated =   $this->validate([
+            'name' => 'required|string|min:3|max:25|unique:tags,name,' . $tag->id,
+            'slug' => 'required|string|unique:tags,slug,' . $tag->id,
+        ]);
+
+        try {
+            $tag->update($validated);
+            session()->flash('success', trans('The tag has been updated successfully'));
+            $this->closeModal('editModal');
+        } catch (Exception $e) {
+            Log::error('[updateTag]: ' . $e->getMessage());
+            session()->flash('error', trans('Failed to update tag'));
+        }
     }
 
     public function delete($id)
