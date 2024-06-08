@@ -8,6 +8,9 @@
 <div class="table__wrapper">
     <div class="table__wrapper-header"></div>
     <div class="table__wrapper-content">
+        <x-alert status="success" color="success" />
+        <x-alert status="error" color="danger" />
+
         <div class="table__content-filters"></div>
 
         <div class="table-responsive">
@@ -31,8 +34,10 @@
                                         data-bs-target="#showModal"></button>
                                     <button class="btn btn-sm btn__edit btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#editModal"></button>
-                                    <button class="btn btn-sm btn__delete btn-danger" data-bs-toggle="modal"
-                                        data-bs-target="#deleteModal"></button>
+                                    <button wire:click="$set('tagId', {{ $row->id }})"
+                                        class="btn btn-sm btn__delete btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal">
+                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -52,3 +57,11 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        document.addEventListener('closeModal', event => {
+            $('#' + event.detail.modalId).modal('hide');
+        });
+    </script>
+@endpush

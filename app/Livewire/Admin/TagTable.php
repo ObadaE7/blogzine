@@ -3,11 +3,16 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Tag;
-use Livewire\{Component,WithPagination};
+use App\Traits\ModalTrait;
+use Exception;
+use Illuminate\Support\Facades\Log;
+use Livewire\{Component, WithPagination};
 
 class TagTable extends Component
 {
-    use WithPagination;
+    use WithPagination, ModalTrait;
+
+    public $tagId;
 
     public function render()
     {
@@ -17,5 +22,22 @@ class TagTable extends Component
         return view('admin.livewire.pages.tag-table', compact('headers', 'rows'))
             ->extends('admin.livewire.dashboard')
             ->section('content');
+    }
+
+    public function delete($id)
+    {
+        $tag = Tag::findOrFail($id);
+        try {
+            if ($tag) {
+                $tag->delete();
+                session()->flash('success', trans('The tag has been deleted successfully'));
+                $this->closeModal('deleteModal');
+            } else {
+                session()->flash('error', trans('Tag not found'));
+            }
+        } catch (Exception $e) {
+            Log::error('[deleteTag]: ' . $e->getMessage());
+            session()->flash('error', trans('Failed to delete tag'));
+        }
     }
 }
