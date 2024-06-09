@@ -26,14 +26,26 @@ class CategoryTable extends Component
 
     public function render()
     {
-        $headers = ['Image', 'Id', 'Name', 'Slug', 'Actions'];
-        $rows = Category::where($this->searchBy, 'like', "%{$this->search}%")
+        $headers = ['Image', 'Id', 'Name', 'Slug', 'Posts', 'Actions'];
+        $rows = Category::withCount('posts')
+            ->when($this->searchBy === 'posts_count', function ($query) {
+                $query->having('posts_count', 'like', "%{$this->search}%");
+            }, function ($query) {
+                $query->where($this->searchBy, 'like', "%{$this->search}%");
+            })
             ->orderBy($this->orderBy, $this->orderDir)
             ->paginate($this->perPage);
-        $this->columns = ['id', 'name', 'slug'];
+
+        $this->columns = ['id', 'name', 'slug', 'posts_count'];
+
         $this->perPages = [5, 10, 20, 50];
 
-        return view('admin.livewire.pages.category-table', compact('headers', 'rows'))
+        $topCategoryUsed = Category::withCount('posts')
+            ->orderBy('posts_count', 'desc')
+            ->first();
+        $inTrashed = Category::onlyTrashed()->count();
+
+        return view('admin.livewire.pages.category-table', compact('headers', 'rows', 'topCategoryUsed', 'inTrashed'))
             ->extends('admin.livewire.dashboard')
             ->section('content');
     }

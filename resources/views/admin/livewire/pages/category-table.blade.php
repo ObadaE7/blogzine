@@ -6,7 +6,59 @@
 @endsection
 
 <div class="table__wrapper">
-    <div class="table__wrapper-header"></div>
+    <div class="table__wrapper-header tags__table">
+        <div class="tags__table-card">
+            <div class="d-flex align-items-center justify-content-center w-25 h-100 text-bg-primary rounded-1">
+                <i class="bi bi-folder-fill fs-3 me-2"></i>
+            </div>
+
+            <div class="d-flex flex-column justify-content-center">
+                <span class="fw-medium">{{ trans('Total Category') }}</span>
+                <span>
+                    {{ $rows->total() }}
+                    <small class="text-muted">({{ trans('categories are active') }})</small>
+                </span>
+            </div>
+        </div>
+
+        <div class="tags__table-card">
+            <div class="d-flex align-items-center justify-content-center w-25 h-100 text-bg-success rounded-1">
+                <i class="bi bi-award-fill fs-3 me-2"></i>
+            </div>
+
+            <div class="d-flex flex-column justify-content-center">
+                <span class="fw-medium">{{ trans('Top Category') }}</span>
+                @if ($topCategoryUsed)
+                    <span>
+                        <a href="{{ route('category', $topCategoryUsed->slug) }}"
+                            class="text-dark text-decoration-none underline__link-hover">
+                            {{ $topCategoryUsed->name }}
+                        </a>
+                        <small class="text-muted">
+                            ({{ $topCategoryUsed->posts_count }} {{ trans('posts used') }})
+                        </small>
+                    </span>
+                @else
+                    <span>{{ trans('No category was used') }}</span>
+                @endif
+            </div>
+        </div>
+
+        <div class="tags__table-card">
+            <div class="d-flex align-items-center justify-content-center w-25 h-100 text-bg-danger rounded-1">
+                <i class="bi bi-trash3-fill fs-3 me-2"></i>
+            </div>
+
+            <div class="d-flex flex-column justify-content-center">
+                <span class="fw-medium">{{ trans('Deleted Category') }}</span>
+                <span>
+                    {{ $inTrashed }}
+                    <small class="text-muted">({{ trans('categories in the trash') }})</small>
+                </span>
+            </div>
+        </div>
+    </div>
+
     <div class="table__wrapper-content">
         <x-alert status="success" color="success" />
         <x-alert status="error" color="danger" />
@@ -132,8 +184,14 @@
                             @endif
 
                             <td>{{ $row->id }}</td>
-                            <td>{{ $row->name }}</td>
+                            <td>
+                                <a href="{{ route('category', $row->slug) }}"
+                                    class="text-dark text-decoration-none underline__link-hover">
+                                    {{ $row->name }}
+                                </a>
+                            </td>
                             <td>{{ $row->slug }}</td>
+                            <td>{{ $row->posts_count }}</td>
 
                             <td>
                                 <div class="d-flex gap-1">
