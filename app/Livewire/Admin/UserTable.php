@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Models\User;
+use App\Traits\FilterTrait;
 use App\Traits\ModalTrait;
 use Exception;
 use Illuminate\Support\Facades\Log;
@@ -10,7 +11,7 @@ use Livewire\{Component, WithPagination};
 
 class UserTable extends Component
 {
-    use WithPagination, ModalTrait;
+    use WithPagination, ModalTrait, FilterTrait;
 
     public $userId;
     public $fname;
@@ -19,11 +20,18 @@ class UserTable extends Component
     public $email;
     public $phone;
     public $birthday;
+    public $columns;
+    public $perPages;
 
     public function render()
     {
         $headers = ['Avatar', 'Name', 'Email', 'Actions'];
-        $rows = User::paginate(5);
+        $rows = User::where($this->searchBy, 'like', "%{$this->search}%")
+            ->orderBy($this->orderBy, $this->orderDir)
+            ->paginate($this->perPage);
+        $this->columns = ['fname', 'lname', 'uname', 'email'];
+        $this->perPages = [5, 10, 20, 50];
+
         return view('admin.livewire.pages.user-table', compact('headers', 'rows'))
             ->extends('admin.livewire.dashboard')
             ->section('content');
@@ -83,5 +91,11 @@ class UserTable extends Component
     public function resetField()
     {
         $this->reset();
+    }
+
+    public function resetFilters()
+    {
+        $this->reset(['search', 'searchBy', 'perPage', 'orderBy', 'orderDir']);
+        $this->dispatch('urlReset', route('admin.table.users'));
     }
 }
