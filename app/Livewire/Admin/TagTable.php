@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Tag;
+use App\Traits\FilterTrait;
 use App\Traits\ModalTrait;
 use Exception;
 use Illuminate\Support\Facades\Log;
@@ -10,21 +11,28 @@ use Livewire\{Component, WithPagination};
 
 class TagTable extends Component
 {
-    use WithPagination, ModalTrait;
+    use WithPagination, ModalTrait, FilterTrait;
 
     public $tagId;
     public $name;
     public $slug;
+    public $columns;
+    public $perPages;
 
     public function render()
     {
         $headers = ['Id', 'Name', 'Slug', 'Actions'];
-        $rows = Tag::paginate(5);
+        $rows = Tag::where($this->searchBy, 'like', "%{$this->search}%")
+            ->orderBy($this->orderBy, $this->orderDir)
+            ->paginate($this->perPage);
+        $this->columns = ['id', 'name', 'slug'];
+        $this->perPages = [5, 10, 20, 50];
 
         $topTagUsed = Tag::withCount('posts')
             ->orderBy('posts_count', 'desc')
             ->first();
         $inTrashed = Tag::onlyTrashed()->count();
+
         return view('admin.livewire.pages.tag-table', compact('headers', 'rows', 'topTagUsed', 'inTrashed'))
             ->extends('admin.livewire.dashboard')
             ->section('content');
@@ -99,5 +107,11 @@ class TagTable extends Component
     public function resetField()
     {
         $this->reset();
+    }
+
+    public function resetFilters()
+    {
+        $this->reset(['search', 'searchBy', 'perPage', 'orderBy', 'orderDir']);
+        $this->dispatch('urlReset', route('admin.table.tags'));
     }
 }

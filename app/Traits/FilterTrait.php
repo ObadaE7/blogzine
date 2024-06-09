@@ -13,7 +13,7 @@ trait FilterTrait
     public $searchBy = 'id';
 
     #[Url(as: 'per-page', history: true)]
-    public $perPage = 3;
+    public $perPage = 5;
 
     #[Url(as: 'order-by', history: true)]
     public $orderBy = 'id';
