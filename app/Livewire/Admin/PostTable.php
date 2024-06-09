@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Post;
+use App\Traits\FilterTrait;
 use App\Traits\ModalTrait;
 use Exception;
 use Illuminate\Support\Facades\Log;
@@ -10,14 +11,20 @@ use Livewire\{Component, WithPagination};
 
 class PostTable extends Component
 {
-    use WithPagination, ModalTrait;
+    use WithPagination, ModalTrait, FilterTrait;
 
     public $postId;
+    public $columns;
+    public $perPages;
 
     public function render()
     {
         $headers = ['Image', 'Titles', 'Status', 'Actions'];
-        $rows = Post::paginate(5);
+        $rows = Post::where($this->searchBy, 'like', "%{$this->search}%")
+            ->orderBy($this->orderBy, $this->orderDir)
+            ->paginate($this->perPage);
+        $this->columns = ['title', 'subtitle', 'status'];
+        $this->perPages = [5, 10, 20, 50];
 
         return view('admin.livewire.pages.post-table', compact('headers', 'rows'))
             ->extends('admin.livewire.dashboard')
@@ -39,5 +46,11 @@ class PostTable extends Component
             Log::error('[deletePost]: ' . $e->getMessage());
             session()->flash('error', trans('Failed to delete post'));
         }
+    }
+
+    public function resetFilters()
+    {
+        $this->reset(['search', 'searchBy', 'perPage', 'orderBy', 'orderDir']);
+        $this->dispatch('urlReset', route('admin.table.tags'));
     }
 }
