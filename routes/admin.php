@@ -1,6 +1,6 @@
 <?php
 
-use App\Livewire\Admin\{CategoryTable, Dashboard, PostTable, Profile, TagTable, UserTable};
+use App\Livewire\Admin\{CategoryTable, Dashboard, PostTable, Profile, Settings, TagTable, UserTable};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +17,7 @@ Route::prefix('admin')
     ->group(function () {
         Route::get('/dashboard', Dashboard::class)->name('dashboard');
         Route::get('profile', Profile::class)->name('profile');
-        Route::get('settings', Profile::class)->name('settings');
+        Route::get('settings', Settings::class)->name('settings');
 
         Route::prefix('table')
             ->as('table.')
