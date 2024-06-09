@@ -168,7 +168,7 @@
                             $colorIndex = array_rand($colorNames);
                             $color = $colorNames[$colorIndex];
                         @endphp
-                        <tr>
+                        <tr wire:key="{{ $row->id }}">
                             @if (empty($row->image))
                                 <td>
                                     <div
@@ -186,8 +186,9 @@
                             <td>{{ $row->id }}</td>
                             <td>
                                 <a href="{{ route('category', $row->slug) }}"
-                                    class="text-dark text-decoration-none underline__link-hover">
-                                    {{ $row->name }}
+                                    class="badge bg-{{ $color }}-subtle text-{{ $color }} text-decoration-none p-2">
+                                    <i class="bi bi-circle-fill me-2"></i>
+                                    <span class="underline__link-hover">{{ $row->name }}</span>
                                 </a>
                             </td>
                             <td>{{ $row->slug }}</td>

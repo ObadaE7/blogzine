@@ -155,15 +155,22 @@
                 </thead>
                 <tbody>
                     @forelse ($rows as $row)
+                        @php
+                            $colorNames = ['warning', 'info', 'danger', 'primary', 'success', 'dark', 'secondary'];
+                            $colorIndex = array_rand($colorNames);
+                            $color = $colorNames[$colorIndex];
+                        @endphp
                         <tr wire:key="{{ $row->id }}">
                             <td>{{ $row->id }}</td>
                             <td>
                                 <a href="{{ route('tags', $row->slug) }}"
-                                    class="text-dark text-decoration-none underline__link-hover">
-                                    {{ $row->name }}
+                                    class="badge bg-{{ $color }}-subtle text-{{ $color }} text-decoration-none p-2">
+                                    <i class="bi bi-circle-fill me-2"></i>
+                                    <span class="underline__link-hover">{{ $row->name }}</span>
                                 </a>
                             </td>
                             <td>{{ $row->slug }}</td>
+                            <td>{{ $row->posts_count }}</td>
                             <td>
                                 <div class="d-flex gap-1">
                                     <button wire:click="edit({{ $row->id }})"

@@ -116,7 +116,7 @@
                             $colorIndex = array_rand($colorNames);
                             $color = $colorNames[$colorIndex];
                         @endphp
-                        <tr>
+                        <tr wire:key="{{ $row->id }}">
                             @if (empty($row->image))
                                 <td>
                                     <div

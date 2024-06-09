@@ -21,11 +21,18 @@ class TagTable extends Component
 
     public function render()
     {
-        $headers = ['Id', 'Name', 'Slug', 'Actions'];
-        $rows = Tag::where($this->searchBy, 'like', "%{$this->search}%")
+        $headers = ['Id', 'Name', 'Slug', 'Posts', 'Actions'];
+        $rows = Tag::withCount('posts')
+            ->when($this->searchBy === 'posts_count', function ($query) {
+                $query->having('posts_count', 'like', "%{$this->search}%");
+            }, function ($query) {
+                $query->where($this->searchBy, 'like', "%{$this->search}%");
+            })
             ->orderBy($this->orderBy, $this->orderDir)
             ->paginate($this->perPage);
-        $this->columns = ['id', 'name', 'slug'];
+
+        $this->columns = ['id', 'name', 'slug', 'posts_count'];
+
         $this->perPages = [5, 10, 20, 50];
 
         $topTagUsed = Tag::withCount('posts')

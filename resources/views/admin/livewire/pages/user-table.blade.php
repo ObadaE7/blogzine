@@ -101,7 +101,8 @@
                                 <div class="d-flex align-items-center justify-content-between">
                                     <span>{{ ucfirst($header) }}</span>
                                     @unless ($header === 'Actions' || $header === 'Avatar')
-                                        <i class="bi bi-chevron-{{ $orderBy === $header ? ($orderDir === 'asc' ? 'up' : 'down') : 'expand' }}"></i>
+                                        <i
+                                            class="bi bi-chevron-{{ $orderBy === $header ? ($orderDir === 'asc' ? 'up' : 'down') : 'expand' }}"></i>
                                     @endunless
                                 </div>
                             </th>
@@ -115,7 +116,7 @@
                             $colorIndex = array_rand($colorNames);
                             $color = $colorNames[$colorIndex];
                         @endphp
-                        <tr>
+                        <tr wire:key="{{ $row->id }}">
                             @if (empty($row->avatar))
                                 <td>
                                     <div
