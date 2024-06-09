@@ -6,7 +6,43 @@
 @endsection
 
 <div class="table__wrapper">
-    <div class="table__wrapper-header"></div>
+    <div class="table__wrapper-header tags__table">
+        <div class="tags__table-card">
+            <div class="d-flex align-items-center justify-content-center w-25 h-100 text-bg-primary rounded-1">
+                <i class="bi bi-stickies-fill fs-3"></i>
+            </div>
+
+            <div class="d-flex flex-column justify-content-center">
+                <span class="fw-medium">{{ trans('Total Post') }}</span>
+                <span>{{ $rows->total() }} <small class="text-muted">({{ trans('posts are active') }})</small></span>
+            </div>
+        </div>
+
+        <div class="tags__table-card">
+            <div class="d-flex align-items-center justify-content-center w-25 h-100 text-bg-danger rounded-1">
+                <i class="bi bi-trash3-fill fs-3"></i>
+            </div>
+
+            <div class="d-flex flex-column justify-content-center">
+                <span class="fw-medium">{{ trans('Deleted Post') }}</span>
+                <span>{{ $inTrashed }} <small class="text-muted">({{ trans('posts in the trash') }})</small></span>
+            </div>
+        </div>
+
+        <div class="tags__table-card">
+            <div class="d-flex align-items-center justify-content-center w-25 h-100 text-bg-secondary rounded-1">
+                <i class="bi bi-info-circle-fill fs-3"></i>
+            </div>
+
+            <div class="d-flex flex-column justify-content-center">
+                <span class="fw-medium">{{ trans('Status Post') }}</span>
+                <span>{{ $published }} <small
+                        class="text-muted">({{ trans('posts are published') }})</small></span>
+                <span>{{ $draft }} <small class="text-muted">({{ trans('posts are draft') }})</small></span>
+            </div>
+        </div>
+    </div>
+
     <div class="table__wrapper-content">
         <x-alert status="success" color="success" />
         <x-alert status="error" color="danger" />

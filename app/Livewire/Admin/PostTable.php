@@ -26,7 +26,11 @@ class PostTable extends Component
         $this->columns = ['title', 'subtitle', 'status'];
         $this->perPages = [5, 10, 20, 50];
 
-        return view('admin.livewire.pages.post-table', compact('headers', 'rows'))
+        $inTrashed = Post::onlyTrashed()->count();
+        $published = Post::where('status','published')->count();
+        $draft = Post::where('status','draft')->count();
+
+        return view('admin.livewire.pages.post-table', compact('headers', 'rows', 'inTrashed', 'published', 'draft'))
             ->extends('admin.livewire.dashboard')
             ->section('content');
     }
