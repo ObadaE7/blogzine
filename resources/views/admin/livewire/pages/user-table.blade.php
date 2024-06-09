@@ -6,37 +6,37 @@
 @endsection
 
 <div class="table__wrapper">
-    <div class="table__wrapper-header tags__table">
-        <div class="tags__table-card">
-            <div class="d-flex align-items-center justify-content-center w-25 h-100 text-bg-primary rounded-1">
-                <i class="bi bi-people-fill fs-3"></i>
-            </div>
-
-            <div class="d-flex flex-column justify-content-center">
+    <div class="table__wrapper-header table__users">
+        <div class="table__header-card">
+            <div class="header__card-icon icon__one"></div>
+            <div class="header__card-text">
                 <span class="fw-medium">{{ trans('Total User') }}</span>
-                <span>{{ $rows->total() }} <small class="text-muted">({{ trans('users are active') }})</small></span>
+                <span>
+                    {{ $rows->total() }}
+                    <small class="text-muted">({{ trans('users are active') }})</small>
+                </span>
             </div>
         </div>
 
-        <div class="tags__table-card">
-            <div class="d-flex align-items-center justify-content-center w-25 h-100 text-bg-danger rounded-1">
-                <i class="bi bi-person-fill-slash fs-3"></i>
-            </div>
-
-            <div class="d-flex flex-column justify-content-center">
+        <div class="table__header-card">
+            <div class="header__card-icon icon__two"></div>
+            <div class="header__card-text">
                 <span class="fw-medium">{{ trans('Deleted User') }}</span>
-                <span>{{ $inTrashed }} <small class="text-muted">({{ trans('users in the trash') }})</small></span>
+                <span>
+                    {{ $inTrashed }}
+                    <small class="text-muted">({{ trans('users in the trash') }})</small>
+                </span>
             </div>
         </div>
 
-        <div class="tags__table-card">
-            <div class="d-flex align-items-center justify-content-center w-25 h-100 text-bg-secondary rounded-1">
-                <i class="bi bi-person-fill-exclamation fs-3"></i>
-            </div>
-
-            <div class="d-flex flex-column justify-content-center">
+        <div class="table__header-card">
+            <div class="header__card-icon icon__three"></div>
+            <div class="header__card-text">
                 <span class="fw-medium">{{ trans('Inactive User') }}</span>
-                <span>{{ $Inactive }} <small class="text-muted">({{ trans('users are inactive') }})</small></span>
+                <span>
+                    {{ $Inactive }}
+                    <small class="text-muted">({{ trans('users are inactive') }})</small>
+                </span>
             </div>
         </div>
     </div>
@@ -45,82 +45,8 @@
         <x-alert status="success" color="success" />
         <x-alert status="error" color="danger" />
 
-        <div class="table__content-filters pb-4">
-            <div class="table__search input-group">
-                <input wire:model.live='search' type="search" class="form-control"
-                    placeholder="{{ trans('Search here ...') }}">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false"><i class="bi bi-search"></i>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    @foreach ($columns as $column)
-                        <li>
-                            <button wire:click.live="$set('searchBy', '{{ $column }}')"
-                                class="dropdown-item {{ $searchBy == $column ? 'active' : '' }}">
-                                {{ $column }}
-                            </button>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-
-            <div class="table__options">
-                <select wire:model.live='perPage' class="form-select w-25">
-                    <option disabled>{{ trans('Per page') }}</option>
-                    @foreach ($perPages as $item)
-                        <option value="{{ $item }}">{{ $item }}</option>
-                    @endforeach
-                </select>
-
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle rounded-1" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">{{ trans('Options') }}
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        {{-- <li>
-                            <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#createModal">
-                                <i class="bi bi-plus me-2"></i>{{ trans('Create') }}
-                            </button>
-                        </li> --}}
-                        <li>
-                            <button wire:click='$refresh' class="dropdown-item">
-                                <i class="bi bi-arrow-clockwise me-2"></i>{{ trans('Refresh') }}
-                            </button>
-                        </li>
-                        <li>
-                            <button wire:click='resetFilters' class="dropdown-item">
-                                <i class="bi bi-funnel me-2"></i>{{ trans('Reset') }}
-                            </button>
-                        </li>
-                        <li>
-                            <div class="dropdown-divider"></div>
-                            <div class="dropdown-item-text">
-                                <small class="text-muted">{{ trans('Export') }}</small>
-                            </div>
-                        </li>
-                        <li>
-                            <button class="dropdown-item">
-                                <i class="bi bi-filetype-pdf me-2"></i>{{ trans('Pdf') }}
-                            </button>
-                        </li>
-                        <li>
-                            <button class="dropdown-item">
-                                <i class="bi bi-filetype-xlsx me-2"></i>{{ trans('Excel') }}
-                            </button>
-                        </li>
-                        <li>
-                            <button class="dropdown-item">
-                                <i class="bi bi-filetype-csv me-2"></i>{{ trans('Csv') }}
-                            </button>
-                        </li>
-                        <li>
-                            <button class="dropdown-item">
-                                <i class="bi bi-printer me-2"></i>{{ trans('Print') }}
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+        <div class="table__content-filters">
+            <x-table-filter :columns="$this->columns" :searchBy="$this->searchBy" :perPages="$this->perPages" />
         </div>
 
         <div class="table-responsive">
@@ -135,8 +61,7 @@
                                 <div class="d-flex align-items-center justify-content-between">
                                     <span>{{ ucfirst($header) }}</span>
                                     @unless ($header === 'Actions' || $header === 'Avatar')
-                                        <i
-                                            class="bi bi-chevron-{{ $orderBy === $header ? ($orderDir === 'asc' ? 'up' : 'down') : 'expand' }}"></i>
+                                        <i class="bi bi-chevron-{{ $orderBy === $header ? ($orderDir === 'asc' ? 'up' : 'down') : 'expand' }}"></i>
                                     @endunless
                                 </div>
                             </th>
@@ -163,20 +88,19 @@
                                     <img src="{{ asset('storage/' . $row->avatar) }}" class="avatar" alt="Avatar">
                                 </td>
                             @endif
-
                             <td>
                                 <div class="d-flex flex-column">
                                     <span> {{ $row->fname . ' ' . $row->lname }}</span>
                                     <span class="text-muted">{{ $row->uname }}</span>
                                 </div>
                             </td>
-
                             <td>{{ $row->email }}</td>
-
                             <td>
                                 <div class="d-flex gap-1">
-                                    <button class="btn btn-sm btn__show btn-success" data-bs-toggle="modal"
-                                        data-bs-target="#showModal"></button>
+                                    <button wire:click="show({{ $row->id }})"
+                                        class="btn btn-sm btn__show btn-success" data-bs-toggle="modal"
+                                        data-bs-target="#showModal">
+                                    </button>
                                     <button wire:click="edit({{ $row->id }})"
                                         class="btn btn-sm btn__edit btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#editModal">
