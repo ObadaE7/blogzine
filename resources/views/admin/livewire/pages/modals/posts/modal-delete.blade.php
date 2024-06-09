@@ -3,6 +3,9 @@
     <x-slot:title>{{ trans('Delete post') }}</x-slot:title>
     <x-slot:body>{{ trans('Are you sure you want to delete this post?') }}</x-slot:body>
     <x-slot:button>
+        <button wire:click="resetField" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            {{ trans('Close') }}
+        </button>
         <button wire:click='delete({{ $postId }})' type="button" class="btn btn-danger">
             <i class="bi bi-trash3-fill me-2"></i>{{ trans('Delete') }}
         </button>

@@ -140,7 +140,7 @@
             {{ $rows->links('components.pagination-links') }}
         </div>
 
-        <div class="modals">
+        <div class="section__modals">
             @include('admin.livewire.pages.modals.categories.modal-create')
             @include('admin.livewire.pages.modals.categories.modal-show')
             @include('admin.livewire.pages.modals.categories.modal-edit')

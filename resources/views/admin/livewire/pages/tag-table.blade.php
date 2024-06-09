@@ -47,7 +47,7 @@
         <x-alert status="error" color="danger" />
 
         <div class="table__content-filters">
-            <x-table-filter :columns="$this->columns" :searchBy="$this->searchBy" :perPages="$this->perPages" />
+            <x-table-filter :columns="$this->columns" :searchBy="$this->searchBy" :perPages="$this->perPages" optCreate="true" />
         </div>
 
         <div class="table-responsive">
@@ -115,7 +115,7 @@
             {{ $rows->links('components.pagination-links') }}
         </div>
 
-        <div class="modals">
+        <div class="section__modals">
             @include('admin.livewire.pages.modals.tags.modal-create')
             @include('admin.livewire.pages.modals.tags.modal-edit')
             @include('admin.livewire.pages.modals.tags.modal-delete')

@@ -114,6 +114,7 @@ class TagTable extends Component
     public function resetField()
     {
         $this->reset();
+        $this->resetValidation();
     }
 
     public function resetFilters()

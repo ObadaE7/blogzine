@@ -27,8 +27,8 @@ class PostTable extends Component
         $this->perPages = [5, 10, 20, 50];
 
         $inTrashed = Post::onlyTrashed()->count();
-        $published = Post::where('status','published')->count();
-        $draft = Post::where('status','draft')->count();
+        $published = Post::where('status', 'published')->count();
+        $draft = Post::where('status', 'draft')->count();
 
         return view('admin.livewire.pages.post-table', compact('headers', 'rows', 'inTrashed', 'published', 'draft'))
             ->extends('admin.livewire.dashboard')
@@ -52,9 +52,15 @@ class PostTable extends Component
         }
     }
 
+    public function resetField()
+    {
+        $this->reset();
+        $this->resetValidation();
+    }
+
     public function resetFilters()
     {
         $this->reset(['search', 'searchBy', 'perPage', 'orderBy', 'orderDir']);
-        $this->dispatch('urlReset', route('admin.table.tags'));
+        $this->dispatch('urlReset', route('admin.table.posts'));
     }
 }
