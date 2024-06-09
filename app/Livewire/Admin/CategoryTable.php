@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Category;
+use App\Traits\FilterTrait;
 use App\Traits\ModalTrait;
 use Exception;
 use Illuminate\Support\Facades\Log;
@@ -12,7 +13,7 @@ use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 class CategoryTable extends Component
 {
-    use WithPagination, WithFileUploads, ModalTrait;
+    use WithPagination, WithFileUploads, ModalTrait, FilterTrait;
 
     public $categoryId;
     public $image;
@@ -20,11 +21,17 @@ class CategoryTable extends Component
     public $name;
     public $slug;
     public $description;
+    public $columns;
+    public $perPages;
 
     public function render()
     {
         $headers = ['Image', 'Id', 'Name', 'Slug', 'Actions'];
-        $rows = Category::paginate(5);
+        $rows = Category::where($this->searchBy, 'like', "%{$this->search}%")
+            ->orderBy($this->orderBy, $this->orderDir)
+            ->paginate($this->perPage);
+        $this->columns = ['id', 'name', 'slug'];
+        $this->perPages = [5, 10, 20, 50];
 
         return view('admin.livewire.pages.category-table', compact('headers', 'rows'))
             ->extends('admin.livewire.dashboard')
@@ -118,5 +125,11 @@ class CategoryTable extends Component
     {
         $this->reset();
         $this->resetValidation();
+    }
+
+    public function resetFilters()
+    {
+        $this->reset(['search', 'searchBy', 'perPage', 'orderBy', 'orderDir']);
+        $this->dispatch('urlReset', route('admin.table.categories'));
     }
 }

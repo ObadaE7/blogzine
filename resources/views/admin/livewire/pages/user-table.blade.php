@@ -48,7 +48,6 @@
                                 <i class="bi bi-plus me-2"></i>{{ trans('Create') }}
                             </button>
                         </li> --}}
-
                         <li>
                             <button wire:click='$refresh' class="dropdown-item">
                                 <i class="bi bi-arrow-clockwise me-2"></i>{{ trans('Refresh') }}
@@ -179,6 +178,12 @@
 
 @push('scripts')
     <script>
+        document.addEventListener('livewire:navigated', () => {
+            Livewire.on('urlReset', url => {
+                history.pushState(null, null, url);
+            });
+        });
+
         document.addEventListener('closeModal', event => {
             $('#' + event.detail.modalId).modal('hide');
         });
