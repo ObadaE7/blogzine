@@ -6,7 +6,41 @@
 @endsection
 
 <div class="table__wrapper">
-    <div class="table__wrapper-header"></div>
+    <div class="table__wrapper-header tags__table">
+        <div class="tags__table-card">
+            <div class="d-flex align-items-center justify-content-center w-25 h-100 text-bg-primary rounded-1">
+                <i class="bi bi-people-fill fs-3"></i>
+            </div>
+
+            <div class="d-flex flex-column justify-content-center">
+                <span class="fw-medium">{{ trans('Total User') }}</span>
+                <span>{{ $rows->total() }} <small class="text-muted">({{ trans('users are active') }})</small></span>
+            </div>
+        </div>
+
+        <div class="tags__table-card">
+            <div class="d-flex align-items-center justify-content-center w-25 h-100 text-bg-danger rounded-1">
+                <i class="bi bi-person-fill-slash fs-3"></i>
+            </div>
+
+            <div class="d-flex flex-column justify-content-center">
+                <span class="fw-medium">{{ trans('Deleted User') }}</span>
+                <span>{{ $inTrashed }} <small class="text-muted">({{ trans('users in the trash') }})</small></span>
+            </div>
+        </div>
+
+        <div class="tags__table-card">
+            <div class="d-flex align-items-center justify-content-center w-25 h-100 text-bg-secondary rounded-1">
+                <i class="bi bi-person-fill-exclamation fs-3"></i>
+            </div>
+
+            <div class="d-flex flex-column justify-content-center">
+                <span class="fw-medium">{{ trans('Inactive User') }}</span>
+                <span>{{ $Inactive }} <small class="text-muted">({{ trans('users are inactive') }})</small></span>
+            </div>
+        </div>
+    </div>
+
     <div class="table__wrapper-content">
         <x-alert status="success" color="success" />
         <x-alert status="error" color="danger" />

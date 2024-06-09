@@ -32,7 +32,10 @@ class UserTable extends Component
         $this->columns = ['fname', 'lname', 'uname', 'email'];
         $this->perPages = [5, 10, 20, 50];
 
-        return view('admin.livewire.pages.user-table', compact('headers', 'rows'))
+        $inTrashed = User::onlyTrashed()->count();
+        $Inactive = User::whereNull('email_verified_at')->count();
+
+        return view('admin.livewire.pages.user-table', compact('headers', 'rows', 'inTrashed', 'Inactive'))
             ->extends('admin.livewire.dashboard')
             ->section('content');
     }
