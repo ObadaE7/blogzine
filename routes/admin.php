@@ -17,6 +17,7 @@ Route::prefix('admin')
     ->group(function () {
         Route::get('/dashboard', Dashboard::class)->name('dashboard');
         Route::get('profile', Profile::class)->name('profile');
+        Route::get('settings', Profile::class)->name('settings');
 
         Route::prefix('table')
             ->as('table.')

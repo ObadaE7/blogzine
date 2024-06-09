@@ -7,9 +7,21 @@
     <div class="aside__menu">
         <ul class="aside__menu-ul">
             <li>
+                <a href="{{ route('admin.dashboard') }}" class="{{ Route::is('admin.dashboard') ? 'active' : '' }}">
+                    <i class="menu__icon dashboard"></i>
+                    <span class="menu__text">{{ trans('Dashboard') }}</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('admin.profile') }}" class="{{ Route::is('admin.profile') ? 'active' : '' }}">
                     <i class="menu__icon profile"></i>
                     <span class="menu__text">{{ trans('Profile') }}</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.settings') }}" class="{{ Route::is('admin.settings') ? 'active' : '' }}">
+                    <i class="menu__icon settings"></i>
+                    <span class="menu__text">{{ trans('Settings') }}</span>
                 </a>
             </li>
             <li>
