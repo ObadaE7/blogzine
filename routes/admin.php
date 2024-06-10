@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Admin\{CategoryTable, Dashboard, PostTable, Profile, Settings, TagTable, UserTable};
+use App\Livewire\Admin\Tables\ShowUser;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,7 @@ Route::prefix('admin')
             ->as('table.')
             ->group(function () {
                 Route::get('users', UserTable::class)->name('users');
+                Route::get('users/{id}/show', ShowUser::class)->name('users.show');
                 Route::get('categories', CategoryTable::class)->name('categories');
                 Route::get('tags', TagTable::class)->name('tags');
                 Route::get('posts', PostTable::class)->name('posts');

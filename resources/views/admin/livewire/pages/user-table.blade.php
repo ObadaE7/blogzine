@@ -61,7 +61,8 @@
                                 <div class="d-flex align-items-center justify-content-between">
                                     <span>{{ ucfirst($header) }}</span>
                                     @unless ($header === 'Actions' || $header === 'Avatar')
-                                        <i class="bi bi-chevron-{{ $orderBy === $header ? ($orderDir === 'asc' ? 'up' : 'down') : 'expand' }}"></i>
+                                        <i
+                                            class="bi bi-chevron-{{ $orderBy === $header ? ($orderDir === 'asc' ? 'up' : 'down') : 'expand' }}"></i>
                                     @endunless
                                 </div>
                             </th>
@@ -97,14 +98,13 @@
                             <td>{{ $row->email }}</td>
                             <td>
                                 <div class="d-flex gap-1">
-                                    <button wire:click="show({{ $row->id }})"
-                                        class="btn btn-sm btn__show btn-success" data-bs-toggle="modal"
-                                        data-bs-target="#showModal">
-                                    </button>
                                     <button wire:click="edit({{ $row->id }})"
-                                        class="btn btn-sm btn__edit btn-primary" data-bs-toggle="modal"
+                                        class="btn btn-sm btn__show btn-success" data-bs-toggle="modal"
                                         data-bs-target="#editModal">
                                     </button>
+                                    <a wire:navigate href="{{ route('admin.table.users.show', $row->id) }}"
+                                        class="btn btn-sm btn__edit btn-primary">
+                                    </a>
                                     <button wire:click="$set('userId', {{ $row->id }})"
                                         class="btn btn-sm btn__delete btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#deleteModal">
@@ -129,7 +129,6 @@
 
         <div class="section__modals">
             @include('admin.livewire.pages.modals.users.modal-show')
-            @include('admin.livewire.pages.modals.users.modal-edit')
             @include('admin.livewire.pages.modals.users.modal-delete')
         </div>
     </div>
