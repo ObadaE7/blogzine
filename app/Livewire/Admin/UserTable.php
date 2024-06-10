@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\Post;
 use App\Models\User;
 use App\Traits\FilterTrait;
 use App\Traits\ModalTrait;
@@ -14,6 +15,7 @@ class UserTable extends Component
     use WithPagination, ModalTrait, FilterTrait;
 
     public $userId;
+    public $postId;
     public $fname;
     public $lname;
     public $uname;
@@ -35,7 +37,11 @@ class UserTable extends Component
         $inTrashed = User::onlyTrashed()->count();
         $Inactive = User::whereNull('email_verified_at')->count();
 
-        return view('admin.livewire.pages.user-table', compact('headers', 'rows', 'inTrashed', 'Inactive'))
+        $userPosts = $this->userPosts($this->userId);
+        $postHeaders = $userPosts['headers'];
+        $postRows = $userPosts['rows'];
+
+        return view('admin.livewire.pages.user-table', compact('headers', 'rows', 'inTrashed', 'Inactive', 'postHeaders', 'postRows'))
             ->extends('admin.livewire.dashboard')
             ->section('content');
     }
@@ -88,6 +94,30 @@ class UserTable extends Component
         } catch (Exception $e) {
             Log::error('[deleteUser]: ' . $e->getMessage());
             session()->flash('error', trans('Failed to delete user'));
+        }
+    }
+
+    public function userPosts($id)
+    {
+        $headers = ['Image', 'Titles', 'Status', 'Actions'];
+        $rows = Post::where('user_id', $id)->paginate(4, ['*'], 'user-post');
+        return ['headers' => $headers, 'rows' => $rows];
+    }
+
+    public function deleteUserPost($id)
+    {
+        $post = Post::findOrFail($id);
+        try {
+            if ($post) {
+                $post->delete();
+                session()->flash('success', trans('The post has been deleted successfully'));
+                $this->closeModal('deleteModal');
+            } else {
+                session()->flash('error', trans('Post not found'));
+            }
+        } catch (Exception $e) {
+            Log::error('[deletePost]: ' . $e->getMessage());
+            session()->flash('error', trans('Failed to delete post'));
         }
     }
 

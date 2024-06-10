@@ -61,8 +61,7 @@
                                 <div class="d-flex align-items-center justify-content-between">
                                     <span>{{ ucfirst($header) }}</span>
                                     @unless ($header === 'Actions' || $header === 'Avatar')
-                                        <i
-                                            class="bi bi-chevron-{{ $orderBy === $header ? ($orderDir === 'asc' ? 'up' : 'down') : 'expand' }}"></i>
+                                        <i class="bi bi-chevron-{{ $orderBy === $header ? ($orderDir === 'asc' ? 'up' : 'down') : 'expand' }}"></i>
                                     @endunless
                                 </div>
                             </th>
@@ -98,9 +97,10 @@
                             <td>{{ $row->email }}</td>
                             <td>
                                 <div class="d-flex gap-1">
-                                    <button wire:click="edit({{ $row->id }})"
-                                        class="btn btn-sm btn__show btn-success" data-bs-toggle="modal"
-                                        data-bs-target="#editModal">
+                                    <button wire:click="$set('userId',{{ $row->id }})"
+                                        class="btn btn-sm btn-success" data-bs-toggle="modal"
+                                        data-bs-target="#showModal">
+                                        <i class="bi bi-stickies-fill"></i>
                                     </button>
                                     <a wire:navigate href="{{ route('admin.table.users.show', $row->id) }}"
                                         class="btn btn-sm btn__edit btn-primary">

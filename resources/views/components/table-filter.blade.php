@@ -6,6 +6,11 @@
     </button>
 
     <ul class="dropdown-menu dropdown-menu-end">
+        <li>
+            <div class="dropdown-item-text">
+                <span class="text-muted">{{ trans('Search by') }}</span>
+            </div>
+        </li>
         @foreach ($columns as $column)
             <li>
                 <button wire:click.live="$set('searchBy', '{{ $column }}')"
