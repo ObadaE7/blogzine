@@ -1,39 +1,53 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('password.store') }}">
-        @csrf
+    <div class="verify__wrapper">
+        <div class="verify__content">
+            <div class="verify__content-header">
+                <img src="{{ asset('assets/img/logo/jeveline-icon.png') }}" alt="{{ trans('Website logo') }}">
+                <span class="fs-4 fw-medium">{{ trans('Create A New Password') }}</span>
+            </div>
 
-        <!-- Password Reset Token -->
-        <input type="hidden" name="token" value="{{ $request->route('token') }}">
+            <form method="POST" action="{{ route('password.store') }}">
+                @csrf
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                <input type="hidden" name="token" value="{{ $request->route('token') }}">
+
+                <div class="mb-3">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" class="form-control"
+                        value="{{ old('email', $request->email) }}" placeholder="Enter your email">
+                </div>
+
+                <div class="mb-3">
+                    <label for="password">{{ trans('string.Password') }}</label>
+                    <div class="input-password">
+                        <input type="password" name="password" id="password" class="form-control"
+                            placeholder="{{ trans('string.Enter your password') }}">
+                        <span class="icon-password"></span>
+                    </div>
+                    <x-error name="password" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="password_confirmation">{{ trans('string.Confirm password') }}</label>
+                    <div class="input-password">
+                        <input type="password" name="password_confirmation" id="password_confirmation"
+                            class="form-control" placeholder="{{ trans('string.Confirm your password') }}">
+                        <span class="icon-password"></span>
+                    </div>
+                    <x-error name="password_confirmation" />
+                </div>
+
+                <div class="d-flex justify-content-end gap-2">
+                    <button type="submit" class="btn btn-primary">{{ trans('Reset Password') }}</button>
+                </div>
+            </form>
         </div>
+    </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Reset Password') }}
-            </x-primary-button>
-        </div>
-    </form>
+    @push('scripts')
+        <script src="{{ asset('assets/js/scripts.js') }}"></script>
+        <script>
+            togglePassword();
+        </script>
+    @endpush
 </x-guest-layout>
