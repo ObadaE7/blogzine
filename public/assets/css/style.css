@@ -1724,6 +1724,17 @@ swiper-slide {
     text-decoration: none;
 }
 
+.main__auth.register {
+    width: calc(var(--m-width-100) - 30%);
+}
+
+.main__auth.register .auth__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
 @media(max-width:992px) {
 
     .main__auth {
@@ -1747,54 +1758,9 @@ swiper-slide {
         align-items: center;
         text-align: center;
     }
-}
 
-.main__auth.register {
-    grid-area: main;
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: 'illustration content';
-    width: calc(var(--m-width-100) - 14%);
-    padding: 1.5rem 2rem;
-}
-
-.auth__illustration {
-    grid-area: illustration;
-}
-
-.auth__illustration img {
-    width: var(--m-width-100);
-    height: var(--m-height-100);
-    object-fit: cover;
-}
-
-.auth__content {
-    grid-area: content;
-}
-
-.main__auth.register .auth__container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-
-@media(max-width:992px) {
-    .main__auth.register {
-        grid-template-columns: 1fr;
-        grid-template-areas: 'content';
-        width: calc(var(--m-width-100) - 30%);
-    }
-
-    .auth__illustration {
-        display: none;
-    }
-}
-
-@media (max-width: 576px) {
-    .main__auth.register {
-        width: calc(var(--m-width-100) - 19%);
+    .main__auth.register .auth__container {
+        flex-direction: column;
     }
 
     .main__auth.register button {

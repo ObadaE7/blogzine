@@ -2,8 +2,11 @@
 @section('title', 'Register -')
 @section('content')
     <section class="main__auth register">
-        <div class="auth__illustration">
-            <img src="{{ asset('assets/img/sign_up.png') }}" alt="{{ trans('Sign up illustration') }}">
+        <div class="main__auth-illustration flash-animation">
+            <img src="{{ asset('assets/img/illustration/sign_in.png') }}" alt="{{ trans('string.Illustration') }}">
+            <div class="auth__illustration-text">
+                <a href="{{ route('home') }}">{{ config('app.name') }}</a>
+            </div>
         </div>
 
         <div class="auth__content">
@@ -20,24 +23,24 @@
 
                     <div class="col mb-3">
                         <label for="lname">{{ trans('Last name') }}</label>
-                        <input type="text" name="lname" id="lname" class="form-control" value="{{ old('lname') }}"
-                            placeholder="{{ trans('Enter your last name') }}">
+                        <input type="text" name="lname" id="lname" class="form-control"
+                            value="{{ old('lname') }}" placeholder="{{ trans('Enter your last name') }}">
                         <x-error name="lname" />
                     </div>
+                </div>
 
-                    <div class="col mb-3">
-                        <label for="uname">{{ trans('User name') }}</label>
-                        <input type="text" name="uname" id="uname" class="form-control"
-                            value="{{ old('uname') }}" placeholder="{{ trans('Enter your username') }}">
-                        <x-error name="uname" />
-                    </div>
+                <div class="col mb-3">
+                    <label for="uname">{{ trans('User name') }}</label>
+                    <input type="text" name="uname" id="uname" class="form-control" value="{{ old('uname') }}"
+                        placeholder="{{ trans('Enter your username') }}">
+                    <x-error name="uname" />
+                </div>
 
-                    <div class="col mb-3">
-                        <label for="email">{{ trans('Email') }}</label>
-                        <input type="email" name="email" id="email" class="form-control"
-                            value="{{ old('email') }}" placeholder="{{ trans('Enter your email') }}">
-                        <x-error name="email" />
-                    </div>
+                <div class="col mb-3">
+                    <label for="email">{{ trans('Email') }}</label>
+                    <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}"
+                        placeholder="{{ trans('Enter your email') }}">
+                    <x-error name="email" />
                 </div>
 
                 <div class="row row-cols-1 mb-3">
