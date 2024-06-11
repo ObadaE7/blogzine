@@ -3,7 +3,10 @@
 @section('content')
     <section class="main__auth">
         <span class="auth__header">{{ trans('Hello Again!') }}</span>
-        <form method="POST" action="{{ route('login') }}">
+        <x-alert status="success" color="success" />
+        <x-alert status="error" color="danger" />
+
+        <form method="POST" action="{{ route($routePrefix . 'login') }}">
             @csrf
             <div class="mb-3">
                 <label for="email">{{ trans('Email') }}</label>

@@ -1,5 +1,8 @@
 <?php
 
+use App\Livewire\Admin\{CategoryTable, Dashboard as AdminDashboard, PostTable, Profile as AdminProfile, Settings, TagTable, UserTable};
+use App\Livewire\Admin\Tables\ShowUser;
+
 use App\Livewire\{AllPost, Categories, Category, Home, Dashboard, CreatePost, Post, Posts, Profile, Tag};
 use Illuminate\Support\Facades\Route;
 
@@ -35,3 +38,9 @@ Route::prefix('dashboard')
     });
 
 require __DIR__ . '/auth.php';
+
+Route::prefix('admin')
+    ->as('admin.')
+    ->group(function () {
+        require __DIR__ . '/auth.php';
+    });

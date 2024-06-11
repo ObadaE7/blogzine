@@ -17,8 +17,8 @@ Route::prefix('admin')
     ->middleware(['auth:admin', 'verified'])
     ->group(function () {
         Route::get('/dashboard', Dashboard::class)->name('dashboard');
-        Route::get('profile', Profile::class)->name('profile');
-        Route::get('settings', Settings::class)->name('settings');
+        Route::get('/profile', Profile::class)->name('profile');
+        Route::get('/settings', Settings::class)->name('settings');
 
         Route::prefix('table')
             ->as('table.')
@@ -30,5 +30,3 @@ Route::prefix('admin')
                 Route::get('posts', PostTable::class)->name('posts');
             });
     });
-
-require __DIR__ . '/admin_auth.php';

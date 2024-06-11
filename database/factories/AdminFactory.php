@@ -25,7 +25,7 @@ class AdminFactory extends Factory
     public function definition(): array
     {
         return [
-            'country_id' => Country::inRandomOrder()->first()->id,
+            // 'country_id' => Country::inRandomOrder()->first()->id,
             'uname' => $this->faker->unique()->userName,
             'fname' => $this->faker->firstName(),
             'lname' => $this->faker->lastName(),

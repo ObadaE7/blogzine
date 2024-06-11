@@ -12,12 +12,23 @@ use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
+    protected $guard = 'web';
+
+    public function __construct(Request $request)
+    {
+        if ($request->is('admin/*')) {
+            $this->guard = 'admin';
+        }
+    }
     /**
      * Display the login view.
      */
     public function create(): View
     {
-        return view('auth.login');
+        return view(
+            'auth.login',
+            ['routePrefix' => $this->guard == 'admin' ? 'admin.' : '']
+        );
     }
 
     /**
@@ -25,11 +36,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+        $request->authenticate($this->guard);
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->intended($this->guard == 'web' ? RouteServiceProvider::HOME : RouteServiceProvider::ADMIN_HOME);
     }
 
     /**
@@ -37,12 +48,12 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        Auth::guard('web')->logout();
+        Auth::guard($this->guard)->logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect()->route($this->guard == 'admin' ? 'admin.login' : 'login');
     }
 }

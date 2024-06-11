@@ -13,14 +13,14 @@
                 <div class="row row-cols-md-2 row-cols-1 mt-2">
                     <div class="col mb-3">
                         <label for="fname">{{ trans('First name') }}</label>
-                        <input type="text" name="fname" id="fname" class="form-control"
+                        <input type="text" name="fname" id="fname" class="form-control" value="{{ old('fname') }}"
                             placeholder="{{ trans('Enter your first name') }}">
                         <x-error name="fname" />
                     </div>
 
                     <div class="col mb-3">
                         <label for="lname">{{ trans('Last name') }}</label>
-                        <input type="text" name="lname" id="lname" class="form-control"
+                        <input type="text" name="lname" id="lname" class="form-control" value="{{ old('lname') }}"
                             placeholder="{{ trans('Enter your last name') }}">
                         <x-error name="lname" />
                     </div>
@@ -28,14 +28,14 @@
                     <div class="col mb-3">
                         <label for="uname">{{ trans('User name') }}</label>
                         <input type="text" name="uname" id="uname" class="form-control"
-                            placeholder="{{ trans('Enter your username') }}">
+                            value="{{ old('uname') }}" placeholder="{{ trans('Enter your username') }}">
                         <x-error name="uname" />
                     </div>
 
                     <div class="col mb-3">
                         <label for="email">{{ trans('Email') }}</label>
                         <input type="email" name="email" id="email" class="form-control"
-                            placeholder="{{ trans('Enter your email') }}">
+                            value="{{ old('email') }}" placeholder="{{ trans('Enter your email') }}">
                         <x-error name="email" />
                     </div>
                 </div>
