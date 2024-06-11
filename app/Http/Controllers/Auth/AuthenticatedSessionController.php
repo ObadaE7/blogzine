@@ -37,9 +37,7 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate($this->guard);
-
         $request->session()->regenerate();
-
         return redirect()->intended($this->guard == 'web' ? RouteServiceProvider::HOME : RouteServiceProvider::ADMIN_HOME);
     }
 
@@ -49,11 +47,9 @@ class AuthenticatedSessionController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard($this->guard)->logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
-
+        session()->flash('success', trans('alerts.You have logged out'));
         return redirect()->route($this->guard == 'admin' ? 'admin.login' : 'login');
     }
 }

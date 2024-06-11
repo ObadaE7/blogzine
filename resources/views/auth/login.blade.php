@@ -1,54 +1,68 @@
 @extends('livewire.layouts.home')
-@section('title', 'Login -')
+@section('title', trans('Login -'))
 @section('content')
     <section class="main__auth">
-        <span class="auth__header">{{ trans('Hello Again!') }}</span>
-        <x-alert status="success" color="success" />
-        <x-alert status="error" color="danger" />
-
-        <form method="POST" action="{{ route($routePrefix . 'login') }}">
-            @csrf
-            <div class="mb-3">
-                <label for="email">{{ trans('Email') }}</label>
-                <input type="email" name="email" id="email" class="form-control"
-                    placeholder="{{ trans('Your email') }}">
-                <x-error name="email" />
+        <div class="main__auth-form">
+            <div class="auth__header">
+                <span>{{ trans('string.Hello') }}</span>
+                <span>{{ trans('string.Welcome back') }}</span>
             </div>
+            <x-alert status="success" color="success" />
+            <x-alert status="error" color="danger" />
 
-            <div class="mb-3">
-                <label for="password">{{ trans('Password') }}</label>
-                <div class="input-password">
-                    <input type="password" name="password" id="password" class="form-control"
-                        placeholder="{{ trans('Your password') }}">
-                    <span class="icon-password"></span>
+            <form method="POST" action="{{ route($routePrefix . 'login') }}">
+                @csrf
+                <div class="mb-3">
+                    <label for="email">{{ trans('string.Email') }}</label>
+                    <input type="email" name="email" id="email" class="form-control"
+                        placeholder="{{ trans('string.Your email') }}">
+                    <x-error name="email" />
                 </div>
-                <x-error name="password" />
-            </div>
 
-            <div class="mb-3 d-flex">
-                <input type="checkbox" id="remeber_me" class="form-check me-2">
-                <label for="remeber_me" class="text-muted">{{ trans('Remember me') }}</label>
-                <small class="d-flex ms-auto"><a wire:navigate href="#">{{ trans('Forget password?') }}</a></small>
-                <x-error name="remeber_me" />
-            </div>
-
-            <div class="auth__container">
-                <button type="submit" class="btn btn-primary w-100">{{ trans('Login') }}</button>
-                <div class="mb-3 text-center">
-                    <div class="divider"><span>{{ trans('OR') }}</span></div>
-                    <div class="auth__social">
-                        <a href="#" class="auth__social-facebook" aria-label="facebook"></a>
-                        <a href="#" class="auth__social-twitter" aria-label="twitter"></a>
-                        <a href="#" class="auth__social-google" aria-label="google"></a>
+                <div class="mb-3">
+                    <label for="password">{{ trans('string.Password') }}</label>
+                    <div class="input-password">
+                        <input type="password" name="password" id="password" class="form-control"
+                            placeholder="{{ trans('string.Your password') }}">
+                        <span class="icon-password"></span>
                     </div>
+                    <x-error name="password" />
                 </div>
 
-                <span class="text-center">
-                    <span class="me-1">{{ trans('Not registered?') }}</span>
-                    <a wire:navigate href="{{ route('register') }}">{{ trans('Create account') }}</a>
-                </span>
+                <div class="mb-3 d-flex">
+                    <input type="checkbox" id="remeber_me" class="form-check me-2">
+                    <label for="remeber_me" class="text-muted">{{ trans('string.Remember me') }}</label>
+                    <small class="d-flex ms-auto">
+                        <a wire:navigate href="{{ route('password.request') }}">{{ trans('string.Forget password') }}</a>
+                    </small>
+                    <x-error name="remeber_me" />
+                </div>
+
+                <div class="auth__container">
+                    <button type="submit" class="btn btn-primary w-100">{{ trans('string.Login') }}</button>
+                    <div class="text-center">
+                        <div class="divider"><span>{{ trans('string.OR') }}</span></div>
+                        <div class="auth__social">
+                            <a href="#" class="auth__social-facebook" aria-label="facebook"></a>
+                            <a href="#" class="auth__social-twitter" aria-label="twitter"></a>
+                            <a href="#" class="auth__social-google" aria-label="google"></a>
+                        </div>
+                    </div>
+
+                    <span class="auth__container-create">
+                        <span>{{ trans('string.Do not have an account') }}</span>
+                        <span><a wire:navigate href="{{ route('register') }}">{{ trans('string.Join us now') }}</a></span>
+                    </span>
+                </div>
+            </form>
+        </div>
+
+        <div class="main__auth-illustration flash-animation">
+            <img src="{{ asset('assets/img/illustration/sign_in.png') }}" alt="{{ trans('string.Illustration') }}">
+            <div class="auth__illustration-text">
+                <a href="{{ route('home') }}">{{ config('app.name') }}</a>
             </div>
-        </form>
+        </div>
     </section>
 @endsection
 
