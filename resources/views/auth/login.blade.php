@@ -30,12 +30,12 @@
                 </div>
 
                 <div class="mb-3 d-flex">
-                    <input type="checkbox" id="remeber_me" class="form-check me-2">
-                    <label for="remeber_me" class="text-muted">{{ trans('string.Remember me') }}</label>
+                    <input type="checkbox" name="remember" id="remember" class="form-check me-2">
+                    <label for="remember" class="text-muted">{{ trans('string.Remember me') }}</label>
                     <small class="d-flex ms-auto">
                         <a wire:navigate href="{{ route('password.request') }}">{{ trans('string.Forget password') }}</a>
                     </small>
-                    <x-error name="remeber_me" />
+                    <x-error name="remember" />
                 </div>
 
                 <div class="auth__container">
