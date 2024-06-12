@@ -1690,6 +1690,15 @@ swiper-slide {
     gap: 1.5rem;
 }
 
+.auth__social-github {
+    color: #36454F;
+}
+
+.auth__social-github::before {
+    content: '\F3ED';
+    font-family: var(--font-icons);
+}
+
 .auth__social-facebook {
     color: #285AEB;
 }
@@ -1716,7 +1725,7 @@ swiper-slide {
     content: '\F3F0';
     font-family: var(--font-icons);
 }
-
+.auth__social-github,
 .auth__social-facebook,
 .auth__social-twitter,
 .auth__social-google {

@@ -43,7 +43,7 @@
                     <div class="text-center">
                         <div class="divider"><span>{{ trans('string.OR') }}</span></div>
                         <div class="auth__social">
-                            <a href="#" class="auth__social-facebook" aria-label="facebook"></a>
+                            <a href="{{ route('auth.github') }}" class="auth__social-github" aria-label="facebook"></a>
                             <a href="#" class="auth__social-twitter" aria-label="twitter"></a>
                             <a href="#" class="auth__social-google" aria-label="google"></a>
                         </div>

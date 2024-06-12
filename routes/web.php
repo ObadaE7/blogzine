@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SocialAuthController;
 use App\Livewire\Admin\{CategoryTable, Dashboard as AdminDashboard, PostTable, Profile as AdminProfile, Settings, TagTable, UserTable};
 use App\Livewire\Admin\Tables\ShowUser;
 
@@ -44,3 +45,6 @@ Route::prefix('admin')
     ->group(function () {
         require __DIR__ . '/auth.php';
     });
+
+Route::get('auth/github', [SocialAuthController::class, 'redirectToGithub'])->name('auth.github');
+Route::get('auth/github/callback', [SocialAuthController::class, 'handleGithubCallback']);
