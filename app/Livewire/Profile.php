@@ -210,7 +210,7 @@ class Profile extends Component
         $validated =  $this->validateOnly('cover', ['cover' => 'required|file|image|mimes:jpg,jpeg,png|max:1024']);
         try {
             if ($validated) {
-                $path = $validated['cover']->store('covers', 'public');
+                $path = $validated['cover']->store('covers/users', 'public');
                 if ($user->cover) {
                     Storage::disk('public')->delete($user->cover);
                 }
@@ -230,7 +230,7 @@ class Profile extends Component
         $validated =  $this->validateOnly('avatar', ['avatar' => 'required|file|image|mimes:jpg,jpeg,png|max:1024']);
         try {
             if ($validated) {
-                $path = $validated['avatar']->store('avatars', 'public');
+                $path = $validated['avatar']->store('avatars/users', 'public');
                 if ($user->avatar) {
                     Storage::disk('public')->delete($user->avatar);
                 }

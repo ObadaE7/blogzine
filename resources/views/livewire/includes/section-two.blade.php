@@ -13,12 +13,12 @@
                     <img src="{{ 'storage/' . $post->image }}" alt="{{ $post->slug }}">
                     <div class="card__img-overlay">
                         <div class="section__owner">
-                            @if (empty($post->owner->image))
+                            @if (empty($post->owner->avatar))
                                 <div class="avatar__subtle">
                                     <span>{{ substr($post->owner->fname, 0, 1) . substr($post->owner->lname, 0, 1) }}</span>
                                 </div>
                             @else
-                                <img src="{{ $post->owner->image }}" class="avatar"
+                                <img src="{{ asset('storage/' . $post->owner->avatar) }}" class="avatar"
                                     alt="{{ $post->owner->uname . '-' . trans('avatar') }}">
                             @endif
                             <div class="owner__text">
