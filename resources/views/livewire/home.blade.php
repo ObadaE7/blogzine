@@ -18,5 +18,13 @@
         document.addEventListener("livewire:navigated", () => {
             initSwiper();
         });
+
+        document.addEventListener('livewire:navigated', function() {
+            Livewire.on('notifyLogin', () => {
+                var toastEl = document.getElementById('login-toast');
+                var toast = new bootstrap.Toast(toastEl);
+                toast.show();
+            });
+        });
     </script>
 @endpush

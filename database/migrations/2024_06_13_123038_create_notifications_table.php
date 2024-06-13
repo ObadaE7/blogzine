@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('post_users', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('post_id')->constrained('posts')->cascadeOnDelete();
-            $table->enum('reaction', ['like', 'dislike'])->nullable();
+            $table->string('message')->nullable();
         });
     }
 
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('post_users');
+        Schema::dropIfExists('notifications');
     }
 };

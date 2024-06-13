@@ -17,6 +17,7 @@
         @endif
         {{ config('app.name', '') }}
     </title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     @include('components.app-icon')
     <link rel="stylesheet" href="{{ asset('assets/lib/bs-icons/font/bootstrap-icons.min.css') }}">

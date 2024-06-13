@@ -66,10 +66,7 @@
                             </small>
                         </div>
 
-                        <div class="section__reactions">
-                            <div class="reaction__like"><span>58</span></div>
-                            <div class="reaction__dislike"><span>30</span></div>
-                        </div>
+                        <livewire:like-system :postId="$post->id">
                     </div>
                 </div>
             </div>

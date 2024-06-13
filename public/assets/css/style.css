@@ -423,40 +423,42 @@ body {
     display: flex;
     align-items: center;
     gap: var(--gap-sm);
-    color: #999;
 }
 
-.reaction__like span,
-.reaction__dislike span {
+.reaction__like,
+.reaction__dislike {
     display: flex;
     align-items: center;
     gap: var(--gap-xsm);
+    border: 0;
+    background: 0;
+    color: #999;
 }
 
-.reaction__like span::before {
+.reaction__like::before {
     content: '\F415';
     font-family: var(--font-icons);
 }
 
-.reaction__dislike span::before {
+.reaction__dislike::before {
     content: '\F770';
     font-family: var(--font-icons);
 }
 
-.reaction__like span::before,
-.reaction__dislike span::before {
+.reaction__like::before,
+.reaction__dislike::before {
     cursor: pointer;
     font-size: 20px;
 }
 
-.reaction__like.active span::before,
-.reaction__like:hover span::before {
+.reaction__like.active::before,
+.reaction__like:hover::before {
     color: var(--bs-danger);
     filter: drop-shadow(1px 1px 3px var(--bs-danger));
 }
 
-.reaction__dislike.active span::before,
-.reaction__dislike:hover span::before {
+.reaction__dislike.active::before,
+.reaction__dislike:hover::before {
     color: #6c757d;
     filter: drop-shadow(1px 1px 3px #6c757d);
 }
@@ -1725,6 +1727,7 @@ swiper-slide {
     content: '\F3F0';
     font-family: var(--font-icons);
 }
+
 .auth__social-github,
 .auth__social-facebook,
 .auth__social-twitter,
@@ -3251,4 +3254,8 @@ swiper-slide {
 
 .verify__btn-skip:hover {
     background: #285AEB;
+}
+
+.toast {
+    position: absolute;
 }

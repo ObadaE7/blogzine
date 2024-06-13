@@ -24,12 +24,17 @@
             <li>
                 <div class="dropdown">
                     <button class="li__btn notifications" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false"><span class="li__btn-badge">0</span></button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        aria-expanded="false">
+                        <span class="li__btn-badge notifications" id="notificationBadge">0</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end p-2" id="notificationDropdown" style=" --bs-dropdown-min-width:20rem">
+                        <li>
+                            <span>ALL Notification</span>
+                        </li>
                     </ul>
                 </div>
             </li>
+
             <li>
                 <div class="dropdown">
                     <button class="li__btn messages" type="button" data-bs-toggle="dropdown"

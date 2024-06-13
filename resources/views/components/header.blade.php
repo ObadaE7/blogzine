@@ -30,6 +30,7 @@
             <div class="bar"></div>
         </div>
     </button>
+    <x-toast></x-toast>
 </header>
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="headerToggle" aria-labelledby="headerToggleLabel">
